@@ -4,11 +4,10 @@ import org.platform.snail.edu.model.DocFlowTask;
 
 /**
  * @Title: AutoCode.java
- * @Package 
+ * @Package
  * @Description: TODO
  * Copyright: Copyright (c) 2014
  * Company:snail
- * 
  * @author chenxiaoke
  * @date 2014年12月14日 下午8:33:43
  * @version V1.0
@@ -24,27 +23,21 @@ import org.platform.snail.edu.model.DocFlowTask;
 
 public class AutoCode {
 
-	/**
-	 * @Title: main
-	 * @Description: TODO
-	 * @param @param args    设定文件
-	 * @return void    返回类型
-	 * @throws
-	 * @author chenxiaoke
-	 * @date 2014年12月14日 下午8:33:43
-	 * @version V1.0
-	 */
+    /**
+     *
+     * @param args
+     */
 
-	public static void main(String[] args) {
-		AutoCodeUtils autoCodeUtils=new AutoCodeUtils();
-		Class c=DocFlowTask.class;
-		autoCodeUtils.init(c);
-		try {
-			autoCodeUtils.createAction(c);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+    public static void main(String[] args) {
+        AutoCodeUtils autoCodeUtils = new AutoCodeUtils();
+        Class c = DocFlowTask.class;
+        autoCodeUtils.init(c);
+        try {
+            autoCodeUtils.createAction(c);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 
 }
