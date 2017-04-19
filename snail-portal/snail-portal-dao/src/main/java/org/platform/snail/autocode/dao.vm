@@ -1,0 +1,30 @@
+package org.platform.snail.portal.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+import org.platform.snail.portal.model.$!{bean.name};
+import org.platform.snail.portal.vo.$!{bean.name}QVo;
+import org.platform.snail.portal.vo.$!{bean.name}Vo;
+
+public interface $!{bean.name}Mapper {
+    int deleteByPrimaryKey(String $!{bean.name}Id);
+
+    int insert($!{bean.name} record);
+
+    int insertSelective($!{bean.name} record);
+
+    $!{bean.name} selectByPrimaryKey(String $!{bean.name}Id);
+
+    int updateByPrimaryKeySelective($!{bean.name} record);
+
+    int updateByPrimaryKey($!{bean.name} record);
+    
+    List<$!{bean.name}Vo> findList(@Param("condition") $!{bean.name}QVo condition,
+			@Param("start") int start, @Param("limit") int limit,
+			@Param("orderBy") String orderBy);
+
+	int findCount(@Param("condition") $!{bean.name}QVo condition);
+
+	int isExit($!{bean.name} record);
+}

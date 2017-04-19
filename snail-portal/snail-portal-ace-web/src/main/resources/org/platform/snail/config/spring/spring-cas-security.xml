@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns="http://www.springframework.org/schema/security">
+	<!-- 是否启动AOP权限控制 -->
+	<global-method-security pre-post-annotations="enabled">
+		<!-- AspectJ pointcut expression that locates our "post" method and applies 
+			security that way <protect-pointcut expression="execution(* bigbank.*Service.post*(..))" 
+			access="ROLE_TELLER"/> -->
+	</global-method-security>
+	<!-- 过滤器链 -->
+	<http entry-point-ref="casAuthenticationEntryPoint" access-denied-page="/dynamic/common/access-denied.jsp" use-expressions="true">
+		<intercept-url filters="none" pattern="/content/**" />
+		<intercept-url filters="none" pattern="/dynamic/common/casloginError.jsp" />
+		<intercept-url filters="none" pattern="/dynamic/common/access-denied.jsp" />
+		<intercept-url filters="none" pattern="/dynamic/common/exit.jsp" />
+		<intercept-url filters="none" pattern="/dynamic/common/loginOut.jsp" />
+		<intercept-url filters="none" pattern="/system/retrievePassword.do" />
+		<intercept-url pattern="/**" access="isAuthenticated()" />
+		<!-- 登录用户有权限访问 -->
+		<!-- CAS认证拦截器 -->
+		<custom-filter position="FORM_LOGIN_FILTER" ref="casAuthenticationFilter" />
+		<logout logout-success-url="/dynamic/common/loginOut.jsp" logout-url="/dynamic/common/loginOut.jsp" />
+		<remember-me />
+		<anonymous />
+		<!-- 放在默认过滤器之后，让默认过滤器先执行，默认过滤器用来拦截上面配置需要拦截的URL， 本过滤器用来拦截数据库配置的URL -->
+		<custom-filter ref="filterSecurityInterceptor" after="FILTER_SECURITY_INTERCEPTOR" />
+		<!-- Session失效过滤器 拦截失效的Session -->
+		<custom-filter ref="concurrentSessionFilter" before="CONCURRENT_SESSION_FILTER" />
+	</http>
+	<!-- 安全URL拦截器 : FilterSecurityIntercepto，必须包含authenticationManager,accessDecisionManager,securityMetadataSource三个属性， 
+		我们的所有控制将在这三个类中实现，解释详见具体配置 -->	
+	<beans:bean
+		class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor"
+		id="filterSecurityInterceptor" name="filterSecurityInterceptor">
+		<beans:property ref="authenticationManager" name="authenticationManager" />
+		<!-- 认证管理 即 登录验证 -->
+		<beans:property ref="accessDecisionManager" name="accessDecisionManager" />
+		<!-- 访问决策管理 即 验证用户是否有权限访问数据库配置的URL -->
+		<beans:property ref="securityMetadataSource" name="securityMetadataSource" />
+		<!-- 权限资源加载管理 即 加载数据库配置的URL和Token -->
+		<beans:property name="observeOncePerRequest" value="false" />
+		<!-- 此 过滤器是放在FILTER_SECURITY_INTERCEPTOR 之后的，为了让此过滤器运行，就要将此参数设为false，如果设为true此过滤器将跳过不运行 -->
+	</beans:bean>
+	<!-- 验证配置: 认证管理器，实现用户认证的入口，主要实现UserDetailsService接口即可 查询用户 -->	
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider ref="casAuthenticationProvider">
+		</authentication-provider>
+	</authentication-manager>
+	<!-- 决策管理 : 验证用户是否有权限访问受保护的URL -->	
+	<beans:bean class="org.springframework.security.access.vote.AffirmativeBased"
+		id="accessDecisionManager">
+		<beans:property name="allowIfAllAbstainDecisions"
+			value="false" />
+		<!-- false表示如果所有的弃权则不允许访问， true表示如果所有的弃权则允许访问， -->		
+		<beans:property name="decisionVoters">			
+			<beans:list>
+				<!-- 表对以ROLE_开头 的角色 投票 查看是否有权限 如果不是以ROLE_的角色，弃权 -->				
+				<beans:bean class="org.springframework.security.access.vote.RoleVoter">
+					<beans:property name="rolePrefix" value="ROLE_" />
+				</beans:bean>
+				<!-- 表是对 登录用户有权限 访问， -->
+				<beans:bean
+					class="org.springframework.security.access.vote.AuthenticatedVoter" />
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	<!-- 资源源数据定义，将所有的资源和权限对应关系建立起来，即定义某一资源可以被哪些角色访问 加载系统所有的权限 （需要用户重写） -->
+	<beans:bean
+		class="org.platform.snail.security.InvocationSecurityMetadataSourceService"
+		id="securityMetadataSource" name ="securityMetadataSource" init-method="loadResourceDefine">
+	</beans:bean>
+	<!-- CAS 配置 start -->
+	<!-- CAS 过滤器 转发CAS到服务器，验证票据 -->	
+	<beans:bean
+		class="org.springframework.security.cas.web.CasAuthenticationFilter"
+		id="casAuthenticationFilter">
+		<beans:property ref="authenticationManager" name="authenticationManager" />
+	</beans:bean>
+	<!-- CAS 认证实体切入点 为了CAS操作，ExceptionTranslation 必须有它的AuthenticationEntryPoint -->	
+	<beans:bean
+		class="org.springframework.security.cas.web.CasAuthenticationEntryPoint"
+		id="casAuthenticationEntryPoint">
+		<beans:property name="loginUrl" value="#{configProps['cas.login.url']}/login" />
+		<!-- CAS登录URL -->
+		<beans:property ref="serviceProperties" name="serviceProperties" />
+	</beans:bean>
+	<!-- 配置属性 配置登录拦截URL -->	
+	<beans:bean class="org.springframework.security.cas.ServiceProperties"
+		id="serviceProperties">
+		<beans:property name="service"
+			value="#{configProps['cas.j_spring_cas_security_check']}" />
+		<!-- 由casAuthenticationFilter 监控的URL -->
+		<beans:property name="sendRenew" value="false" />
+	</beans:bean>
+	<!-- CAS ticket 处理 -->	
+	<beans:bean
+		class="org.springframework.security.cas.authentication.CasAuthenticationProvider"
+		id="casAuthenticationProvider">
+		<beans:property ref="userDetailsService" name="userDetailsService" />
+		<!-- 一旦CAS验证通过 使用它来加载用户认证信息 -->
+		<beans:property ref="serviceProperties" name="serviceProperties" />		
+		<beans:property name="ticketValidator">			
+			<beans:bean
+				class="org.jasig.cas.client.validation.Cas20ServiceTicketValidator">
+				<beans:constructor-arg value="#{configProps['cas.server.url']}"
+					index="0" />
+			</beans:bean>
+		</beans:property>
+		<beans:property name="key" value="cas" />
+		<!-- 表明是用CAS验证 -->
+	</beans:bean>
+	<!-- CAS 配置 end -->
+	<!-- 引入国际化文件 -->	
+	<beans:bean
+		class="org.springframework.context.support.ResourceBundleMessageSource"
+		id="messageSource">
+		<beans:property name="basenames">
+			<beans:list>
+				<beans:value>messages</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	<!-- spring session注册器 用来存储用户的Session -->
+	<beans:bean
+		class="org.springframework.security.core.session.SessionRegistryImpl"
+		id="sessionRegistry" />
+	<!-- JDBC认证方式 自己写必须实现Acegi提供的UserDetailsService接口类 -->
+	<beans:bean
+		class="org.platform.snail.security.UserDetailServiceImpl"
+		id="userDetailsService" />
+	<!-- Session过期拦截器 主要针对 用户登录提出前一个登录用户得分过滤器 -->
+	<beans:bean
+		class="org.springframework.security.web.session.ConcurrentSessionFilter"
+		id="concurrentSessionFilter">
+		<beans:property ref="sessionRegistry" name="sessionRegistry" />
+		<beans:property name="expiredUrl" value="/dynamic/common/casloginError.jsp" />
+		<!-- Session过期跳转URL -->
+	</beans:bean>
+</beans:beans>

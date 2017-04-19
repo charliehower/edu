@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util-2.5.xsd "
+	default-autowire="byName">
+	<util:properties id="configProps" location="classpath:properties.properties" />
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:properties.properties</value>
+				<value>classpath:mongodb.properties</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass">
+			<value>#{configProps['db.driverClassName']}</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>#{configProps['db.url']}</value>
+		</property>
+		<property name="user">
+			<value>#{configProps['db.username']}</value>
+		</property>
+		<property name="password">
+			<value>#{configProps['db.password']}</value>
+		</property>
+		<property name="maxPoolSize">
+			<value>#{configProps['db.maxActive']}</value>
+		</property>
+		<property name="preferredTestQuery">
+			<value>select 1 from dual</value>
+		</property>
+		<property name="idleConnectionTestPeriod">
+			<value>10</value>
+		</property>
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="org.platform.snail.dao;org.platform.snail.portal.dao;org.platform.snail.edu.dao"/>
+	</bean>
+	<!-- 配置事务特性，配置add，delete，update开始的方法，事务传播特性为required -->
+	<tx:advice id="txServiceAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="modify*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- 配置事务特性，配置add，delete，update开始的方法，事务传播特性为MANDATORY -->
+	<tx:advice id="txDaoAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="MANDATORY" />
+			<tx:method name="insert*" propagation="MANDATORY" />
+			<tx:method name="delete*" propagation="MANDATORY" />
+			<tx:method name="update*" propagation="MANDATORY" />
+			<tx:method name="modify*" propagation="MANDATORY" />
+			<tx:method name="save*" propagation="MANDATORY" />
+			<tx:method name="*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- ensure that the above transactional advice runs for any execution of 
+		an operation defined by specified interface -->
+	<!-- 哪些类的哪些方法参与事务 -->
+	<aop:config>
+		<!--配置切入点，匹配dao包下所有的类的所有方法的执行 -->
+		<aop:pointcut id="allSysDaoMethod"
+			expression="execution(* org.platform.snail.*.dao.*.*(..)) || execution(* org.platform.snail.dao.*.*(..))" />
+		
+		<aop:pointcut id="allSysServiceMethod"
+			expression="execution(* org.platform.snail.*.service.impl.*.*(..)) || execution(* org.platform.snail.service.impl.*.*(..))" />
+		
+		<!-- 指定在txAdvice切入点应用txAdvice事务切面 -->
+		<aop:advisor advice-ref="txDaoAdvice" pointcut-ref="allSysDaoMethod" />
+		<aop:advisor advice-ref="txServiceAdvice" pointcut-ref="allSysServiceMethod" />
+	</aop:config>
+    <import resource="classpath:org/platform/snail/config/spring/spring-cas-security.xml" /> 
+	<import resource="classpath:org/platform/snail/config/spring/spring-email-service.xml" />
+	<import resource="classpath:org/platform/snail/config/spring/spring-edu-service.xml" />
+	<import resource="classpath:org/platform/snail/config/spring/spring-portal-mongodb.xml" />
+</beans>

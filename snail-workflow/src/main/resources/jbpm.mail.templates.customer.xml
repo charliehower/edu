@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<jbpm-configuration>
+
+  <process-engine-context>
+
+    <mail-template name='task-notification'>
+      <to users="${task.assignee}"/>
+      <subject>${task.name}</subject>
+      <text><![CDATA[${systemUser.users.name},你好！
+任务“${task.name}”已经分配给你.
+${task.description}
+电子工作流发送${task.createTime}]]></text>
+    </mail-template>
+
+    <mail-template name='task-reminder'>
+      <to users="${task.assignee}"/>
+      <subject>${task.name}</subject>
+      <text><![CDATA[Hey ${task.assignee},
+Do not forget about task "${task.name}".
+${task.description}
+
+Sent by jBPM]]></text>
+    </mail-template>
+
+  </process-engine-context>
+
+</jbpm-configuration>

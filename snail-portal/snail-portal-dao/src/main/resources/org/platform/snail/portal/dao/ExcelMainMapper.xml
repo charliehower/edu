@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.portal.dao.ExcelMainMapper">
+	<resultMap id="BaseResultMap" type="org.platform.snail.portal.model.ExcelMain">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="user_id" property="userId" jdbcType="VARCHAR" />
+		<result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+		<result column="deadline" property="deadline" jdbcType="TIMESTAMP" />
+		<result column="totals" property="totals" jdbcType="INTEGER" />
+		<result column="files" property="files" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="targets" property="targets" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<resultMap id="BaseResultMapVo" type="org.platform.snail.portal.vo.ExcelMainVo">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="user_id" property="userId" jdbcType="VARCHAR" />
+		<result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+		<result column="deadline" property="deadline" jdbcType="TIMESTAMP" />
+		<result column="totals" property="totals" jdbcType="INTEGER" />
+		<result column="files" property="files" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="targets" property="targets" jdbcType="LONGVARCHAR" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		id, name, user_id, start_time, deadline, totals, files, remark,
+		create_time
+	</sql>
+	<sql id="Blob_Column_List">
+		targets
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from excel_main
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from excel_main
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="org.platform.snail.portal.model.ExcelMain">
+		insert into excel_main (id, name, user_id,
+		start_time, deadline, totals,
+		files, remark, create_time,
+		targets)
+		values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+		#{userId,jdbcType=VARCHAR},
+		#{startTime,jdbcType=TIMESTAMP}, #{deadline,jdbcType=TIMESTAMP}, #{totals,jdbcType=INTEGER},
+		#{files,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{targets,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="org.platform.snail.portal.model.ExcelMain">
+		insert into excel_main
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="startTime != null">
+				start_time,
+			</if>
+			<if test="deadline != null">
+				deadline,
+			</if>
+			<if test="totals != null">
+				totals,
+			</if>
+			<if test="files != null">
+				files,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="targets != null">
+				targets,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="startTime != null">
+				#{startTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deadline != null">
+				#{deadline,jdbcType=TIMESTAMP},
+			</if>
+			<if test="totals != null">
+				#{totals,jdbcType=INTEGER},
+			</if>
+			<if test="files != null">
+				#{files,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="targets != null">
+				#{targets,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.portal.model.ExcelMain">
+		update excel_main
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="startTime != null">
+				start_time = #{startTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deadline != null">
+				deadline = #{deadline,jdbcType=TIMESTAMP},
+			</if>
+			<if test="totals != null">
+				totals = #{totals,jdbcType=INTEGER},
+			</if>
+			<if test="files != null">
+				files = #{files,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="targets != null">
+				targets = #{targets,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="org.platform.snail.portal.model.ExcelMain">
+		update excel_main
+		set name = #{name,jdbcType=VARCHAR},
+		user_id = #{userId,jdbcType=VARCHAR},
+		start_time = #{startTime,jdbcType=TIMESTAMP},
+		deadline = #{deadline,jdbcType=TIMESTAMP},
+		totals = #{totals,jdbcType=INTEGER},
+		files = #{files,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		targets = #{targets,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.platform.snail.portal.model.ExcelMain">
+		update excel_main
+		set name = #{name,jdbcType=VARCHAR},
+		user_id = #{userId,jdbcType=VARCHAR},
+		start_time = #{startTime,jdbcType=TIMESTAMP},
+		deadline = #{deadline,jdbcType=TIMESTAMP},
+		totals = #{totals,jdbcType=INTEGER},
+		files = #{files,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		targets = #{targets,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<select id="isExit" resultType="int">
+		select count(*) from
+		excel_main
+		where
+		name=#{name}
+	</select>
+	<sql id="whereCondition">
+		from excel_main
+		left join users on
+		excel_main.user_id=users.user_id
+		where 0=0
+		<if test="condition.name!=null and condition.name!=&quot;&quot;">
+			and
+			excel_main.name like
+			concat('%',concat(#{condition.name,jdbcType=VARCHAR},'%'))
+
+		</if>
+
+		<if test='condition.startDate!=null and condition.startDate!=""'>
+			<![CDATA[
+			and excel_main.create_time>=str_to_date(#{condition.startDate},'%Y-%m-%d %H:%i:%S')
+			]]>
+		</if>
+		<if test='condition.endDate!=null and condition.endDate!=""'>
+			 <![CDATA[
+				and excel_main.create_time<=str_to_date(#{condition.endDate},'%Y-%m-%d %H:%i:%S')   
+				]]>
+		</if>
+	</sql>
+	<select id="findCount" resultType="int">
+		SELECT COUNT(*)
+		<include refid="whereCondition" />
+	</select>
+	<select id="findList" resultMap="BaseResultMapVo">
+		SELECT
+		excel_main.id, excel_main.name, excel_main.user_id,
+		excel_main.start_time, excel_main.deadline, excel_main.totals,
+		excel_main.files, excel_main.remark, excel_main.create_time,users.name user_name
+		<include refid="whereCondition" />
+		<choose>
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+				ORDER BY excel_main.${orderBy}
+			</when>
+			<otherwise>
+				ORDER BY excel_main.create_time desc
+			</otherwise>
+		</choose>
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+</mapper>

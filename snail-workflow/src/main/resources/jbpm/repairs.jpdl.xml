@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process description="报修申请" id="repairs" key="repairs" name="报修申请"
+	version="1" xmlns="http://jbpm.org/4.4/jpdl">
+	<start g="30,6,48,48" name="开始">
+		<transition g="-115,-24" name="to 提交报修申请" to="提交报修申请" />
+	</start>
+
+	<task assignee="#{systemUser.users.userId}" form="/workflow/dynamic/workflow/repairs/index.jsp"
+		g="124,11,140,52" name="提交报修申请">
+		<transition g="-115,-24" name="to 判断受理类型（总务、电教）" to="判断受理类型（总务、电教）" />
+		<!--<notification />-->
+	</task>
+
+	<decision g="146,160,48,48" name="判断受理类型（总务、电教）">
+		<transition g="-115,-24" name="to 电教派工" to="电教派工维修人确认">
+			<event-listener class="org.platform.snail.workflow.eventlistener.LogListener"/>
+			<condition expr="#{repairsCategory=='2'}" />
+		</transition>
+		<transition g="-73,-21" name="to 总务派工" to="总务派工维修人确认">
+			<event-listener class="org.platform.snail.workflow.eventlistener.LogListener"/>
+			<condition expr="#{repairsCategory=='1'}" />
+		</transition>
+	</decision>
+	<task form="/workflow/dynamic/workflow/repairs/index-audit.jsp" g="324,126,178,52"
+		name="总务派工维修人确认">
+		<assignment-handler
+			class="org.platform.snail.workflow.assigntask.AssignTaskRepairs">
+			<!-- field元素为任务分配处理器的assignee域注入值。这种注入方式对于jbpm的用户代码都是通用的 -->
+			<field name="assignee">
+				<string value="1" />
+			</field>
+		</assignment-handler>
+		<transition g="-115,-24" name="to 判断维修人员" to="判断是否驳回" >
+			<event-listener class="org.platform.snail.workflow.eventlistener.LogListener"/>
+		</transition>
+	</task>
+	<task form="/workflow/dynamic/workflow/repairs/index-audit.jsp" g="41,370,186,52"
+		name="电教派工维修人确认">
+		<assignment-handler
+			class="org.platform.snail.workflow.assigntask.AssignTaskRepairs">
+			<!-- field元素为任务分配处理器的assignee域注入值。这种注入方式对于jbpm的用户代码都是通用的 -->
+			<field name="assignee">
+				<string value="12" />
+			</field>
+		</assignment-handler>
+		<transition g="-115,-24" name="to 判断是否驳回" to="判断是否驳回" />
+	</task>
+	<decision g="418,292,48,48" name="判断是否驳回">
+		<transition g="-115,-24" name="to 驳回发送邮件" to="驳回发送邮件">
+			<condition expr="#{rs=='0'}" />
+		</transition>
+		<transition name="to 评价" to="评价" g="-57,-24">
+			<condition expr="#{rs=='1'}" />
+		</transition>
+	</decision>
+	<mail g="596,42,119,40" name="驳回发送邮件">
+		<transition g="-115,-24" name="to 提交报修申请" to="提交报修申请">
+		</transition>
+		<to addresses="${systemUser.users.email}" />
+		<subject>报修申请驳回</subject>
+		<text>报修申请流程驳回${systemUser.dpFullName}${systemUser.leaderFullName}
+		</text>
+	</mail>
+	<task assignee="#{systemUser.users.userId}" form="/workflow/dynamic/workflow/repairs/index-eva.jsp"
+		g="675,381,92,52" name="评价">
+		<transition g="-59,-24" name="to 邮件" to="邮件">
+			<event-listener class="org.platform.snail.workflow.eventlistener.LogListener"/>
+		</transition>
+	</task>
+	<mail g="776,263,80,40" name="邮件">
+		<transition g="7,-26" name="to 流程结束" to="流程结束" />
+		<to addresses="#{systemUser.users.email}" />
+		<subject>流程结束</subject>
+		<text>报修申请流程完成，${systemUser.dpFullName}${systemUser.leaderFullName}
+		</text>
+	</mail>
+	<end g="848,141,48,48" name="流程结束" />
+</process>

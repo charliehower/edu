@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<process description="离职申请" id="quit" key="quit" name="离职申请" version="1" xmlns="http://jbpm.org/4.4/jpdl">
+   <start g="30,6,48,48" name="开始">
+      <transition g="-115,-24" name="to 提交离职申请" to="提交离职申请"/>
+   </start>
+   <end g="674,409,48,48" name="流程结束"/>
+   <task assignee="#{systemUser.users.userId}" form="/workflow/dynamic/workflow/quit/index.jsp" g="124,11,140,52" name="提交离职申请">
+      <transition g="-115,-24" name="to 判断审批领导" to="判断审批领导"/>
+      <notification/>
+   </task>
+   <task assignee="#{systemUser.leader3.leaderId}" form="/workflow/dynamic/workflow/quit/index-audit.jsp" g="205,133,140,52" name="三级部门领导审批">
+      <transition g="-115,-24" name="to 判断是否驳回" to="判断是否驳回3"/>
+    
+   </task>
+   <task assignee="#{systemUser.leader2.leaderId}" form="/workflow/dynamic/workflow/quit/index-audit.jsp" g="163,219,151,52" name="二级部门领导审批">
+      <transition g="-115,-24" name="to 判断是否驳回" to="判断是否驳回2"/>
+     
+   </task>
+   <task assignee="#{systemUser.leader1.leaderId}" form="/workflow/dynamic/workflow/quit/index-audit.jsp" g="40,419,147,52" name="一级部门审批">
+      <transition g="-115,-24" name="to 判断是否驳回" to="判断是否驳回1"/>
+     
+   </task>
+   <decision g="88,98,48,48" name="判断审批领导">
+      <transition g="-143,-24" name="to 二级部门领导审批" to="二级部门领导审批">
+      	<condition expr="#{systemUser.department.departmentLevel=='2'}"/>
+      </transition>
+      <transition g="-115,-24" name="to 一级部门审批" to="一级部门审批">
+      	<condition expr="#{systemUser.department.departmentLevel=='1'}"/>
+      </transition>
+      <transition g="-143,-24" name="to 三级部门领导审批" to="三级部门领导审批">
+      	<condition expr="#{systemUser.department.departmentLevel=='3'}"/>
+      </transition>
+      <transition g="-115,-24" name="to 四级部门审批" to="四级部门审批">
+      	<condition expr="#{systemUser.department.departmentLevel=='4'}"/>
+      </transition>
+   </decision>
+   <mail g="751,10,119,40" name="驳回发送邮件">
+      <transition g="-115,-24" name="to 提交离职申请" to="提交离职申请"/>
+      
+    <to addresses="249134995@qq.com"/>
+    <subject>离职申请驳回</subject>
+    <text>离职申请流程驳回${systemUser.dpFullName}${systemUser.leaderFullName}</text>
+</mail>
+<mail g="503,458,80,40" name="邮件">
+      <transition g="-87,-24" name="to 流程结束" to="流程结束"/>
+    <to addresses="249134995@qq.com"/>
+    <subject>流程结束</subject>
+    <text>离职申请流程完成，${systemUser.dpFullName}${systemUser.leaderFullName} </text>
+</mail>
+   <task assignee="#{systemUser.leader4.leaderId}" form="/workflow/dynamic/workflow/quit/index-audit.jsp" g="432,47,142,52" name="四级部门审批">
+      <transition g="-115,-24" name="to 判断是否驳回" to="判断是否驳回4"/>
+   </task>
+   <decision g="764,192,48,48" name="判断是否驳回4">
+      <transition g="-115,-24" name="to 驳回发送邮件" to="驳回发送邮件">
+     	 <condition expr="#{rs=='0'}"/>
+      </transition>
+      <transition g="-115,-24" name="to 三级部门领导审批" to="三级部门领导审批">
+     	 <condition expr="#{rs=='1'}"/>
+      </transition>
+   </decision>
+   <decision g="532,308,48,48" name="判断是否驳回3">
+      <transition g="-135,-76" name="to 二级部门领导审批" to="二级部门领导审批">
+     	 <condition expr="#{rs=='1'}"/>
+      </transition>
+      <transition g="-257,-90" name="to 驳回发送邮件" to="驳回发送邮件">
+      <condition expr="#{rs=='0'}"/>
+      </transition>
+   </decision>
+   <decision g="188,283,48,48" name="判断是否驳回2">
+      <transition g="-115,-24" name="to 一级部门审批" to="一级部门审批">
+      	<condition expr="#{rs=='1'}"/>
+      </transition>
+      <transition g="-115,-24" name="to 驳回发送邮件" to="驳回发送邮件">
+      <condition expr="#{rs=='0'}"/>
+      </transition>
+   </decision>
+   <decision g="303,404,48,48" name="判断是否驳回1">
+      <transition g="-59,-24" name="to 邮件" to="邮件">
+      <event-listener class="org.platform.snail.workflow.eventlistener.LogListener">
+        <field name="msg"><string value="take transition"/></field>
+      </event-listener>
+      <condition expr="#{rs=='1'}"/>
+      </transition>
+      <transition g="-115,-24" name="to 驳回发送邮件" to="驳回发送邮件">
+      <condition expr="#{rs=='0'}"/>
+      </transition>
+   </decision>
+</process>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.platform.snail.dao.DataBaseLogDao">
+	<insert id="insert" parameterType="org.platform.snail.model.Logs">
+		insert into LOGS (ID, LOG, USER_ID,
+		USER_NAME, CREATE_TIME, OBJECT_VALUE,
+		OLD, NEWS, NAME,IP)
+		values (null, #{logs.log,jdbcType=VARCHAR},
+		#{logs.userId,jdbcType=VARCHAR},
+		#{logs.userName,jdbcType=VARCHAR}, now(), #{logs.objectValue,jdbcType=VARCHAR},
+		#{logs.old,jdbcType=VARCHAR}, #{logs.news,jdbcType=VARCHAR}, #{logs.name,jdbcType=VARCHAR}, #{logs.ip,jdbcType=VARCHAR})
+	</insert>
+	<sql id="whereCondition">
+		from logs where 0=0
+		<if test='condition.userId!=null and condition.userId!=""'>
+			and logs.user_id =#{condition.userId,jdbcType=VARCHAR}
+		</if>
+		<if test='condition.name!=null and condition.name!=""'>
+			and logs.=name like
+			concat(#{condition.log,jdbcType=VARCHAR},'%')
+		</if>
+		
+		<if test='condition.startDate!=null and condition.startDate!=""'>
+			<![CDATA[
+			and logs.create_time>=str_to_date(#{condition.startDate},'%Y-%m-%d %H:%i:%S')
+			]]>   
+		</if>
+		<if test='condition.endDate!=null and condition.endDate!=""'>
+			 <![CDATA[
+				and logs.create_time<=str_to_date(#{condition.endDate},'%Y-%m-%d %H:%i:%S')   
+				]]>
+		</if>
+	</sql>
+	<select id="findCount" resultType="int">
+		SELECT COUNT(*)
+		<include refid="whereCondition" />
+	</select>
+	<select id="findList" resultType="map">
+
+		select
+		ID, LOG, USER_ID,
+		USER_NAME, CREATE_TIME, OBJECT_VALUE,
+		OLD, NEWS, NAME,IP
+		<include refid="whereCondition" />
+		<choose>
+			<when test='orderBy!=null and orderBy!=""'>
+				ORDER BY ${orderBy}
+			</when>
+			<otherwise>
+				ORDER BY id
+			</otherwise>
+		</choose>
+
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+
+	</select>
+</mapper>

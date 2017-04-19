@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.platform.snail.dao.SystemDao">
+	<select id="init" resultType="int">
+		select 1 from dual
+	</select>
+	 <resultMap id="users" type="org.platform.snail.model.Users">
+	<id column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="CHAR" />
+    <result column="ID_CARD" property="idCard" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT_ID" property="departmentId" jdbcType="VARCHAR" />
+    <result column="AREA_CODE" property="areaCode" jdbcType="CHAR" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="STAUTS" property="stauts" jdbcType="CHAR" />
+    <result column="LAST_LOGIN_TIME" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="SEAT" property="seat" jdbcType="VARCHAR" />
+    <result column="USER_LEVEL" property="userLevel" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+    <resultMap id="department" type="org.platform.snail.model.Department" >
+    <id column="DEPARTMENT_ID" property="departmentId" jdbcType="VARCHAR" />
+    <result column="PARENT_DEPARTMENT_ID" property="parentDepartmentId" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT_NAME" property="departmentName" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT_LEVEL" property="departmentLevel" jdbcType="DECIMAL" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_USER_ID" property="createUserId" jdbcType="VARCHAR" />
+    <result column="STAUTS" property="stauts" jdbcType="CHAR" />
+  </resultMap>
+   <resultMap id="resources" type="org.platform.snail.model.Resources">
+    <id column="RESOURCES_ID" jdbcType="VARCHAR" property="resourcesId" />
+    <result column="PARENT_RESOURCES_ID" jdbcType="VARCHAR" property="parentResourcesId" />
+    <result column="RESOURCES_NAME" jdbcType="VARCHAR" property="resourcesName" />
+    <result column="RESOURCES_URL" jdbcType="VARCHAR" property="resourcesUrl" />
+    <result column="RESOURCES_PATH" jdbcType="VARCHAR" property="resourcesPath" />
+    <result column="RESOURCES_ICON" jdbcType="VARCHAR" property="resourcesIcon" />
+    <result column="RESOURCES_TYPE" jdbcType="CHAR" property="resourcesType" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="CHILD_COUNT" jdbcType="VARCHAR" property="childCount" />
+  </resultMap>
+   <resultMap id="leader" type="org.platform.snail.beans.Leader">
+    <id column="leader_id" jdbcType="VARCHAR" property="leaderId" />
+    <result column="leader_name" jdbcType="VARCHAR" property="leaderName" />
+    <result column="department_name" jdbcType="VARCHAR" property="departmentName" />
+    <result column="department_level" jdbcType="VARCHAR" property="departmentLevel" />
+  </resultMap>
+  <resultMap id="config" type="org.platform.snail.model.Config" >
+    <id column="config_key" property="configKey" jdbcType="VARCHAR" />
+    <result column="config_name" property="configName" jdbcType="VARCHAR" />
+    <result column="config_value" property="configValue" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <select id="selectUsersByUserId" resultMap="users">
+  select user_id,
+       account,
+       password,
+       sex,
+       id_card,
+       name,
+       department_id,
+       area_code,
+       birthday,
+       stauts,
+       last_login_time,
+       mobile,
+       email,
+       seat,
+       user_level,
+       create_time
+  from users where user_id=#{userId}
+  </select>
+  
+  <select id="selectUsersByAccount" resultMap="users">
+  select user_id,
+       account,
+       password,
+       sex,
+       id_card,
+       name,
+       department_id,
+       area_code,
+       birthday,
+       stauts,
+       last_login_time,
+       mobile,
+       email,
+       seat,
+       user_level,
+       create_time
+  from users where account=#{account}
+  </select>
+  
+  <select id="selectDepartmentByDepartmentId" resultMap="department">
+  select department_id,
+       parent_department_id,
+       department_name,
+       department_level,
+       user_id,
+       create_time,
+       create_user_id,
+       stauts
+  from department where department_id=#{departmentId}
+  </select>
+  <select id="selectResourcesByUserId" resultMap="resources">
+ select t.resources_id,
+       t.parent_resources_id,
+       t.resources_name,
+       (CASE
+        WHEN t.resources_type = 2 THEN CONCAT(t.resources_url, '?id=', t.resources_id)
+        ELSE t.resources_url
+    END) resources_url,
+       t.resources_path,
+		<if test='portal="ace"'>
+		    ifnull(t.remark,'fa fa-cog') resources_icon,
+		</if>
+		<if test='portal="ext"'>
+		     t.resources_icon,
+		</if>
+       t.resources_type,
+       t.create_time,
+       t.create_user_id,
+       t.remark,
+       (select cast(count(*) as char) from resources where parent_resources_id=t.resources_id) child_count
+  from resources t
+ where t.resources_id in
+       (select t.resources_id
+          from role_resources t
+         where t.role_id in
+               (select t.role_id from users_role t where t.user_id = #{userId}))
+               order by t.SEQUENCE,cast(t.RESOURCES_ID as unsigned int)
+  </select>
+  <select id="selectProvinceTreeList" resultType="map">
+ SELECT 
+        t.code ID,
+            t.parent_code PID,
+            t.name TEXT,
+            '' SRC,
+            '' HREF,
+            'closed' STATE,
+            (SELECT 
+                    CAST(COUNT(*) AS CHAR)
+                FROM
+                    province
+                WHERE
+                    province.parent_code = t.code) CHILD_COUNT
+    FROM
+        province t where (t.code=#{pid} or t.parent_code=#{pid})
+    ORDER BY t.code
+  </select>
+  <insert id="insertFiles" parameterType="org.platform.snail.model.Files">
+		insert into files (file_id, file_name, file_ext_name, file_content, create_time, operater
+		)
+		values (#{files.fileId,jdbcType=VARCHAR}, #{files.fileName,jdbcType=VARCHAR},
+		#{files.fileExtName,jdbcType=VARCHAR},
+		#{files.fileContent,jdbcType=BLOB},sysdate, #{files.operater,jdbcType=VARCHAR}
+		)
+	</insert>
+	<update id="updatePassword">
+		update USERS
+			set password = #{password,jdbcType=CHAR}
+			where USER_ID = #{userId,jdbcType=VARCHAR}
+	</update>
+	 <select id="selectProvinceTreeListByPid" resultType="map">
+	 	<![CDATA[
+ 
+  select t.code ID,
+       t.parent_code PID,
+       t.name TEXT,
+	'closed' STATE,
+       '' SRC,
+       '' ICON,
+       '' HREF,
+       (select cast(count(*) as char)
+          from province
+         where province.parent_code = t.code) CHILD_COUNT
+  from province t where  (t.code=#{pid} or t.parent_code=#{pid}) order by t.code
+  
+  ]]>
+  </select>
+  <select id="loadResourceDefine" resultType="map">
+      select 
+    m.resources_url RESOURCES, group_concat(m.role_id) ROLES
+from
+    (select 
+        a.resources_url, concat('ROLE_' , ifnull(t.role_id, '0')) role_id
+    from
+        resources a left join  ROLE_RESOURCES t
+    on
+        a.resources_id = t.resources_id) m
+where
+    m.resources_url is not null
+        and m.role_id is not null
+group by m.resources_url
+  </select>
+  <select id="selectRoleListByUserId" resultType="map">
+      select concat('ROLE_',t.role_id) ROLE from users_role t where t.user_id = #{userId}
+  </select>
+  
+   <select id="selectDepartment" resultType="map">
+   	
+ select t.department_id    CODE,
+       t.department_name  NAME,
+       a.name             AREANAME,
+       t.department_level LEVELS
+  from DEPARTMENT t left join province a
+ on t.parent_department_id = a.code where 0=0
+ 		<if test='params.q !=null and params.q!=""'>
+		    and (t.department_id=#{params.q} or t.department_name like concat('%',#{params.q},'%'))
+		</if>
+		order by t.department_name limit 0,20
+	
+  </select>
+  <select id="selectUsers" resultType="map">
+select t.USER_ID,
+       t.NAME,
+       t.SEX,
+       t.ID_CARD,       
+       a.DEPARTMENT_NAME,
+       t.MOBILE
+  from users t left join department a
+  on t.department_id = a.department_id where 0=0
+ 		<if test='params.departmentId !=null and params.departmentId!=""'>
+		    and t.department_id=#{params.departmentId}
+		</if>
+		<if test='params.q !=null and params.q!=""'>
+		    and (t.user_id=#{params.q} or t.name like concat('%',#{params.q},'%'))
+		</if>
+		
+		order by t.create_time
+		limit 0,20
+  </select>
+  <select id="selectStudent" resultType="map">
+SELECT 
+    t.STUDENT_ID USER_ID,
+    t.NAME,
+    t.SEX,
+    t.ID_CARD,
+    CONCAT(B.GRADE_NAME, a.CLASSES_NAME) DEPARTMENT_NAME,
+    t.tel MOBILE
+FROM
+    student t
+        LEFT JOIN
+    classes a ON t.classes_id = a.classes_id
+        LEFT JOIN
+    grade b ON b.grade_id = a.grade_id
+WHERE
+    0 = 0
+ 		
+		<if test='params.q !=null and params.q!=""'>
+		    and (t.student_id=#{params.q} or t.name like concat('%',#{params.q},'%'))
+		</if>
+		order by t.create_time
+		limit 0,20
+  </select>
+  <select id="selectUsersByEmail" resultMap="users">
+  select user_id,
+       account,
+       password,
+       sex,
+       id_card,
+       name,
+       department_id,
+       area_code,
+       birthday,
+       stauts,
+       last_login_time,
+       mobile,
+       email,
+       seat,
+       user_level,
+       create_time
+  from users where email=#{email}  limit 0,1
+  </select>
+  <select id="getDiseaseListByPcodeOrName" resultType="map">
+  
+ select t.disease_code    CODE,
+       t.disease_name  NAME
+  from nc_diagnosis_dict t
+ where 0 = 0
+ 		<if test='params.q !=null and params.q!=""'>
+		    and (t.disease_code=#{params.q} or t.p_code like concat(upper(#{params.q}),'%') or t.disease_name like concat('%',#{params.q},'%'))
+		</if>
+		order by t.disease_name
+	limit 0,50
+  </select>
+  <select id="selectDepartmentTreeList" resultType="map">
+ SELECT 
+        t.department_id ID,
+            t.parent_department_id PID,
+            t.department_name TEXT,
+            cast(t.department_level as char) SRC,
+            t.user_id HREF,
+            '' ICON,
+            (SELECT 
+                    CAST(COUNT(*) AS CHAR)
+                FROM
+                    department
+                WHERE
+                    department.parent_department_id = t.department_id and department.stauts='1') CHILD_COUNT
+    FROM
+        department t where t.stauts='1'
+    ORDER BY CAST(t.department_id AS UNSIGNED INT)
+  </select>
+  <select id="selectLeaderByDepartmentId" resultMap="leader">
+  select b.user_id leader_id,
+       b.name leader_name,
+       a.department_name,
+       a.department_level
+  from department a,users b where a.user_id=b.user_id 
+  and a.department_id=#{departmentId}
+  </select>
+  
+  <select id="selectTeacher" resultType="map">
+SELECT 
+    t.TEACHER_ID,
+    t.NAME,
+    t.SEX,
+    b.GRADE_NAME,
+    c.DISCIPLINE_NAME,
+    a.DEPARTMENT_NAME
+FROM
+    teacher t
+        LEFT JOIN
+    department a ON t.department_id = a.department_id
+        LEFT JOIN
+    grade b ON t.grade_id = b.grade_id
+        LEFT JOIN
+    discipline c ON t.discipline_id = c.discipline_id
+WHERE
+    t.STAUTS IN ('0' , '1', '2', '3')
+ 		<if test='params.departmentId !=null and params.departmentId!=""'>
+		    and t.department_id like concat(#{params.departmentId},'%')
+		</if>
+		<if test='params.q !=null and params.q!=""'>
+		    and (t.teacher_id=#{params.q} or t.name like concat('%',#{params.q},'%'))
+		</if>
+		<if test='params.gradeId !=null and params.gradeId!=""'>
+		    and t.grade_id=#{params.gradeId} 
+		</if>
+		<if test='params.gradeId !=null and params.disciplineId!=""'>
+		    and t.discipline_id=#{params.disciplineId} 
+		</if>
+		order by t.create_time
+		limit 0,20
+  </select>
+  <select id="informationSchemaColumns" resultType="map">
+  SELECT 
+    COLUMN_NAME, COLUMN_COMMENT
+FROM
+    information_schema.columns
+WHERE
+    TABLE_NAME = #{tableName}
+  </select>
+  <select id="loadConfig" resultMap="config">
+  select * from config
+  </select>
+  <select id="selectClassesNamesByUserId" resultType="string">
+  SELECT 
+    GROUP_CONCAT(concat(grade.grade_name,classes.classes_name)) name
+FROM
+    arrangement
+        LEFT JOIN
+    classes ON arrangement.classes_id = classes.classes_id
+    left join grade on classes.grade_id=grade.grade_id
+WHERE
+    year = #{cyear} AND teacher_id = #{userId}
+  </select>
+  <select  id="selectHeadmasterClassesNamesByUserId" resultType="string">
+  SELECT 
+    GROUP_CONCAT(concat(grade.grade_name,classes.classes_name)) name
+FROM
+    headmaster
+        LEFT JOIN
+    classes ON headmaster.classes_id = classes.classes_id
+    left join grade on classes.grade_id=grade.grade_id
+WHERE
+    year = #{cyear} AND teacher_id = #{userId}
+  </select>
+</mapper>

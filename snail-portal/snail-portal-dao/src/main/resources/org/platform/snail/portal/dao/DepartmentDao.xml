@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.platform.snail.portal.dao.DepartmentDao">
+	<select id="init" resultType="int">
+		select 1 from dual
+	</select>
+	<resultMap id="department" type="org.platform.snail.model.Department">
+		<id column="DEPARTMENT_ID" property="departmentId" jdbcType="VARCHAR" />
+		<result column="PARENT_DEPARTMENT_ID" property="parentDepartmentId"
+			jdbcType="VARCHAR" />
+		<result column="DEPARTMENT_NAME" property="departmentName"
+			jdbcType="VARCHAR" />
+		<result column="DEPARTMENT_LEVEL" property="departmentLevel"
+			jdbcType="VARCHAR" />
+		<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="CREATE_USER_ID" property="createUserId"
+			jdbcType="VARCHAR" />
+		<result column="STAUTS" property="stauts" jdbcType="CHAR" />
+	</resultMap>
+	<resultMap id="departmentVo" type="org.platform.snail.portal.vo.DepartmentVo">
+		<id column="DEPARTMENT_ID" property="departmentId" jdbcType="VARCHAR" />
+		<result column="PARENT_DEPARTMENT_NAME" property="parentDepartmentName"
+			jdbcType="VARCHAR" />
+		<result column="PARENT_DEPARTMENT_ID" property="parentDepartmentId"
+			jdbcType="VARCHAR" />
+		<result column="DEPARTMENT_NAME" property="departmentName"
+			jdbcType="VARCHAR" />
+		<result column="DEPARTMENT_LEVEL" property="departmentLevel"
+			jdbcType="DECIMAL" />
+		<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="CREATE_USER_ID" property="createUserId"
+			jdbcType="VARCHAR" />
+		<result column="STAUTS" property="stauts" jdbcType="VARCHAR" />
+		<result column="DESCRIBTION" property="describtion" jdbcType="VARCHAR" />
+		<result column="HOURCE_NUMBER" property="hourceNumber"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<insert id="insertDepartment" parameterType="org.platform.snail.model.Department">
+		<selectKey keyProperty="ids" resultType="string" order="BEFORE">
+			SELECT
+			lpad(ifnull(max(DEPARTMENT_ID),concat(#{department.parentDepartmentId,jdbcType=VARCHAR},'00'))+1,length(#{department.parentDepartmentId,jdbcType=VARCHAR})+2,'0')
+			FROM department where
+			PARENT_DEPARTMENT_ID=#{department.parentDepartmentId,jdbcType=VARCHAR}
+		</selectKey>
+		insert into DEPARTMENT (DEPARTMENT_ID, PARENT_DEPARTMENT_ID,
+		DEPARTMENT_NAME,DESCRIBTION, DEPARTMENT_LEVEL, USER_ID,
+		CREATE_TIME, CREATE_USER_ID, STAUTS,HOURCE_NUMBER
+		)
+		values (#{ids,jdbcType=VARCHAR},
+		#{department.parentDepartmentId,jdbcType=VARCHAR},
+		#{department.departmentName,jdbcType=VARCHAR},#{department.describtion,jdbcType=VARCHAR},
+		#{department.departmentLevel,jdbcType=VARCHAR},
+		#{department.userId,jdbcType=VARCHAR},
+		now(), #{department.createUserId,jdbcType=VARCHAR},
+		'1',#{department.hourceNumber,jdbcType=VARCHAR}
+		)
+	</insert>
+	<update id="updateDepartmentByPrimaryKey" parameterType="org.platform.snail.model.Department">
+		update DEPARTMENT
+		set PARENT_DEPARTMENT_ID =
+		#{department.parentDepartmentId,jdbcType=VARCHAR},
+		<if test='department.userId!=null and department.userId!=""'>
+			USER_ID = #{department.userId,jdbcType=VARCHAR},
+		</if>
+		<if test='department.stauts!=null and department.stauts!=""'>
+			STAUTS = #{department.stauts,jdbcType=CHAR},
+		</if>
+
+		DEPARTMENT_NAME = #{department.departmentName,jdbcType=VARCHAR},
+		DEPARTMENT_LEVEL = #{department.departmentLevel,jdbcType=VARCHAR},
+		DESCRIBTION = #{department.describtion,jdbcType=VARCHAR},
+		HOURCE_NUMBER = #{department.hourceNumber,jdbcType=VARCHAR}
+		where DEPARTMENT_ID = #{department.departmentId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateDepartmentStautsByPrimaryKey">
+		update DEPARTMENT
+		set STAUTS = #{struts,jdbcType=CHAR}
+		where DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR}
+	</update>
+	<update id="delDepartmentByPrimaryKey">
+		delete from DEPARTMENT
+		where DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR}
+	</update>
+	<sql id="departmentPagingWhereCondition">
+		from DEPARTMENT,USERS where DEPARTMENT.USER_ID=USERS.USER_ID
+
+		<if test='condition.departmentName!=null and condition.departmentName!=""'>
+			and DEPARTMENT.DEPARTMENT_NAME like
+			concat(#{condition.departmentName,jdbcType=VARCHAR},'%')
+		</if>
+		<if
+			test='condition.parentDepartmentId!=null and condition.parentDepartmentId!=""'>
+			and DEPARTMENT.PARENT_DEPARTMENT_ID =
+			#{condition.parentDepartmentId,jdbcType=VARCHAR}
+		</if>
+		<if test='condition.userId!=null and condition.userId!=""'>
+			and DEPARTMENT.USER_ID =
+			#{condition.userId,jdbcType=VARCHAR}
+		</if>
+		<if test='condition.stauts!=null and condition.stauts!=""'>
+			and DEPARTMENT.STAUTS =
+			#{condition.stauts,jdbcType=VARCHAR}
+		</if>
+		<if test='condition.departmentId!=null and condition.departmentId!=""'>
+			and DEPARTMENT.DEPARTMENT_ID =
+			#{condition.departmentId,jdbcType=VARCHAR}
+		</if>
+
+	</sql>
+	<select id="findDepartmentCount" resultType="int">
+		SELECT COUNT(*)
+		<include refid="departmentPagingWhereCondition" />
+	</select>
+	<select id="findDepartmentList" resultMap="departmentVo">
+
+		select
+		DEPARTMENT.department_id,
+		DEPARTMENT.parent_department_id,
+		DEPARTMENT.department_name,
+		DEPARTMENT.describtion,
+		DEPARTMENT.department_level,
+		DEPARTMENT.user_id,
+		USERS.NAME USER_NAME,
+		DEPARTMENT.create_time,
+		DEPARTMENT.create_user_id,
+		DEPARTMENT.stauts,
+		DEPARTMENT.hource_number
+		<include refid="departmentPagingWhereCondition" />
+		<choose>
+			<when test='orderBy!=null and orderBy!=""'>
+				ORDER BY ${orderBy}
+			</when>
+			<otherwise>
+				ORDER BY cast(DEPARTMENT.department_id as unsigned int)
+			</otherwise>
+		</choose>
+
+		limit #{start,jdbcType=DECIMAL},#{limit,jdbcType=DECIMAL}
+	</select>
+	<select id="selectDepartmentVoByPrimaryKey" resultMap="departmentVo"
+		parameterType="java.lang.String">
+		select
+		t.department_id,
+		t.parent_department_id,
+		ifnull(s1.department_name, '公司') parent_department_name,
+		t.department_name,
+		t.department_level,
+		t.user_id,
+		s2.name user_name,
+		t.create_time,
+		t.create_user_id,
+		t.stauts,
+		t.describtion,
+		t.hource_number
+		from
+		DEPARTMENT t
+		left join
+		DEPARTMENT s1 on t.parent_department_id = s1.department_id
+		left join
+		users s2 on t.user_id = s2.user_id
+		where
+		t.DEPARTMENT_ID = #{departmentId,jdbcType=VARCHAR}
+	</select>
+	<select id="selectDepartmentTreeList" resultType="map">
+		SELECT
+		t.department_id id,
+		t.parent_department_id pid,
+		t.department_name text,
+		'' src,
+		'' HREF,
+		(SELECT
+		cast(COUNT(*) as char)
+		FROM
+		department
+		WHERE
+		department.parent_department_id = t.department_id) child_count
+		FROM
+		department t
+		ORDER BY t.department_id
+	</select>
+	<select id="selectUsersListByDepartmentId" resultType="map">
+		SELECT USER_ID,NAME FROM users where department_id=#{departmentId} and stauts='1'
+	</select>
+	<update id="batchUpdateUserAndTeacherByUserIds">
+			update users
+			set department_id =null where  department_id=#{departmentId};
+			update teacher
+			set department_id = null
+			where department_id = #{departmentId};
+		<foreach item="userId" index="index" collection="list" open=""
+			separator="" close="">
+			update users
+			set department_id = #{departmentId}
+			where user_id = #{userId};
+			update teacher
+			set department_id = #{departmentId}
+			where teacher_id = #{userId};
+		</foreach>
+	</update>
+	<select id="isExitByUserId" resultType="int">
+		SELECT COUNT(*) from users where user_id=#{userId}
+	</select>
+</mapper>

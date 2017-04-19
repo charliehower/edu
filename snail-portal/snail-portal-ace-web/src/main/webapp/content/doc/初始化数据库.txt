@@ -1,0 +1,36 @@
+create tablespace TBS_ERP
+datafile  'D:/oradata/ERP/TBS_ERP.ba'
+size 5m
+reuse
+  autoextend on
+    next 1m
+    maxsize UNLIMITED
+online;
+--临时表空间
+prompt 
+prompt 正在建立临时表空间...
+CREATE TEMPORARY TABLESPACE TBS_ERP_TEMP
+BLOCKSIZE 8192 TEMPFILE  'D:/oradata/ERP/TBS_ERP_TEMP.ba' 
+SIZE 6M REUSE EXTENT MANAGEMENT LOCAL  UNIFORM SIZE 1048576;
+prompt 
+prompt 正在建立索引表空间...
+create tablespace TBS_ERP_INDEXES
+datafile  'D:/oradata/ERP/TBS_ERP_INDEX.ba'
+size 6m
+reuse
+  autoextend on
+    next 1m
+    maxsize UNLIMITED
+online;
+prompt 正在建立用户和角色...
+CREATE USER "ERP"  PROFILE "DEFAULT" 
+IDENTIFIED BY "ERP" DEFAULT TABLESPACE "TBS_ERP" 
+TEMPORARY TABLESPACE "TBS_ERP_TEMP" 
+ACCOUNT UNLOCK;
+
+GRANT CREATE TABLE TO "ERP";
+GRANT UNLIMITED TABLESPACE TO "ERP";
+GRANT "CONNECT" TO "ERP" WITH ADMIN OPTION;
+GRANT "RESOURCE" TO "ERP" WITH ADMIN OPTION;
+
+GRANT "DBA" TO "ERP";

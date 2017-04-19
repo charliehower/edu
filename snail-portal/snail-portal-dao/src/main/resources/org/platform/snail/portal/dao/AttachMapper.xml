@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.portal.dao.AttachMapper" >
+  <resultMap id="BaseResultMap" type="org.platform.snail.portal.model.Attach" >
+    <id column="attach_id" property="attachId" jdbcType="INTEGER" />
+    <result column="category" property="category" jdbcType="VARCHAR" />
+    <result column="notice_id" property="noticeId" jdbcType="VARCHAR" />
+    <result column="file_url" property="fileUrl" jdbcType="VARCHAR" />
+    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+    <result column="file_size" property="fileSize" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="BaseResultMapVo"
+		type="org.platform.snail.portal.vo.AttachVo">
+	</resultMap>
+  <sql id="Base_Column_List" >
+    attach_id, category, notice_id, file_url, file_name, file_size, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from attach
+    where attach_id = #{attachId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from attach
+    where attach_id = #{attachId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByFileUrl">
+  delete from attach
+    where file_url = #{fileUrl}
+  </delete>
+  <insert id="insert" parameterType="org.platform.snail.portal.model.Attach" >
+    insert into attach (attach_id, category, notice_id, 
+      file_url, file_name, file_size, 
+      create_time)
+    values (#{attachId,jdbcType=INTEGER}, #{category,jdbcType=VARCHAR}, #{noticeId,jdbcType=VARCHAR}, 
+      #{fileUrl,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, #{fileSize,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.platform.snail.portal.model.Attach" >
+    insert into attach
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="attachId != null" >
+        attach_id,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="noticeId != null" >
+        notice_id,
+      </if>
+      <if test="fileUrl != null" >
+        file_url,
+      </if>
+      <if test="fileName != null" >
+        file_name,
+      </if>
+      <if test="fileSize != null" >
+        file_size,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="attachId != null" >
+        #{attachId,jdbcType=INTEGER},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeId != null" >
+        #{noticeId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrl != null" >
+        #{fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null" >
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null" >
+        #{fileSize,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.portal.model.Attach" >
+    update attach
+    <set >
+      <if test="category != null" >
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeId != null" >
+        notice_id = #{noticeId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrl != null" >
+        file_url = #{fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null" >
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null" >
+        file_size = #{fileSize,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where attach_id = #{attachId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.platform.snail.portal.model.Attach" >
+    update attach
+    set category = #{category,jdbcType=VARCHAR},
+      notice_id = #{noticeId,jdbcType=VARCHAR},
+      file_url = #{fileUrl,jdbcType=VARCHAR},
+      file_name = #{fileName,jdbcType=VARCHAR},
+      file_size = #{fileSize,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where attach_id = #{attachId,jdbcType=INTEGER}
+  </update>
+  <select id="findList" resultMap="BaseResultMapVo">
+  select 
+    <include refid="Base_Column_List" />
+    from attach
+    where notice_id = #{condition.noticeId}
+  </select>
+</mapper>

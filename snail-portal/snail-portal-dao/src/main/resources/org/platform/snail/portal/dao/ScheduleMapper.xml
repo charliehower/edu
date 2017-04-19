@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.portal.dao.ScheduleMapper" >
+  <resultMap id="BaseResultMap" type="org.platform.snail.portal.model.Schedule" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="all_day" property="allDay" jdbcType="CHAR" />
+    <result column="end" property="end" jdbcType="TIMESTAMP" />
+    <result column="start" property="start" jdbcType="TIMESTAMP" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="editable" property="editable" jdbcType="CHAR" />
+    <result column="class_name" property="className" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="color" property="color" jdbcType="VARCHAR" />
+    <result column="background_color" property="backgroundColor" jdbcType="VARCHAR" />
+    <result column="border_color" property="borderColor" jdbcType="VARCHAR" />
+    <result column="text_color" property="textColor" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+   <resultMap id="BaseResultMapVo" type="org.platform.snail.portal.vo.ScheduleVo"  extends="BaseResultMap" >
+   
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, title, all_day, end, start, url, editable, class_name, source, color, 
+    background_color, border_color, text_color, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from schedule
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from schedule
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.platform.snail.portal.model.Schedule" >
+    insert into schedule (id, user_id, title, 
+      all_day, end, start, 
+      url, editable, class_name, 
+      source, color, background_color, 
+      border_color, text_color, create_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{allDay,jdbcType=CHAR}, #{end,jdbcType=TIMESTAMP}, #{start,jdbcType=TIMESTAMP}, 
+      #{url,jdbcType=VARCHAR}, #{editable,jdbcType=CHAR}, #{className,jdbcType=VARCHAR}, 
+      #{source,jdbcType=VARCHAR}, #{color,jdbcType=VARCHAR}, #{backgroundColor,jdbcType=VARCHAR}, 
+      #{borderColor,jdbcType=VARCHAR}, #{textColor,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.platform.snail.portal.model.Schedule" >
+    insert into schedule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="allDay != null" >
+        all_day,
+      </if>
+      <if test="end != null" >
+        end,
+      </if>
+      <if test="start != null" >
+        start,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="editable != null" >
+        editable,
+      </if>
+      <if test="className != null" >
+        class_name,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="color != null" >
+        color,
+      </if>
+      <if test="backgroundColor != null" >
+        background_color,
+      </if>
+      <if test="borderColor != null" >
+        border_color,
+      </if>
+      <if test="textColor != null" >
+        text_color,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="allDay != null" >
+        #{allDay,jdbcType=CHAR},
+      </if>
+      <if test="end != null" >
+        #{end,jdbcType=TIMESTAMP},
+      </if>
+      <if test="start != null" >
+        #{start,jdbcType=TIMESTAMP},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="editable != null" >
+        #{editable,jdbcType=CHAR},
+      </if>
+      <if test="className != null" >
+        #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="backgroundColor != null" >
+        #{backgroundColor,jdbcType=VARCHAR},
+      </if>
+      <if test="borderColor != null" >
+        #{borderColor,jdbcType=VARCHAR},
+      </if>
+      <if test="textColor != null" >
+        #{textColor,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.portal.model.Schedule" >
+    update schedule
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="allDay != null" >
+        all_day = #{allDay,jdbcType=CHAR},
+      </if>
+      <if test="end != null" >
+        end = #{end,jdbcType=TIMESTAMP},
+      </if>
+      <if test="start != null" >
+        start = #{start,jdbcType=TIMESTAMP},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="editable != null" >
+        editable = #{editable,jdbcType=CHAR},
+      </if>
+      <if test="className != null" >
+        class_name = #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        color = #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="backgroundColor != null" >
+        background_color = #{backgroundColor,jdbcType=VARCHAR},
+      </if>
+      <if test="borderColor != null" >
+        border_color = #{borderColor,jdbcType=VARCHAR},
+      </if>
+      <if test="textColor != null" >
+        text_color = #{textColor,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.platform.snail.portal.model.Schedule" >
+    update schedule
+    set user_id = #{userId,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      all_day = #{allDay,jdbcType=CHAR},
+      end = #{end,jdbcType=TIMESTAMP},
+      start = #{start,jdbcType=TIMESTAMP},
+      url = #{url,jdbcType=VARCHAR},
+      editable = #{editable,jdbcType=CHAR},
+      class_name = #{className,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      color = #{color,jdbcType=VARCHAR},
+      background_color = #{backgroundColor,jdbcType=VARCHAR},
+      border_color = #{borderColor,jdbcType=VARCHAR},
+      text_color = #{textColor,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+   <sql id="whereCondition">
+		from schedule where 0=0
+		
+			and schedule.user_id =#{condition.userId,jdbcType=VARCHAR}
+		
+		<if test='condition.title!=null and condition.title!=""'>
+			and schedule.title like
+			concat(#{condition.title,jdbcType=VARCHAR},'%')
+		</if>
+		
+		<if test='condition.startDate!=null and condition.startDate!=""'>
+			<![CDATA[
+			and logs.start>=str_to_date(#{condition.startDate},'%Y-%m-%d %H:%i:%S')
+			]]>   
+		</if>
+		<if test='condition.endDate!=null and condition.endDate!=""'>
+			 <![CDATA[
+				and logs.end<=str_to_date(#{condition.endDate},'%Y-%m-%d %H:%i:%S')   
+				]]>
+		</if>
+	</sql>
+	<select id="findCount" resultType="int">
+		SELECT COUNT(*)
+		<include refid="whereCondition" />
+	</select>
+	<select id="findList" resultMap="BaseResultMapVo">
+
+		select
+		  id, user_id, title, all_day, end, start, url, editable, class_name, source, color, 
+    background_color, border_color, text_color, create_time
+		<include refid="whereCondition" />
+		<choose>
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+				ORDER BY ${orderBy}
+			</when>
+			<otherwise>
+				ORDER BY create_time
+			</otherwise>
+		</choose>
+
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+
+	</select>
+	<select id="selectDepUserListByDepId" resultType="map">
+	select t.user_id id,t.name from users t where t.department_id=#{id}
+	</select>
+</mapper>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.platform.snail.workflow.dao.WorkflowDao">
+	
+	<select id="findGroupById" resultType="org.platform.snail.workflow.model.GroupImpl"
+		parameterType="java.lang.String">
+		select Role.role_id id, Role.role_name name,Role.type
+		
+		from Role
+		where Role.role_id =
+		#{groupId,jdbcType=VARCHAR}
+	</select>
+	<select id="findGroupsByUser" resultType="org.platform.snail.workflow.model.GroupImpl"
+		parameterType="java.lang.String">
+		select Role.role_id id, Role.role_name name,Role.type
+		
+		from Role
+		where Role.role_id in(select role_id from users_role where user_id=#{userId,jdbcType=VARCHAR})
+		
+	</select>
+	<select id="findGroupsByUserAndGroupType" resultType="org.platform.snail.workflow.model.GroupImpl"
+		parameterType="java.lang.String">
+		select Role.role_id id, Role.role_name name,Role.type
+		from Role
+		where Role.role_id in(select role_id from users_role where user_id=#{userId,jdbcType=VARCHAR})
+	</select>
+	<select id="findUserById" resultType="org.platform.snail.workflow.model.UserImpl"
+		parameterType="java.lang.String">
+		select user_id id,name givenName,name familyName,email businessEmail
+		from users
+		where user_id=#{userId,jdbcType=VARCHAR}
+	</select>
+	<select id="findUsers" resultType="org.platform.snail.workflow.model.UserImpl"
+		parameterType="java.lang.String">
+		select user_id id,name givenName,name familyName,email businessEmail
+		from users
+		
+	</select>
+	<select id="findUsersByGroup" resultType="org.platform.snail.workflow.model.UserImpl"
+		parameterType="java.lang.String">
+		select user_id id,name givenName,name familyName,email businessEmail
+		from users
+		where user_id in(select user_id from users_role where role_id=#{groupId,jdbcType=VARCHAR})
+	</select>
+	<select id="findUsersById" resultType="org.platform.snail.workflow.model.UserImpl"
+		>
+		select user_id id,name givenName,name familyName,email businessEmail
+		from users
+		<where>
+    user_id in 
+  <foreach collection="ids" item="item" index="index" 
+open="(" separator="," close=")">#{item}</foreach>
+</where>
+		
+	</select>
+	<sql id="whereCondition">
+		FROM jbpmdb.jbpm4_hist_procinst b,jbpmdb.jbpm4_deployprop c,portal.users d
+,(select distinct(f.ASSIGNEE_) ASSIGNEE_,EXECUTION_  from jbpmdb.jbpm4_hist_task f where f.ASSIGNEE_=#{condition.userId}) e
+where 
+b.procdefid_=c.STRINGVAL_ 
+and e.ASSIGNEE_=d.user_id
+and e.EXECUTION_=b.ID_
+and 
+exists(select 1 from jbpmdb.jbpm4_hist_task a where a.EXECUTION_=b.ID_
+and a.ASSIGNEE_=#{condition.userId}
+) 
+<if test="condition.key!=null and condition.key!=&quot;&quot;">
+
+			and
+			b.ID_ like concat(#{condition.key,jdbcType=VARCHAR},'%')
+
+		</if>
+	</sql>
+
+	<select id="findCount" resultType="int">
+
+		SELECT COUNT(*)
+
+		<include refid="whereCondition" />
+
+	</select>
+
+	<select id="findList" resultType="map">
+		SELECT c.OBJNAME_,d.NAME,b.* 
+
+		<include refid="whereCondition" />
+
+		<choose>
+
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+
+				ORDER BY ${orderBy}
+
+			</when>
+
+			<otherwise>
+
+				ORDER BY b.START_ desc
+
+			</otherwise>
+
+		</choose>
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+</mapper>

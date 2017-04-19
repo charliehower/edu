@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd"> 
+	<description>Spring MVC Configuration</description>
+    <context:component-scan base-package="org.platform.snail.portal.web.action;org.platform.snail.web.action" >   
+	    <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />   
+	    <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />    
+	</context:component-scan>  
+    <!--SpringMVC自带的JSON转换工具,支持@ResponseBody注解-->
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" >
+				    <!--解决SpringMVC使用@ResponseBody返回json时，日期格式默认显示为时间戳的问题-->
+					<property name="objectMapper" ref="customObjectMapper"></property>
+				</bean>
+				<bean
+					class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/html;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->  
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+        <property name="defaultEncoding" value="UTF-8"/>  
+       <!-- 指定所上传文件的总大小不能超过200KB。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->  
+       <property name="maxUploadSize" value="20000000"/>  
+    </bean> 
+<!-- 对转向页面的路径解析。prefix：前缀， suffix：后缀 -->
+ <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/dynamic/view/" p:suffix=".jsp" />
+</beans>

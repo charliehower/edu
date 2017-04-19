@@ -1,0 +1,125 @@
+package org.platform.snail.portal.service.impl;
+
+import java.util.List;
+
+import net.sf.json.JSONObject;
+
+import org.apache.log4j.Logger;
+import org.platform.snail.beans.DataResponse;
+import org.platform.snail.beans.SystemUser;
+import org.platform.snail.portal.dao.$!{bean.name}Mapper;
+import org.platform.snail.portal.model.$!{bean.name};
+import org.platform.snail.portal.service.$!{bean.name}Service;
+import org.platform.snail.portal.model.$!{bean.name};
+import org.platform.snail.portal.vo.$!{bean.name}Vo;
+import org.platform.snail.portal.vo.$!{bean.name}QVo;
+import org.platform.snail.service.DataBaseLogService;
+import org.platform.snail.utils.SnailBeanUtils;
+import org.platform.snail.utils.SnailUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+@Service("$!{bean.lowerName}Service")
+public class $!{bean.name}ServiceImpl implements $!{bean.name}Service {
+	Logger logger = Logger.getLogger(this.getClass());
+	@Autowired
+	private $!{bean.name}Mapper $!{bean.lowerName}Mapper;
+	@Autowired
+	private DataBaseLogService dataBaseLogService;
+	public DataResponse find$!{bean.name}List($!{bean.name}QVo condition, int start,
+			int limit, String orderBy) throws Exception {
+		DataResponse rst = new DataResponse();
+		List<$!{bean.name}Vo> list = this.$!{bean.lowerName}Mapper.findList(condition, start,
+				start + limit, orderBy);
+		rst.setList(list);
+		if (start <= 1) {
+			int allRows = this.$!{bean.lowerName}Mapper.findCount(condition);
+			rst.setAllRows(allRows);
+		}
+		return rst;
+	}
+
+	public DataResponse insert$!{bean.name}(JSONObject json, SystemUser systemUser)
+			throws Exception {
+		String id=String.valueOf(new Date().getTime());
+		$!{bean.name} o = new $!{bean.name}();
+		SnailBeanUtils.copyProperties(o, json);
+		o.set$!{bean.name}Id(id);
+		o.setCreateTime(new Date());
+		$!{bean.validate}
+		int temp = this.$!{bean.lowerName}Mapper.isExit(o);
+		if (temp > 0) {
+			return new DataResponse(false, "已存在的数据！");
+		}
+		this.$!{bean.lowerName}Mapper.insert(o);
+		this.dataBaseLogService.log("添加教职工", "教职工", "", o.getName(),
+				o.getName(), systemUser);
+		return new DataResponse(true, "添加教职工完成！");
+	}
+
+	public DataResponse update$!{bean.name}(JSONObject json, SystemUser systemUser)
+			throws Exception {
+		$!{bean.name} o = new $!{bean.name}();
+		SnailBeanUtils.copyProperties(o, json);
+		o.setCreateTime(new Date());
+		$!{bean.validate}
+		this.$!{bean.lowerName}Mapper.updateByPrimaryKey(o);
+		this.dataBaseLogService.log("变更教职工", "教职工", "", o.getName(),
+				o.getName(), systemUser);
+		return new DataResponse(true, "变更教职工完成！");
+	}
+
+	public DataResponse select$!{bean.name}ByPrimaryKey(String id)
+			throws Exception {
+		DataResponse rst = new DataResponse();
+		rst.setResponse(this.$!{bean.lowerName}Mapper.selectByPrimaryKey(id));
+		return rst;
+	}
+
+	public DataResponse delete$!{bean.name}By$!{bean.name}Id(String id,
+			SystemUser systemUser) throws Exception {
+		DataResponse rst = new DataResponse();
+		this.$!{bean.lowerName}Mapper.deleteByPrimaryKey(id);
+		this.dataBaseLogService.log("删除教职工", "教职工", String.valueOf(id), String.valueOf(id),
+				"教职工", systemUser);
+		return rst;
+	}
+    public DataResponse importXls(MultipartFile[] files,JSONObject json,SystemUser systemUser) throws Exception{
+		ExcelUtils utils=new ExcelUtils();
+		List<Map<String,String>> list=new ArrayList<Map<String,String>>();
+		for(MultipartFile file:files){
+			
+			String ext=file.getOriginalFilename().toLowerCase().substring(file.getOriginalFilename().toLowerCase().lastIndexOf("."));
+			this.logger.info(ext);
+			if(ext.equals(".xls")){
+				list=utils.readExcelByJXL(file.getInputStream(), 2);
+			}
+			if(ext.equals(".xlsx")){
+				list=utils.readExcelByPOI(file.getInputStream(), 2);
+			}
+			int i=0;
+			for(Map<String,String> row:list){
+				$!{bean.name} o=new $!{bean.name}();
+				//o.set$!{bean.name}Id(row.get("考号"));
+				o.setCreateTime(new Date());
+				this.logger.info(o.toString());
+				/*if (SnailUtils.isBlankString(o.get$!{bean.name}Id())) {
+					return new DataResponse(false, "行"+i+"考号不能为空！");
+				}
+				*/
+				int t=$!{bean.lowerName}Mapper.isExit(o);
+				if(t>0){
+					this.$!{bean.lowerName}Mapper.updateByPrimaryKey(o);
+					
+				}else{
+					this.$!{bean.lowerName}Mapper.insert(o);
+				}
+				i++;
+			}
+			
+		}
+		this.dataBaseLogService.log("信息导入", "考生", "", files[0].getName(),
+				files[0].getName(), systemUser);
+		return new DataResponse(true,"考生信息导入工完成！");
+	}
+}

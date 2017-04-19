@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.portal.dao.LocationMapper" >
+  <resultMap id="BaseResultMap" type="org.platform.snail.portal.model.Location" >
+    <id column="location_id" property="locationId" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="full_name" property="fullName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="BaseResultMapVo"
+		type="org.platform.snail.portal.vo.LocationVo">
+  </resultMap>
+  <sql id="Base_Column_List" >
+    location_id, parent_id, name, full_name, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from location
+    where location_id = #{locationId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from location
+    where location_id = #{locationId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.platform.snail.portal.model.Location" >
+  <selectKey keyProperty="locationId" resultType="string" order="BEFORE">
+			SELECT lpad(ifnull(max(location_id),concat(#{parentId,jdbcType=VARCHAR},'00'))+1,length(#{parentId,jdbcType=VARCHAR})+2,'0') FROM location where parent_id=#{parentId,jdbcType=VARCHAR}
+		</selectKey>
+    insert into location (location_id, parent_id, name, 
+      full_name, create_time)
+    values (#{locationId,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{fullName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.platform.snail.portal.model.Location" >
+    insert into location
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="locationId != null" >
+        location_id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="fullName != null" >
+        full_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="locationId != null" >
+        #{locationId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="fullName != null" >
+        #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.portal.model.Location" >
+    update location
+    <set >
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="fullName != null" >
+        full_name = #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where location_id = #{locationId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.platform.snail.portal.model.Location" >
+    update location
+    set parent_id = #{parentId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      full_name = #{fullName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where location_id = #{locationId,jdbcType=VARCHAR}
+  </update>
+  <sql id="whereCondition">
+		from location where 0=0
+		<if test='condition.name!=null and condition.name!=""'>
+			and name like
+			concat(#{condition.name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test='condition.parentId!=null and condition.parentId!=""'>
+			and parent_id =
+			#{condition.parentId,jdbcType=VARCHAR}
+		</if>
+	</sql>
+	<select id="findCount" resultType="int">
+		SELECT COUNT(*)
+		<include refid="whereCondition" />
+	</select>
+	<select id="findList" resultMap="BaseResultMapVo">
+
+		select
+		<include refid="Base_Column_List" />
+		<include refid="whereCondition" />
+		<choose>
+			<when test='orderBy!=null and orderBy!=""'>
+				ORDER BY ${orderBy}
+			</when>
+			<otherwise>
+				ORDER BY location_id
+			</otherwise>
+		</choose>
+
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+
+	</select>
+	<select id="selectLocationTreeList" resultType="map">
+  SELECT 
+        t.location_id ID,
+            t.parent_id PID,
+            t.full_name TEXT,
+            t.full_name SRC,
+              'closed' STATE,
+            '' HREF,
+            (SELECT 
+                    cast(COUNT(*) as char)
+                FROM
+                    location
+                WHERE
+                    location.parent_id = t.location_id) CHILD_COUNT
+    FROM
+        location t 
+        <choose>
+			<when test='load!=null and load=="all"'>
+				 where 0=0
+			</when>
+			<otherwise>
+				 where t.parent_id=#{pid}
+			</otherwise>
+		</choose>
+       
+    ORDER BY t.location_id
+  </select>
+	
+</mapper>

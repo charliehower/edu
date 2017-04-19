@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="snail-base" />
+        <module name="snail-edu-ace-web" />
+        <module name="snail-edu-action" />
+        <module name="snail-edu-dao" />
+        <module name="snail-edu-service" />
+        <module name="snail-portal-ace-web" />
+        <module name="snail-portal-action" />
+        <module name="snail-portal-cas-web" />
+        <module name="snail-portal-dao" />
+        <module name="snail-portal-service" />
+        <module name="snail-workflow" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="snail" target="1.5" />
+      <module name="snail-base" target="1.5" />
+      <module name="snail-edu" target="1.5" />
+      <module name="snail-edu-ace-web" target="1.5" />
+      <module name="snail-edu-action" target="1.5" />
+      <module name="snail-edu-dao" target="1.5" />
+      <module name="snail-edu-service" target="1.5" />
+      <module name="snail-portal" target="1.5" />
+      <module name="snail-portal-ace-web" target="1.5" />
+      <module name="snail-portal-action" target="1.5" />
+      <module name="snail-portal-cas-web" target="1.5" />
+      <module name="snail-portal-dao" target="1.5" />
+      <module name="snail-portal-service" target="1.5" />
+      <module name="snail-workflow" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

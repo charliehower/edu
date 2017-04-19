@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process description="请假申请" id="leave" key="leave" name="请假申请" version="1" xmlns="http://jbpm.org/4.4/jpdl">
+	<start g="30,6,48,48" name="开始">
+		<transition g="-115,-24" name="to 提交请假申请" to="提交请假申请"/>
+
+	</start>
+	<end g="674,409,48,48" name="流程结束"/>
+	
+	<task assignee="#{systemUser.users.userId}" form="/workflow/dynamic/workflow/leave/index.jsp" g="124,11,140,52" name="提交请假申请">
+		<transition g="-115,-24" name="to 判断审批领导" to="判断审批领导">
+			<event-listener class="org.platform.snail.workflow.eventlistener.LogListener"/>
+		</transition>
+
+	</task>
+
+
+	<task assignee="#{systemUser.leader3.leaderId}" form="/workflow/dynamic/workflow/leave/index-audit.jsp" g="205,133,140,52" name="三级部门领导审批">
+		<transition g="-115,-24" name="to 判断是否驳回" to="判断是否驳回3"/>
+
+	</task>
+	<task assignee="#{systemUser.leader2.leaderId}" form="/workflow/dynamic/workflow/leave/index-audit.jsp" g="113,235,151,52" name="二级部门领导审批">
+		<transition g="-115,-24" name="to 判断是否驳回" to="判断是否驳回2"/>
+
+	</task>
+	<task assignee="#{systemUser.leader1.leaderId}" form="/workflow/dynamic/workflow/leave/index-audit.jsp" g="40,419,147,52" name="一级部门审批">
+		<transition g="-115,-24" name="to 判断是否驳回" to="判断是否驳回1"/>
+
+	</task>
+	<decision g="88,98,48,48" name="判断审批领导">
+		<transition g="-143,-24" name="to 二级部门领导审批" to="二级部门领导审批">
+			<condition expr="#{systemUser.department.departmentLevel=='2'}"/>
+		</transition>
+		<transition g="-115,-24" name="to 一级部门审批" to="一级部门审批">
+			<condition expr="#{systemUser.department.departmentLevel=='1'}"/>
+		</transition>
+		<transition g="-143,-24" name="to 三级部门领导审批" to="三级部门领导审批">
+			<condition expr="#{systemUser.department.departmentLevel=='3'}"/>
+		</transition>
+		<transition g="-115,-24" name="to 四级部门审批" to="四级部门审批">
+			<condition expr="#{systemUser.department.departmentLevel=='4'}"/>
+		</transition>
+	</decision>
+	<java class="org.platform.snail.workflow.service.impl.JavaCmccService" g="751,10,119,40" method="sendCmcc" name="驳回发送邮件">
+		<arg>
+			<object expr="#{systemUser.users.userId}"/>
+		</arg>
+		<arg>
+			<object expr="#{systemUser.users.name}"/>
+		</arg>
+		<arg>
+			<string value="审批提示: R好，您的请假申请已经驳回，详情请点击登陆智慧校园系统http://oa.psgz.cn/cas 进行查看。"/>
+		</arg>
+		<transition g="-115,-24" name="to 提交请假申请" to="提交请假申请">
+			<event-listener class="org.platform.snail.workflow.eventlistener.LogListener">
+				<field name="status">
+					<string value="9"/>
+				</field>
+			</event-listener>
+		</transition>
+	</java>
+
+
+	<java class="org.platform.snail.workflow.service.impl.JavaCmccService" g="503,458,80,40" method="sendCmcc" name="邮件">
+		<arg>
+			<object expr="#{systemUser.users.userId}"/>
+		</arg>
+		<arg>
+			<object expr="#{systemUser.users.name}"/>
+		</arg>
+		<arg>
+			<string value="审批提示: R好，您的请假申请已经通过最终审批，详情请点击登陆智慧校园系统http://oa.psgz.cn/cas 进行查看。"/>
+		</arg>
+		<transition g="-87,-24" name="to 流程结束" to="流程结束">
+			<event-listener class="org.platform.snail.workflow.eventlistener.LogListener">
+				<field name="status">
+					<string value="1"/>
+				</field>
+			</event-listener>
+		</transition>
+
+	</java>
+
+
+	<task assignee="#{systemUser.leader4.leaderId}" form="/workflow/dynamic/workflow/leave/index-audit.jsp" g="432,47,142,52" name="四级部门审批">
+		<transition g="-115,-24" name="to 判断是否驳回" to="判断是否驳回4"/>
+	</task>
+	<decision g="764,192,48,48" name="判断是否驳回4">
+		<transition g="-115,-24" name="to 驳回发送邮件" to="驳回发送邮件">
+			<condition expr="#{rs=='0'}"/>
+		</transition>
+		<transition g="-115,-24" name="to 三级部门领导审批" to="三级部门领导审批">
+			<condition expr="#{rs=='1'}"/>
+		</transition>
+	</decision>
+	<decision g="532,308,48,48" name="判断是否驳回3">
+		<transition g="-135,-76" name="to 二级部门领导审批" to="二级部门领导审批">
+			<condition expr="#{rs=='1' and  leaveDates gt 8}"/>
+		</transition>
+		<transition g="-257,-90" name="to 驳回发送邮件" to="驳回发送邮件">
+			<condition expr="#{rs=='0'}"/>
+		</transition>
+      <transition g="-59,-26" name="to 邮件" to="邮件">
+    	  	<condition expr="#{rs=='1' and leaveDates le 8}"/>
+      </transition>
+	</decision>
+	<decision g="208,345,48,48" name="判断是否驳回2">
+		<transition g="-115,-24" name="to 一级部门审批" to="一级部门审批">
+			<condition expr="#{rs=='1' and leaveDates gt 16}"/>
+		</transition>
+		<transition g="-115,-24" name="to 驳回发送邮件" to="驳回发送邮件">
+			<condition expr="#{rs=='0'}"/>
+		</transition>
+      <transition name="to 邮件" to="邮件" g="-59,-26">
+      	<condition expr="#{rs=='1' and leaveDates gt 8 and leaveDates le 16}"/>
+      </transition>
+	</decision>
+	<decision g="303,404,48,48" name="判断是否驳回1">
+		<transition g="-59,-24" name="to 邮件" to="邮件">
+			<event-listener class="org.platform.snail.workflow.eventlistener.LogListener">
+				<field name="status">
+					<string value="1"/>
+				</field>
+			</event-listener>
+			<condition expr="#{rs=='1'}"/>
+		</transition>
+		<transition g="-115,-24" name="to 驳回发送邮件" to="驳回发送邮件">
+			<condition expr="#{rs=='0'}"/>
+		</transition>
+	</decision>
+
+</process>

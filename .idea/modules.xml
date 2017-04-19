@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/snail.iml" filepath="$PROJECT_DIR$/snail.iml" />
+      <module fileurl="file://$PROJECT_DIR$/snail-base/snail-base.iml" filepath="$PROJECT_DIR$/snail-base/snail-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/snail-edu/snail-edu.iml" filepath="$PROJECT_DIR$/snail-edu/snail-edu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/snail-edu/snail-edu-ace-web/snail-edu-ace-web.iml" filepath="$PROJECT_DIR$/snail-edu/snail-edu-ace-web/snail-edu-ace-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/snail-edu/snail-edu-action/snail-edu-action.iml" filepath="$PROJECT_DIR$/snail-edu/snail-edu-action/snail-edu-action.iml" />
+      <module fileurl="file://$PROJECT_DIR$/snail-edu/snail-edu-dao/snail-edu-dao.iml" filepath="$PROJECT_DIR$/snail-edu/snail-edu-dao/snail-edu-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/snail-edu/snail-edu-service/snail-edu-service.iml" filepath="$PROJECT_DIR$/snail-edu/snail-edu-service/snail-edu-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/snail-portal/snail-portal.iml" filepath="$PROJECT_DIR$/snail-portal/snail-portal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/snail-portal/snail-portal-ace-web/snail-portal-ace-web.iml" filepath="$PROJECT_DIR$/snail-portal/snail-portal-ace-web/snail-portal-ace-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/snail-portal/snail-portal-action/snail-portal-action.iml" filepath="$PROJECT_DIR$/snail-portal/snail-portal-action/snail-portal-action.iml" />
+      <module fileurl="file://$PROJECT_DIR$/snail-portal/snail-portal-cas-web/snail-portal-cas-web.iml" filepath="$PROJECT_DIR$/snail-portal/snail-portal-cas-web/snail-portal-cas-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/snail-portal/snail-portal-dao/snail-portal-dao.iml" filepath="$PROJECT_DIR$/snail-portal/snail-portal-dao/snail-portal-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/snail-portal/snail-portal-service/snail-portal-service.iml" filepath="$PROJECT_DIR$/snail-portal/snail-portal-service/snail-portal-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/snail-workflow/snail-workflow.iml" filepath="$PROJECT_DIR$/snail-workflow/snail-workflow.iml" />
+    </modules>
+  </component>
+</project>

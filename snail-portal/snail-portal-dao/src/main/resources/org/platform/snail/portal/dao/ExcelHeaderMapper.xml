@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.portal.dao.ExcelHeaderMapper" >
+  <resultMap id="BaseResultMap" type="org.platform.snail.portal.model.ExcelHeader" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="c01" property="c01" jdbcType="VARCHAR" />
+    <result column="c02" property="c02" jdbcType="VARCHAR" />
+    <result column="c03" property="c03" jdbcType="VARCHAR" />
+    <result column="c04" property="c04" jdbcType="VARCHAR" />
+    <result column="c05" property="c05" jdbcType="VARCHAR" />
+    <result column="c06" property="c06" jdbcType="VARCHAR" />
+    <result column="c07" property="c07" jdbcType="VARCHAR" />
+    <result column="c08" property="c08" jdbcType="VARCHAR" />
+    <result column="c09" property="c09" jdbcType="VARCHAR" />
+    <result column="c10" property="c10" jdbcType="VARCHAR" />
+    <result column="c11" property="c11" jdbcType="VARCHAR" />
+    <result column="c12" property="c12" jdbcType="VARCHAR" />
+    <result column="c13" property="c13" jdbcType="VARCHAR" />
+    <result column="c14" property="c14" jdbcType="VARCHAR" />
+    <result column="c15" property="c15" jdbcType="VARCHAR" />
+    <result column="c16" property="c16" jdbcType="VARCHAR" />
+    <result column="c17" property="c17" jdbcType="VARCHAR" />
+    <result column="c18" property="c18" jdbcType="VARCHAR" />
+    <result column="c19" property="c19" jdbcType="VARCHAR" />
+    <result column="c20" property="c20" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, c01, c02, c03, c04, c05, c06, c07, c08, c09, c10, c11, c12, c13, c14, c15, c16, 
+    c17, c18, c19, c20
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from excel_header
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from excel_header
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.platform.snail.portal.model.ExcelHeader" >
+    insert into excel_header (id, c01, c02, 
+      c03, c04, c05, c06, 
+      c07, c08, c09, c10, 
+      c11, c12, c13, c14, 
+      c15, c16, c17, c18, 
+      c19, c20)
+    values (#{id,jdbcType=VARCHAR}, #{c01,jdbcType=VARCHAR}, #{c02,jdbcType=VARCHAR}, 
+      #{c03,jdbcType=VARCHAR}, #{c04,jdbcType=VARCHAR}, #{c05,jdbcType=VARCHAR}, #{c06,jdbcType=VARCHAR}, 
+      #{c07,jdbcType=VARCHAR}, #{c08,jdbcType=VARCHAR}, #{c09,jdbcType=VARCHAR}, #{c10,jdbcType=VARCHAR}, 
+      #{c11,jdbcType=VARCHAR}, #{c12,jdbcType=VARCHAR}, #{c13,jdbcType=VARCHAR}, #{c14,jdbcType=VARCHAR}, 
+      #{c15,jdbcType=VARCHAR}, #{c16,jdbcType=VARCHAR}, #{c17,jdbcType=VARCHAR}, #{c18,jdbcType=VARCHAR}, 
+      #{c19,jdbcType=VARCHAR}, #{c20,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.platform.snail.portal.model.ExcelHeader" >
+    insert into excel_header
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="c01 != null" >
+        c01,
+      </if>
+      <if test="c02 != null" >
+        c02,
+      </if>
+      <if test="c03 != null" >
+        c03,
+      </if>
+      <if test="c04 != null" >
+        c04,
+      </if>
+      <if test="c05 != null" >
+        c05,
+      </if>
+      <if test="c06 != null" >
+        c06,
+      </if>
+      <if test="c07 != null" >
+        c07,
+      </if>
+      <if test="c08 != null" >
+        c08,
+      </if>
+      <if test="c09 != null" >
+        c09,
+      </if>
+      <if test="c10 != null" >
+        c10,
+      </if>
+      <if test="c11 != null" >
+        c11,
+      </if>
+      <if test="c12 != null" >
+        c12,
+      </if>
+      <if test="c13 != null" >
+        c13,
+      </if>
+      <if test="c14 != null" >
+        c14,
+      </if>
+      <if test="c15 != null" >
+        c15,
+      </if>
+      <if test="c16 != null" >
+        c16,
+      </if>
+      <if test="c17 != null" >
+        c17,
+      </if>
+      <if test="c18 != null" >
+        c18,
+      </if>
+      <if test="c19 != null" >
+        c19,
+      </if>
+      <if test="c20 != null" >
+        c20,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="c01 != null" >
+        #{c01,jdbcType=VARCHAR},
+      </if>
+      <if test="c02 != null" >
+        #{c02,jdbcType=VARCHAR},
+      </if>
+      <if test="c03 != null" >
+        #{c03,jdbcType=VARCHAR},
+      </if>
+      <if test="c04 != null" >
+        #{c04,jdbcType=VARCHAR},
+      </if>
+      <if test="c05 != null" >
+        #{c05,jdbcType=VARCHAR},
+      </if>
+      <if test="c06 != null" >
+        #{c06,jdbcType=VARCHAR},
+      </if>
+      <if test="c07 != null" >
+        #{c07,jdbcType=VARCHAR},
+      </if>
+      <if test="c08 != null" >
+        #{c08,jdbcType=VARCHAR},
+      </if>
+      <if test="c09 != null" >
+        #{c09,jdbcType=VARCHAR},
+      </if>
+      <if test="c10 != null" >
+        #{c10,jdbcType=VARCHAR},
+      </if>
+      <if test="c11 != null" >
+        #{c11,jdbcType=VARCHAR},
+      </if>
+      <if test="c12 != null" >
+        #{c12,jdbcType=VARCHAR},
+      </if>
+      <if test="c13 != null" >
+        #{c13,jdbcType=VARCHAR},
+      </if>
+      <if test="c14 != null" >
+        #{c14,jdbcType=VARCHAR},
+      </if>
+      <if test="c15 != null" >
+        #{c15,jdbcType=VARCHAR},
+      </if>
+      <if test="c16 != null" >
+        #{c16,jdbcType=VARCHAR},
+      </if>
+      <if test="c17 != null" >
+        #{c17,jdbcType=VARCHAR},
+      </if>
+      <if test="c18 != null" >
+        #{c18,jdbcType=VARCHAR},
+      </if>
+      <if test="c19 != null" >
+        #{c19,jdbcType=VARCHAR},
+      </if>
+      <if test="c20 != null" >
+        #{c20,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.portal.model.ExcelHeader" >
+    update excel_header
+    <set >
+      <if test="c01 != null" >
+        c01 = #{c01,jdbcType=VARCHAR},
+      </if>
+      <if test="c02 != null" >
+        c02 = #{c02,jdbcType=VARCHAR},
+      </if>
+      <if test="c03 != null" >
+        c03 = #{c03,jdbcType=VARCHAR},
+      </if>
+      <if test="c04 != null" >
+        c04 = #{c04,jdbcType=VARCHAR},
+      </if>
+      <if test="c05 != null" >
+        c05 = #{c05,jdbcType=VARCHAR},
+      </if>
+      <if test="c06 != null" >
+        c06 = #{c06,jdbcType=VARCHAR},
+      </if>
+      <if test="c07 != null" >
+        c07 = #{c07,jdbcType=VARCHAR},
+      </if>
+      <if test="c08 != null" >
+        c08 = #{c08,jdbcType=VARCHAR},
+      </if>
+      <if test="c09 != null" >
+        c09 = #{c09,jdbcType=VARCHAR},
+      </if>
+      <if test="c10 != null" >
+        c10 = #{c10,jdbcType=VARCHAR},
+      </if>
+      <if test="c11 != null" >
+        c11 = #{c11,jdbcType=VARCHAR},
+      </if>
+      <if test="c12 != null" >
+        c12 = #{c12,jdbcType=VARCHAR},
+      </if>
+      <if test="c13 != null" >
+        c13 = #{c13,jdbcType=VARCHAR},
+      </if>
+      <if test="c14 != null" >
+        c14 = #{c14,jdbcType=VARCHAR},
+      </if>
+      <if test="c15 != null" >
+        c15 = #{c15,jdbcType=VARCHAR},
+      </if>
+      <if test="c16 != null" >
+        c16 = #{c16,jdbcType=VARCHAR},
+      </if>
+      <if test="c17 != null" >
+        c17 = #{c17,jdbcType=VARCHAR},
+      </if>
+      <if test="c18 != null" >
+        c18 = #{c18,jdbcType=VARCHAR},
+      </if>
+      <if test="c19 != null" >
+        c19 = #{c19,jdbcType=VARCHAR},
+      </if>
+      <if test="c20 != null" >
+        c20 = #{c20,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.platform.snail.portal.model.ExcelHeader" >
+    update excel_header
+    set c01 = #{c01,jdbcType=VARCHAR},
+      c02 = #{c02,jdbcType=VARCHAR},
+      c03 = #{c03,jdbcType=VARCHAR},
+      c04 = #{c04,jdbcType=VARCHAR},
+      c05 = #{c05,jdbcType=VARCHAR},
+      c06 = #{c06,jdbcType=VARCHAR},
+      c07 = #{c07,jdbcType=VARCHAR},
+      c08 = #{c08,jdbcType=VARCHAR},
+      c09 = #{c09,jdbcType=VARCHAR},
+      c10 = #{c10,jdbcType=VARCHAR},
+      c11 = #{c11,jdbcType=VARCHAR},
+      c12 = #{c12,jdbcType=VARCHAR},
+      c13 = #{c13,jdbcType=VARCHAR},
+      c14 = #{c14,jdbcType=VARCHAR},
+      c15 = #{c15,jdbcType=VARCHAR},
+      c16 = #{c16,jdbcType=VARCHAR},
+      c17 = #{c17,jdbcType=VARCHAR},
+      c18 = #{c18,jdbcType=VARCHAR},
+      c19 = #{c19,jdbcType=VARCHAR},
+      c20 = #{c20,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
