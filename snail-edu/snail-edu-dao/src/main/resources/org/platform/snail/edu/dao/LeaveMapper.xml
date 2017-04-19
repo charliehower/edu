@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.LeaveMapper">
+	<resultMap id="BaseResultMap" type="org.platform.snail.edu.model.Leave">
+		<id column="leave_id" property="leaveId" jdbcType="VARCHAR" />
+		<result column="leave_user_id" property="leaveUserId" jdbcType="VARCHAR" />
+		<result column="category_id" property="categoryId" jdbcType="VARCHAR" />
+		<result column="time_start" property="timeStart" jdbcType="TIMESTAMP" />
+		<result column="time_end" property="timeEnd" jdbcType="TIMESTAMP" />
+		<result column="leave_dates" property="leaveDates" jdbcType="DECIMAL" />
+		<result column="from_user_id" property="fromUserId" jdbcType="VARCHAR" />
+		<result column="to_user_id" property="toUserId" jdbcType="VARCHAR" />
+		<result column="from_class_lesson" property="fromClassLesson"
+			jdbcType="VARCHAR" />
+		<result column="to_class_lesson" property="toClassLesson"
+			jdbcType="VARCHAR" />
+		<result column="to_hm_user_id" property="toHmUserId" jdbcType="VARCHAR" />
+		<result column="to_gl_user_id" property="toGlUserId" jdbcType="VARCHAR" />
+		<result column="to_dp_user_id" property="toDpUserId" jdbcType="VARCHAR" />
+		<result column="to_other_user_id" property="toOtherUserId"
+			jdbcType="VARCHAR" />
+		<result column="leave_reason" property="leaveReason" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result property="auditStatus" column="audit_status" jdbcType="VARCHAR" />
+		<result property="auditRemark" column="audit_remark" jdbcType="VARCHAR" />
+		<result column="application_time" property="applicationTime"
+			jdbcType="TIMESTAMP" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		leave_id, leave_user_id, category_id, time_start, time_end,
+		leave_dates,
+		from_user_id,
+		to_user_id, from_class_lesson,
+		to_class_lesson, to_hm_user_id, to_gl_user_id,
+		to_dp_user_id,
+		to_other_user_id, leave_reason, status, application_time, create_time
+	</sql>
+	<resultMap extends="BaseResultMap" id="BaseResultMapVo"
+		type="org.platform.snail.edu.vo.LeaveVo">
+		<result column="leave_user_name" property="leaveUserName"
+			jdbcType="VARCHAR" />
+		<result column="category_name" property="categoryName"
+			jdbcType="VARCHAR" />
+		<result column="from_user_name" property="fromUserName"
+			jdbcType="VARCHAR" />
+		<result column="to_user_name" property="toUserName" jdbcType="VARCHAR" />
+
+		<result column="to_hm_user_name" property="toHmUserName"
+			jdbcType="CHAR" />
+		<result column="to_gl_user_name" property="toGlUserName"
+			jdbcType="VARCHAR" />
+
+		<result column="to_dp_user_name" property="toDpUserName"
+			jdbcType="VARCHAR" />
+		<result column="to_other_user_name" property="toOtherUserName"
+			jdbcType="VARCHAR" />
+
+		<result column="status_name" property="statusName" jdbcType="VARCHAR" />
+
+	</resultMap>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from portal.leave
+		where leave_id = #{leaveId,jdbcType=VARCHAR}
+	</select>
+	<select id="selectVoByPrimaryKey" resultMap="BaseResultMapVo"
+		parameterType="java.lang.String">
+		SELECT
+		leave_id,
+		leave_user_id,
+		u1.name leave_user_name,
+		t.category_id,
+		dict1.name category_name,
+		time_start,
+		time_end,
+		leave_dates,
+		from_user_id,
+		u2.name from_user_name,
+		to_user_id,
+		u3.name
+		to_user_name,
+		from_class_lesson,
+		to_class_lesson,
+		to_hm_user_id,
+		u4.name
+		to_hm_user_name,
+		to_gl_user_id,
+		u5.name to_gl_user_name,
+		to_dp_user_id,
+		u6.name to_dp_user_name,
+		to_other_user_id,
+		u7.name to_other_user_name,
+		leave_reason,
+		t.status,
+		application_time,
+		t.create_time
+		FROM
+		portal.leave t
+		LEFT JOIN
+		users u1 ON leave_user_id = u1.USER_ID
+		LEFT JOIN
+		(SELECT
+		code,
+		name
+		FROM
+		dict
+		WHERE
+		dict.CATEGORY_ID = '28') dict1 ON t.category_id =
+		dict1.code
+		LEFT JOIN
+		users u2 ON from_user_id = u2.USER_ID
+		LEFT JOIN
+		users u3 ON to_user_id = u3.USER_ID
+		LEFT JOIN
+		users u4 ON to_hm_user_id
+		= u4.USER_ID
+		LEFT JOIN
+		users u5 ON to_gl_user_id = u5.USER_ID
+		LEFT JOIN
+		users u6 ON to_dp_user_id = u6.USER_ID
+		LEFT JOIN
+		users u7 ON
+		to_other_user_id = u7.USER_ID
+		where leave_id =
+		#{leaveId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from leave
+		where leave_id = #{leaveId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="org.platform.snail.edu.model.Leave">
+		insert into leave (leave_id,
+		leave_user_id, category_id,
+		time_start, time_end, leave_dates,
+		from_user_id, to_user_id, from_class_lesson,
+		to_class_lesson,
+		to_hm_user_id, to_gl_user_id,
+		to_dp_user_id, to_other_user_id,
+		leave_reason,
+		status, application_time, create_time
+		)
+		values
+		(#{leaveId,jdbcType=VARCHAR}, #{leaveUserId,jdbcType=VARCHAR},
+		#{categoryId,jdbcType=VARCHAR},
+		#{timeStart,jdbcType=TIMESTAMP},
+		#{timeEnd,jdbcType=TIMESTAMP}, #{leaveDates,jdbcType=DECIMAL},
+		#{fromUserId,jdbcType=VARCHAR}, #{toUserId,jdbcType=VARCHAR},
+		#{fromClassLesson,jdbcType=VARCHAR},
+		#{toClassLesson,jdbcType=VARCHAR}, #{toHmUserId,jdbcType=VARCHAR},
+		#{toGlUserId,jdbcType=VARCHAR},
+		#{toDpUserId,jdbcType=VARCHAR},
+		#{toOtherUserId,jdbcType=VARCHAR}, #{leaveReason,jdbcType=VARCHAR},
+		#{status,jdbcType=VARCHAR}, #{applicationTime,jdbcType=TIMESTAMP},
+		#{createTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="org.platform.snail.edu.model.Leave">
+		insert into leave
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="leaveId != null">
+				leave_id,
+			</if>
+			<if test="leaveUserId != null">
+				leave_user_id,
+			</if>
+			<if test="categoryId != null">
+				category_id,
+			</if>
+			<if test="timeStart != null">
+				time_start,
+			</if>
+			<if test="timeEnd != null">
+				time_end,
+			</if>
+			<if test="leaveDates != null">
+				leave_dates,
+			</if>
+			<if test="fromUserId != null">
+				from_user_id,
+			</if>
+			<if test="toUserId != null">
+				to_user_id,
+			</if>
+			<if test="fromClassLesson != null">
+				from_class_lesson,
+			</if>
+			<if test="toClassLesson != null">
+				to_class_lesson,
+			</if>
+			<if test="toHmUserId != null">
+				to_hm_user_id,
+			</if>
+			<if test="toGlUserId != null">
+				to_gl_user_id,
+			</if>
+			<if test="toDpUserId != null">
+				to_dp_user_id,
+			</if>
+			<if test="toOtherUserId != null">
+				to_other_user_id,
+			</if>
+			<if test="leaveReason != null">
+				leave_reason,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="applicationTime != null">
+				application_time,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="leaveId != null">
+				#{leaveId,jdbcType=VARCHAR},
+			</if>
+			<if test="leaveUserId != null">
+				#{leaveUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="categoryId != null">
+				#{categoryId,jdbcType=VARCHAR},
+			</if>
+			<if test="timeStart != null">
+				#{timeStart,jdbcType=TIMESTAMP},
+			</if>
+			<if test="timeEnd != null">
+				#{timeEnd,jdbcType=TIMESTAMP},
+			</if>
+			<if test="leaveDates != null">
+				#{leaveDates,jdbcType=DECIMAL},
+			</if>
+			<if test="fromUserId != null">
+				#{fromUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="toUserId != null">
+				#{toUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="fromClassLesson != null">
+				#{fromClassLesson,jdbcType=VARCHAR},
+			</if>
+			<if test="toClassLesson != null">
+				#{toClassLesson,jdbcType=VARCHAR},
+			</if>
+			<if test="toHmUserId != null">
+				#{toHmUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="toGlUserId != null">
+				#{toGlUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="toDpUserId != null">
+				#{toDpUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="toOtherUserId != null">
+				#{toOtherUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="leaveReason != null">
+				#{leaveReason,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="applicationTime != null">
+				#{applicationTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.Leave">
+		update leave
+		<set>
+			<if test="leaveUserId != null">
+				leave_user_id = #{leaveUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="categoryId != null">
+				category_id = #{categoryId,jdbcType=VARCHAR},
+			</if>
+			<if test="timeStart != null">
+				time_start = #{timeStart,jdbcType=TIMESTAMP},
+			</if>
+			<if test="timeEnd != null">
+				time_end = #{timeEnd,jdbcType=TIMESTAMP},
+			</if>
+			<if test="leaveDates != null">
+				leave_dates = #{leaveDates,jdbcType=DECIMAL},
+			</if>
+			<if test="fromUserId != null">
+				from_user_id = #{fromUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="toUserId != null">
+				to_user_id = #{toUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="fromClassLesson != null">
+				from_class_lesson = #{fromClassLesson,jdbcType=VARCHAR},
+			</if>
+			<if test="toClassLesson != null">
+				to_class_lesson = #{toClassLesson,jdbcType=VARCHAR},
+			</if>
+			<if test="toHmUserId != null">
+				to_hm_user_id = #{toHmUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="toGlUserId != null">
+				to_gl_user_id = #{toGlUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="toDpUserId != null">
+				to_dp_user_id = #{toDpUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="toOtherUserId != null">
+				to_other_user_id = #{toOtherUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="leaveReason != null">
+				leave_reason = #{leaveReason,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="applicationTime != null">
+				application_time = #{applicationTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where leave_id = #{leaveId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.Leave">
+		update leave
+		set
+		leave_user_id = #{leaveUserId,jdbcType=VARCHAR},
+		category_id =
+		#{categoryId,jdbcType=VARCHAR},
+		time_start =
+		#{timeStart,jdbcType=TIMESTAMP},
+		time_end =
+		#{timeEnd,jdbcType=TIMESTAMP},
+		leave_dates =
+		#{leaveDates,jdbcType=DECIMAL},
+		from_user_id =
+		#{fromUserId,jdbcType=VARCHAR},
+		to_user_id =
+		#{toUserId,jdbcType=VARCHAR},
+		from_class_lesson =
+		#{fromClassLesson,jdbcType=VARCHAR},
+		to_class_lesson =
+		#{toClassLesson,jdbcType=VARCHAR},
+		to_hm_user_id =
+		#{toHmUserId,jdbcType=VARCHAR},
+		to_gl_user_id =
+		#{toGlUserId,jdbcType=VARCHAR},
+		to_dp_user_id =
+		#{toDpUserId,jdbcType=VARCHAR},
+		to_other_user_id =
+		#{toOtherUserId,jdbcType=VARCHAR},
+		leave_reason =
+		#{leaveReason,jdbcType=VARCHAR},
+		status = #{status,jdbcType=VARCHAR},
+		application_time = #{applicationTime,jdbcType=TIMESTAMP},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP}
+		where leave_id =
+		#{leaveId,jdbcType=VARCHAR}
+	</update>
+	<insert id="insertOrUpdateSelective">
+		<selectKey keyProperty="c" resultType="java.lang.Long"
+			order="BEFORE">
+			select count(1) as c from portal.leave where
+			leave_id=#{leaveId,jdbcType=VARCHAR}
+		</selectKey>
+		<if test="c==0">
+			insert into portal.leave
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				<if test="leaveId != null">
+					leave_id,
+				</if>
+				<if test="leaveUserId != null">
+					leave_user_id,
+				</if>
+				<if test="categoryId != null">
+					category_id,
+				</if>
+				<if test="timeStart != null">
+					time_start,
+				</if>
+				<if test="timeEnd != null">
+					time_end,
+				</if>
+				<if test="leaveDates != null">
+					leave_dates,
+				</if>
+				<if test="fromUserId != null">
+					from_user_id,
+				</if>
+				<if test="toUserId != null">
+					to_user_id,
+				</if>
+				<if test="fromClassLesson != null">
+					from_class_lesson,
+				</if>
+				<if test="toClassLesson != null">
+					to_class_lesson,
+				</if>
+				<if test="toHmUserId != null">
+					to_hm_user_id,
+				</if>
+				<if test="toGlUserId != null">
+					to_gl_user_id,
+				</if>
+				<if test="toDpUserId != null">
+					to_dp_user_id,
+				</if>
+				<if test="toOtherUserId != null">
+					to_other_user_id,
+				</if>
+				<if test="leaveReason != null">
+					leave_reason,
+				</if>
+				<if test="status != null">
+					status,
+				</if>
+				<if test="applicationTime != null">
+					application_time,
+				</if>
+				<if test="createTime != null">
+					create_time,
+				</if>
+			</trim>
+			<trim prefix="values (" suffix=")" suffixOverrides=",">
+				<if test="leaveId != null">
+					#{leaveId,jdbcType=VARCHAR},
+				</if>
+				<if test="leaveUserId != null">
+					#{leaveUserId,jdbcType=VARCHAR},
+				</if>
+				<if test="categoryId != null">
+					#{categoryId,jdbcType=VARCHAR},
+				</if>
+				<if test="timeStart != null">
+					#{timeStart,jdbcType=TIMESTAMP},
+				</if>
+				<if test="timeEnd != null">
+					#{timeEnd,jdbcType=TIMESTAMP},
+				</if>
+				<if test="leaveDates != null">
+					#{leaveDates,jdbcType=DECIMAL},
+				</if>
+				<if test="fromUserId != null">
+					#{fromUserId,jdbcType=VARCHAR},
+				</if>
+				<if test="toUserId != null">
+					#{toUserId,jdbcType=VARCHAR},
+				</if>
+				<if test="fromClassLesson != null">
+					#{fromClassLesson,jdbcType=VARCHAR},
+				</if>
+				<if test="toClassLesson != null">
+					#{toClassLesson,jdbcType=VARCHAR},
+				</if>
+				<if test="toHmUserId != null">
+					#{toHmUserId,jdbcType=VARCHAR},
+				</if>
+				<if test="toGlUserId != null">
+					#{toGlUserId,jdbcType=VARCHAR},
+				</if>
+				<if test="toDpUserId != null">
+					#{toDpUserId,jdbcType=VARCHAR},
+				</if>
+				<if test="toOtherUserId != null">
+					#{toOtherUserId,jdbcType=VARCHAR},
+				</if>
+				<if test="leaveReason != null">
+					#{leaveReason,jdbcType=VARCHAR},
+				</if>
+				<if test="status != null">
+					#{status,jdbcType=VARCHAR},
+				</if>
+				<if test="applicationTime != null">
+					#{applicationTime,jdbcType=TIMESTAMP},
+				</if>
+				<if test="createTime != null">
+					#{createTime,jdbcType=TIMESTAMP},
+				</if>
+			</trim>
+		</if>
+		<if test="c==1">
+			update portal.leave
+			<set>
+				<if test="leaveUserId != null">
+					leave_user_id = #{leaveUserId,jdbcType=VARCHAR},
+				</if>
+				<if test="categoryId != null">
+					category_id = #{categoryId,jdbcType=VARCHAR},
+				</if>
+				<if test="timeStart != null">
+					time_start = #{timeStart,jdbcType=TIMESTAMP},
+				</if>
+				<if test="timeEnd != null">
+					time_end = #{timeEnd,jdbcType=TIMESTAMP},
+				</if>
+				<if test="leaveDates != null">
+					leave_dates = #{leaveDates,jdbcType=DECIMAL},
+				</if>
+				<if test="fromUserId != null">
+					from_user_id = #{fromUserId,jdbcType=VARCHAR},
+				</if>
+				<if test="toUserId != null">
+					to_user_id = #{toUserId,jdbcType=VARCHAR},
+				</if>
+				<if test="fromClassLesson != null">
+					from_class_lesson = #{fromClassLesson,jdbcType=VARCHAR},
+				</if>
+				<if test="toClassLesson != null">
+					to_class_lesson = #{toClassLesson,jdbcType=VARCHAR},
+				</if>
+				<if test="toHmUserId != null">
+					to_hm_user_id = #{toHmUserId,jdbcType=VARCHAR},
+				</if>
+				<if test="toGlUserId != null">
+					to_gl_user_id = #{toGlUserId,jdbcType=VARCHAR},
+				</if>
+				<if test="toDpUserId != null">
+					to_dp_user_id = #{toDpUserId,jdbcType=VARCHAR},
+				</if>
+				<if test="toOtherUserId != null">
+					to_other_user_id = #{toOtherUserId,jdbcType=VARCHAR},
+				</if>
+				<if test="leaveReason != null">
+					leave_reason = #{leaveReason,jdbcType=VARCHAR},
+				</if>
+				<if test="status != null">
+					status = #{status,jdbcType=VARCHAR},
+				</if>
+				<if test="applicationTime != null">
+					application_time =
+					#{applicationTime,jdbcType=TIMESTAMP},
+				</if>
+
+			</set>
+			where leave_id = #{leaveId,jdbcType=VARCHAR}
+		</if>
+	</insert>
+	<sql id="whereCondition">
+		FROM
+		portal.leave t
+		LEFT JOIN
+		users u1 ON leave_user_id = u1.USER_ID
+		LEFT
+		JOIN
+		(SELECT
+		code, name
+		FROM
+		dict
+		WHERE
+		dict.CATEGORY_ID = '28') dict1 ON
+		t.category_id = dict1.code
+		LEFT JOIN
+		users u2 ON from_user_id =
+		u2.USER_ID
+		LEFT JOIN
+		users u3 ON to_user_id = u3.USER_ID
+		LEFT JOIN
+		users
+		u4 ON to_hm_user_id = u4.USER_ID
+		LEFT JOIN
+		users u5 ON to_gl_user_id =
+		u5.USER_ID
+		LEFT JOIN
+		users u6 ON to_dp_user_id = u6.USER_ID
+		LEFT JOIN
+		users u7 ON to_other_user_id = u7.USER_ID
+		where 0=0
+
+		<if
+			test="condition.categoryId!=null and condition.categoryId!=&quot;&quot;">
+
+			and
+			t.category_id=#{condition.categoryId,jdbcType=VARCHAR}
+		</if>
+		<if test='condition.startDate!=null and condition.startDate!=""'>
+			<![CDATA[
+			and t.application_time>=str_to_date(#{condition.startDate},'%Y-%m-%d %H:%i:%S')
+			]]>
+		</if>
+		<if test='condition.endDate!=null and condition.endDate!=""'>
+			 <![CDATA[
+				and t.application_time<=str_to_date(#{condition.endDate},'%Y-%m-%d %H:%i:%S')   
+				]]>
+		</if>
+		<if test="condition.leaveId!=null and condition.leaveId!=&quot;&quot;">
+			and
+			t.leave_id=#{condition.leaveId,jdbcType=VARCHAR}
+		</if>
+		<if
+			test="condition.leaveUserId!=null and condition.leaveUserId!=&quot;&quot;">
+			and
+			t.leave_user_id=#{condition.leaveUserId,jdbcType=VARCHAR}
+		</if>
+
+		<if test="condition.status!=null and condition.status!=&quot;&quot;">
+			and
+			t.status=#{condition.status,jdbcType=VARCHAR}
+		</if>
+
+
+
+		<choose>
+			<when test="condition.admin!=null and condition.admin!=&quot;&quot;">
+				and EXISTS (
+				SELECT
+				1
+				FROM
+				jbpmdb.jbpm4_hist_task a
+				WHERE
+				a.EXECUTION_ = t.leave_id
+				AND a.ASSIGNEE_ = #{condition.assignee}
+				)
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</sql>
+
+	<select id="findCount" resultType="int">
+
+		SELECT COUNT(*)
+
+		<include refid="whereCondition" />
+
+	</select>
+
+	<select id="findList" resultMap="BaseResultMapVo">
+		SELECT
+		leave_id,
+		leave_user_id,
+		u1.name leave_user_name,
+		t.category_id,
+		dict1.name category_name,
+		time_start,
+		time_end,
+		leave_dates,
+		from_user_id,
+		u2.name from_user_name,
+		to_user_id,
+		u3.name to_user_name,
+		from_class_lesson,
+		to_class_lesson,
+		to_hm_user_id,
+		u4.name
+		to_hm_user_name,
+		to_gl_user_id,
+		u5.name to_gl_user_name,
+		to_dp_user_id,
+		u6.name to_dp_user_name,
+		to_other_user_id,
+		u7.name to_other_user_name,
+		leave_reason,
+		t.status,
+		application_time,
+		t.create_time,
+		t.audit_status,
+		t.audit_remark
+
+		<include refid="whereCondition" />
+
+		<choose>
+
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+
+				ORDER BY ${orderBy}
+
+			</when>
+
+			<otherwise>
+
+				ORDER BY t.create_time desc
+
+			</otherwise>
+
+		</choose>
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+	<update id="updateAuditById">
+		update portal.leave t set
+		t.category_id=#{auditStatus},t.audit_status='1'
+		,t.audit_remark=#{auditRemark} where t.leave_id =
+		#{leaveId,jdbcType=VARCHAR}
+	</update>
+	
+</mapper>

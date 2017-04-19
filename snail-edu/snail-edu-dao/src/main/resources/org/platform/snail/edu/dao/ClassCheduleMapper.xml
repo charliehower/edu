@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.ClassCheduleMapper" >
+  <resultMap id="BaseResultMap" type="org.platform.snail.edu.model.ClassChedule" >
+    <id column="class_schedule_id" property="classScheduleId" jdbcType="INTEGER" />
+    <result column="section_id" property="sectionId" jdbcType="VARCHAR" />
+    <result column="week_id" property="weekId" jdbcType="VARCHAR" />
+    <result column="classes_id" property="classesId" jdbcType="VARCHAR" />
+    <result column="discipline_id" property="disciplineId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    class_schedule_id, section_id, week_id, classes_id, discipline_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from class_chedule
+    where class_schedule_id = #{classScheduleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from class_chedule
+    where class_schedule_id = #{classScheduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.platform.snail.edu.model.ClassChedule" >
+    insert into class_chedule (class_schedule_id, section_id, week_id, 
+      classes_id, discipline_id, create_time
+      )
+    values (#{classScheduleId,jdbcType=INTEGER}, #{sectionId,jdbcType=VARCHAR}, #{weekId,jdbcType=VARCHAR}, 
+      #{classesId,jdbcType=VARCHAR}, #{disciplineId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.platform.snail.edu.model.ClassChedule" >
+    insert into class_chedule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="classScheduleId != null" >
+        class_schedule_id,
+      </if>
+      <if test="sectionId != null" >
+        section_id,
+      </if>
+      <if test="weekId != null" >
+        week_id,
+      </if>
+      <if test="classesId != null" >
+        classes_id,
+      </if>
+      <if test="disciplineId != null" >
+        discipline_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="classScheduleId != null" >
+        #{classScheduleId,jdbcType=INTEGER},
+      </if>
+      <if test="sectionId != null" >
+        #{sectionId,jdbcType=VARCHAR},
+      </if>
+      <if test="weekId != null" >
+        #{weekId,jdbcType=VARCHAR},
+      </if>
+      <if test="classesId != null" >
+        #{classesId,jdbcType=VARCHAR},
+      </if>
+      <if test="disciplineId != null" >
+        #{disciplineId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.ClassChedule" >
+    update class_chedule
+    <set >
+      <if test="sectionId != null" >
+        section_id = #{sectionId,jdbcType=VARCHAR},
+      </if>
+      <if test="weekId != null" >
+        week_id = #{weekId,jdbcType=VARCHAR},
+      </if>
+      <if test="classesId != null" >
+        classes_id = #{classesId,jdbcType=VARCHAR},
+      </if>
+      <if test="disciplineId != null" >
+        discipline_id = #{disciplineId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where class_schedule_id = #{classScheduleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.ClassChedule" >
+    update class_chedule
+    set section_id = #{sectionId,jdbcType=VARCHAR},
+      week_id = #{weekId,jdbcType=VARCHAR},
+      classes_id = #{classesId,jdbcType=VARCHAR},
+      discipline_id = #{disciplineId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where class_schedule_id = #{classScheduleId,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  <select id="selectClassCheduleListByClassesId" resultType="map">
+ SELECT 
+    a.week_id,
+    b.week_name,
+    a.section_id,
+    c.section_name,
+    a.discipline_id,
+    d.discipline_name
+FROM
+    class_chedule a
+        LEFT JOIN
+    week b ON a.week_id = b.week_id
+        LEFT JOIN
+    section c ON a.section_id = c.section_id
+        LEFT JOIN
+    discipline d ON a.discipline_id = d.discipline_id
+WHERE
+    a.classes_id = #{classesId}
+  </select>
+  
+  <select id="selectAllWeekList" resultType="map">
+ SELECT * FROM week order by week_id
+  </select>
+  
+  <select id="selectAllSectionList" resultType="map">
+  SELECT * FROM section order by section_id
+  </select>
+  
+    <insert id="saveOrUpdateClassChedule" parameterType="org.platform.snail.edu.model.ClassChedule" >
+		<selectKey keyProperty="c" resultType="java.lang.Long"
+			order="BEFORE">
+			select count(1) as c from class_chedule where 
+			classes_id=#{classesId,jdbcType=VARCHAR} and  week_id = #{weekId,jdbcType=VARCHAR} and 
+			section_id = #{sectionId,jdbcType=VARCHAR} and discipline_id = #{disciplineId,jdbcType=VARCHAR}
+		</selectKey>
+		<if test="c==0">
+			 insert into class_chedule (class_schedule_id, section_id, week_id, 
+      classes_id, discipline_id, create_time
+      )
+    values (#{classScheduleId,jdbcType=INTEGER}, #{sectionId,jdbcType=VARCHAR}, #{weekId,jdbcType=VARCHAR}, 
+      #{classesId,jdbcType=VARCHAR}, #{disciplineId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+		</if>
+		<if test="c==1">
+			update class_chedule
+    set 
+      discipline_id = #{disciplineId,jdbcType=VARCHAR}
+    where classes_id=#{classesId,jdbcType=VARCHAR} and  week_id = #{weekId,jdbcType=VARCHAR} and 
+			section_id = #{sectionId,jdbcType=VARCHAR}
+		</if>
+</insert>
+
+  
+</mapper>

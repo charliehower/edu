@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.PublicClassMapper">
+	<resultMap id="BaseResultMap" type="org.platform.snail.edu.model.PublicClass" >
+    <id column="public_class_id" property="publicClassId" jdbcType="VARCHAR" />
+    <result column="discripline_id" property="discriplineId" jdbcType="VARCHAR" />
+    <result column="years" property="years" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="model" property="model" jdbcType="VARCHAR" />
+    <result column="reg_deadline" property="regDeadline" jdbcType="TIMESTAMP" />
+    <result column="reg_start_date" property="regStartDate" jdbcType="TIMESTAMP" />
+    <result column="task_date" property="taskDate" jdbcType="TIMESTAMP" />
+    <result column="ke" property="ke" jdbcType="INTEGER" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="teacher_id" property="teacherId" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="auditor_id" property="auditorId" jdbcType="VARCHAR" />
+    <result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
+    <result column="pusher_id" property="pusherId" jdbcType="VARCHAR" />
+    <result column="push_time" property="pushTime" jdbcType="TIMESTAMP" />
+    <result column="msg_alert" property="msgAlert" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="audit_sec_user_id" property="auditSecUserId" jdbcType="VARCHAR" />
+    <result column="audit_sec_status" property="auditSecStatus" jdbcType="VARCHAR" />
+    <result column="audit_sec_time" property="auditSecTime" jdbcType="TIMESTAMP" />
+    <result column="audit_thi_user_id" property="auditThiUserId" jdbcType="VARCHAR" />
+    <result column="audit_thi_status" property="auditThiStatus" jdbcType="VARCHAR" />
+    <result column="audit_thi_time" property="auditThiTime" jdbcType="TIMESTAMP" />
+    <result column="audit_for_user_id" property="auditForUserId" jdbcType="VARCHAR" />
+    <result column="audit_for_status" property="auditForStatus" jdbcType="VARCHAR" />
+    <result column="audit_for_time" property="auditForTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="org.platform.snail.edu.model.PublicClassWithBLOBs" extends="BaseResultMap" >
+    <result column="globle_title" property="globleTitle" jdbcType="LONGVARCHAR" />
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="task_content" property="taskContent" jdbcType="LONGVARCHAR" />
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+    <result column="audit_remark" property="auditRemark" jdbcType="LONGVARCHAR" />
+    <result column="audit_sec_remark" property="auditSecRemark" jdbcType="LONGVARCHAR" />
+    <result column="audit_thi_remark" property="auditThiRemark" jdbcType="LONGVARCHAR" />
+    <result column="audit_for_remark" property="auditForRemark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+	<resultMap id="BaseResultMapVo" type="org.platform.snail.edu.vo.PublicClassVo"
+		extends="ResultMapWithBLOBs">
+		<result column="total" property="total" jdbcType="INTEGER" />
+		<result column="discipline_name" property="disciplineName"
+			jdbcType="VARCHAR" />
+		<result column="teacher_name" property="teacherName" jdbcType="VARCHAR" />
+		<result column="auditor_name" property="auditorName" jdbcType="VARCHAR" />
+		<result column="ke_name" property="keName" jdbcType="VARCHAR" />
+		<result column="score_avg" property="scoreAvg" jdbcType="INTEGER" />
+		
+	</resultMap>
+	<sql id="Base_Column_List">
+		public_class_id, globle_title, discripline_id, years,
+		grade, title, model,
+		reg_deadline,
+		reg_start_date, task_date, ke,
+		location, teacher_id, status, auditor_id, audit_time,
+		pusher_id,
+		push_time, create_time
+	</sql>
+	<sql id="Blob_Column_List">
+		content, task_content, remark
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMapVo"
+		parameterType="java.lang.String">
+		SELECT
+		(SELECT
+		avg(ifnull(a.score,0))
+		FROM
+		public_class_sub a
+		WHERE
+		a.public_class_id = public_class.public_class_id) score_avg,
+		(SELECT
+		COUNT(1)
+		FROM
+		public_class_sub a
+		WHERE
+		a.public_class_id = public_class.public_class_id) total,
+		users.name teacher_name,
+		public_class_id,
+		globle_title,
+		public_class.discripline_id,
+		discipline.discipline_name,
+		years,
+		grade,
+		title,
+		model,
+		reg_deadline,
+		reg_start_date,
+		task_date,
+		task_content,
+		content,
+		ke,
+		section.section_name ke_name,
+		location,
+		teacher_id,
+		s.name status,
+		auditor_id,
+		b.name auditor_name,
+		audit_time,
+		pusher_id,
+		push_time,
+		audit_remark,
+		audit_sec_remark,
+		audit_thi_remark,
+		audit_for_remark,
+		audit_sec_time,
+		audit_thi_time,
+		audit_for_time,
+		(case audit_sec_status when '1' then '通过' when '2' then '退回' else '待审核' end) audit_sec_status,
+		(case audit_thi_status when '1' then '通过' when '2' then '退回' else '待审核' end) audit_thi_status,
+		(case audit_for_status when '1' then '通过' when '2' then '退回' else '待审核' end) audit_for_status,
+		public_class.remark,
+		public_class.create_time,
+		c.name auditor_name_sec,
+		d.name auditor_name_thi,
+		e.name auditor_name_for
+		FROM
+		public_class
+		LEFT JOIN
+		users ON public_class.teacher_id = users.user_id
+		LEFT JOIN
+		discipline ON public_class.discripline_id = discipline.discipline_id
+		LEFT JOIN
+		users b ON public_class.auditor_id = b.user_id
+			LEFT JOIN
+		users c ON public_class.audit_sec_user_id = c.user_id
+		LEFT JOIN
+		users d ON public_class.audit_thi_user_id = d.user_id
+		LEFT JOIN
+		users e ON public_class.audit_for_user_id = e.user_id
+		LEFT JOIN
+		(select code ,name from dict where category_id='41') s on status=s.code
+		LEFT JOIN section on ke=section.section_id
+		where
+		public_class.public_class_id = #{publicClassId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		public_class
+		where public_class_id = #{publicClassId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="org.platform.snail.edu.model.PublicClassWithBLOBs">
+		insert into public_class
+		(public_class_id, globle_title,
+		discripline_id,
+		years, grade, title,
+		model, reg_deadline, reg_start_date,
+		task_date, ke, location,
+		teacher_id, status, auditor_id,
+		audit_time, pusher_id, push_time,
+		create_time, content, task_content,
+		remark)
+		values
+		(#{publicClassId,jdbcType=VARCHAR}, #{globleTitle,jdbcType=VARCHAR},
+		#{discriplineId,jdbcType=CHAR},
+		#{years,jdbcType=VARCHAR},
+		#{grade,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},
+		#{model,jdbcType=VARCHAR}, #{regDeadline,jdbcType=TIMESTAMP},
+		#{regStartDate,jdbcType=TIMESTAMP},
+		#{taskDate,jdbcType=TIMESTAMP},
+		#{ke,jdbcType=INTEGER}, #{location,jdbcType=VARCHAR},
+		#{teacherId,jdbcType=VARCHAR}, #{status,jdbcType=CHAR},
+		#{auditorId,jdbcType=VARCHAR},
+		#{auditTime,jdbcType=TIMESTAMP},
+		#{pusherId,jdbcType=VARCHAR}, #{pushTime,jdbcType=TIMESTAMP},
+		#{createTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR},
+		#{taskContent,jdbcType=LONGVARCHAR},
+		#{remark,jdbcType=LONGVARCHAR})
+	</insert>
+	
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="org.platform.snail.edu.model.PublicClassWithBLOBs">
+		update
+		public_class
+		set globle_title = #{globleTitle,jdbcType=VARCHAR},
+		discripline_id = #{discriplineId,jdbcType=CHAR},
+		years =
+		#{years,jdbcType=VARCHAR},
+		grade = #{grade,jdbcType=VARCHAR},
+		title =
+		#{title,jdbcType=VARCHAR},
+		model = #{model,jdbcType=VARCHAR},
+		reg_deadline = #{regDeadline,jdbcType=TIMESTAMP},
+		reg_start_date =
+		#{regStartDate,jdbcType=TIMESTAMP},
+		task_date =
+		#{taskDate,jdbcType=TIMESTAMP},
+		ke = #{ke,jdbcType=INTEGER},
+		location =
+		#{location,jdbcType=VARCHAR},
+		teacher_id =
+		#{teacherId,jdbcType=VARCHAR},
+		status = #{status,jdbcType=CHAR},
+		auditor_id = #{auditorId,jdbcType=VARCHAR},
+		audit_time =
+		#{auditTime,jdbcType=TIMESTAMP},
+		pusher_id =
+		#{pusherId,jdbcType=VARCHAR},
+		push_time =
+		#{pushTime,jdbcType=TIMESTAMP},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		content =
+		#{content,jdbcType=LONGVARCHAR},
+		task_content =
+		#{taskContent,jdbcType=LONGVARCHAR},
+		remark =
+		#{remark,jdbcType=LONGVARCHAR}
+		where public_class_id =
+		#{publicClassId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.PublicClass">
+		update
+		public_class
+		set globle_title = #{globleTitle,jdbcType=VARCHAR},
+		discripline_id = #{discriplineId,jdbcType=CHAR},
+		years =
+		#{years,jdbcType=VARCHAR},
+		grade = #{grade,jdbcType=VARCHAR},
+		title =
+		#{title,jdbcType=VARCHAR},
+		model = #{model,jdbcType=VARCHAR},
+		reg_deadline = #{regDeadline,jdbcType=TIMESTAMP},
+		reg_start_date =
+		#{regStartDate,jdbcType=TIMESTAMP},
+		task_date =
+		#{taskDate,jdbcType=TIMESTAMP},
+		ke = #{ke,jdbcType=INTEGER},
+		location =
+		#{location,jdbcType=VARCHAR},
+		content =
+		#{content,jdbcType=LONGVARCHAR},
+		task_content =
+		#{taskContent,jdbcType=LONGVARCHAR},
+		remark =
+		#{remark,jdbcType=LONGVARCHAR}
+		where public_class_id =
+		#{publicClassId,jdbcType=VARCHAR}
+	</update>
+	<select id="isExitByTitle" resultType="int">
+		select count(*) from
+		public_class
+		where title=#{title}
+	</select>
+	<sql id="whereCondition">
+		from public_class
+		left join users on
+		public_class.teacher_id=users.user_id
+		left join discipline on
+		public_class.discripline_id=discipline.discipline_id
+		LEFT JOIN
+		users b ON public_class.auditor_id = b.user_id
+		LEFT JOIN
+		users c ON public_class.audit_sec_user_id = c.user_id
+		LEFT JOIN
+		users d ON public_class.audit_thi_user_id = d.user_id
+		LEFT JOIN
+		users e ON public_class.audit_for_user_id = e.user_id
+		where 0=0
+		<if
+			test="condition.publicClassId!=null and condition.publicClassId!=&quot;&quot;">
+			and
+			public_class.public_class_id =
+			#{condition.publicClassId,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.title!=null and condition.title!=&quot;&quot;">
+			and
+			title like
+			concat('%',concat(#{condition.title,jdbcType=VARCHAR},'%'))
+
+		</if>
+		<if test="condition.years!=null and condition.years!=&quot;&quot;">
+			and
+			years = #{condition.years,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.grade!=null and condition.grade!=&quot;&quot;">
+			and
+			grade = #{condition.grade,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.teacherId!=null and condition.teacherId!=&quot;&quot;">
+			and
+			teacher_id = #{condition.teacherId,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.status!=null and condition.status!=&quot;&quot;">
+			and
+			public_class.status =
+			#{condition.status,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.grade!=null and condition.grade!=&quot;&quot;">
+			and
+			grade = #{condition.grade,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.auditSecStatus!=null and condition.auditSecStatus!=&quot;&quot;">
+			and
+			audit_sec_status = #{condition.auditSecStatus,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.auditThiStatus!=null and condition.auditThiStatus!=&quot;&quot;">
+			and
+			audit_thi_status = #{condition.auditThiStatus,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.auditForStatus!=null and condition.auditForStatus!=&quot;&quot;">
+			and
+			audit_for_status = #{condition.auditForStatus,jdbcType=VARCHAR}
+		</if>
+	</sql>
+	<select id="findCount" resultType="int">
+		SELECT COUNT(*)
+		<include refid="whereCondition" />
+	</select>
+	<select id="findList" resultMap="BaseResultMapVo">
+		SELECT
+		(SELECT
+		COUNT(1)
+		FROM
+		public_class_sub a
+		WHERE
+		a.public_class_id = public_class.public_class_id) total,
+		users.name teacher_name,
+		public_class_id,
+		globle_title,
+		public_class.discripline_id,
+		discipline.discipline_name,
+		years,
+		grade,
+		title,
+		model,
+		reg_deadline,
+		reg_start_date,
+		task_date,
+		task_content,
+		ke,
+		location,
+		content,
+		teacher_id,
+		status,
+		auditor_id,
+		b.name auditor_name,
+		audit_time,
+		pusher_id,
+		push_time,
+		public_class.create_time,
+		public_class.remark,
+		c.name auditor_name_sec,
+		d.name auditor_name_thi,
+		e.name auditor_name_for,
+		(case audit_sec_status when '1' then '通过' when '2' then '退回' else '待审核' end) audit_sec_status,
+		(case audit_thi_status when '1' then '通过' when '2' then '退回' else '待审核' end) audit_thi_status,
+		(case audit_for_status when '1' then '通过' when '2' then '退回' else '待审核' end) audit_for_status
+		<include refid="whereCondition" />
+		<choose>
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+				ORDER BY ${orderBy}
+			</when>
+			<otherwise>
+				ORDER BY create_time desc
+			</otherwise>
+		</choose>
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+	<update id="updateAudit">
+		update public_class
+		set
+		status =
+		#{status,jdbcType=CHAR},
+		auditor_id = #{auditorId,jdbcType=VARCHAR},
+		audit_remark=#{remark,jdbcType=LONGVARCHAR},
+		audit_time = now()
+		where public_class_id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateRelease">
+		update public_class
+		set
+		status =
+		#{status,jdbcType=CHAR},
+		pusher_id = #{pusherId,jdbcType=VARCHAR},
+		push_time = now()
+		where public_class_id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateScore">
+		update public_class_sub
+		set
+		remark =
+		#{remark,jdbcType=VARCHAR},
+		score = #{score},
+		score_time = now()
+		where
+		public_class_id = #{id,jdbcType=VARCHAR} and teacher_id=#{teacherId}
+	</update>
+	<select id="selectSumScore" resultType="map">
+		select sum(score) score,count(1) total from public_class_sub where
+		public_class_id=#{id}
+	</select>
+	<select id="selectTaskAlertList" resultType="map">
+		SELECT 
+	(select group_concat(concat(concat(teacher.tel,','),teacher.NAME)SEPARATOR ';') from public_class_sub sm left join teacher on sm.teacher_id=teacher.teacher_id where sm.public_class_id=public_class.public_class_id and teacher.tel !='') msg,
+    users.name teacher_name,
+    public_class_id,
+    globle_title,
+    public_class.discripline_id,
+    discipline.discipline_name,
+    years,
+    grade,
+    title,
+    model,
+    reg_deadline,
+    reg_start_date,
+    DATE_FORMAT(task_date, '%Y-%m-%d') task_date,
+    task_content,
+    content,
+    ke,
+    section.section_name ke_name,
+    location,
+    teacher_id,
+    s.name status,
+    auditor_id,
+    b.name auditor_name,
+    audit_time,
+    pusher_id,
+    push_time,
+    public_class.remark,
+    public_class.create_time
+FROM
+    public_class 
+        LEFT JOIN
+    users ON public_class.teacher_id = users.user_id
+        LEFT JOIN
+    discipline ON public_class.discripline_id = discipline.discipline_id
+        LEFT JOIN
+    users b ON public_class.auditor_id = b.user_id
+        LEFT JOIN
+    (SELECT 
+        code, name
+    FROM
+        dict
+    WHERE
+        category_id = '41') s ON status = s.code
+        LEFT JOIN
+    section ON ke = section.section_id
+WHERE
+    (public_class.msg_alert = '0' OR public_class.msg_alert IS NULL)
+        AND DATE_FORMAT(public_class.task_date, '%Y-%m-%d') = DATE_FORMAT(NOW(), '%Y-%m-%d')
+        and public_class.status='03'
+	</select>
+	<update id="updateAlertStatus">
+		update public_class
+		set
+		msg_alert = '1'
+		where
+		public_class_id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateAuditSec">
+		update public_class
+		set
+		audit_sec_status =
+		#{status,jdbcType=CHAR},
+		audit_sec_remark=#{remark,jdbcType=LONGVARCHAR},
+		audit_sec_user_id = #{auditorId,jdbcType=VARCHAR},
+		audit_sec_time = now()
+		where public_class_id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateAuditThi">
+		update public_class
+		set
+		audit_thi_status =
+		#{status,jdbcType=CHAR},
+		audit_thi_remark=#{remark,jdbcType=LONGVARCHAR},
+		audit_thi_user_id = #{auditorId,jdbcType=VARCHAR},
+		audit_thi_time = now()
+		where public_class_id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateAuditFor">
+		update public_class
+		set
+		audit_for_status =
+		#{status,jdbcType=CHAR},
+		audit_for_remark=#{remark,jdbcType=LONGVARCHAR},
+		audit_for_user_id = #{auditorId,jdbcType=VARCHAR},
+		audit_for_time = now()
+		where public_class_id = #{id,jdbcType=VARCHAR}
+	</update>
+	<select id="selectOnlyOne" resultMap="BaseResultMap">
+	select public_class_id, globle_title, discripline_id, years,
+		grade, title, model,
+		reg_deadline,
+		reg_start_date, task_date, ke,
+		location, teacher_id, status, auditor_id, audit_time,
+		pusher_id,audit_sec_status,audit_thi_status,audit_for_status,
+		push_time, create_time  from public_class where public_class_id = #{id,jdbcType=VARCHAR} 
+	</select>
+</mapper>

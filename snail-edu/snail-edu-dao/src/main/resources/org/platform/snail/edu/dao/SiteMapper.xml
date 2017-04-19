@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.SiteMapper" >
+  <resultMap id="BaseResultMap" type="org.platform.snail.edu.model.Site" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="advance" property="advance" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="start_hh" property="startHh" jdbcType="VARCHAR" />
+    <result column="start_mm" property="startMm" jdbcType="VARCHAR" />
+    <result column="end_hh" property="endHh" jdbcType="VARCHAR" />
+    <result column="end_mm" property="endMm" jdbcType="VARCHAR" />
+    <result column="flag" property="flag" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="BaseResultMapVo" type="org.platform.snail.edu.vo.SiteVo"
+		extends="BaseResultMap">
+</resultMap>
+  <sql id="Base_Column_List" >
+    id, name, advance, status, reason, start_hh, start_mm, end_hh, end_mm, flag, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from site
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from site
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.platform.snail.edu.model.Site" >
+    insert into site (id, name, advance, 
+      status, reason, start_hh, 
+      start_mm, end_hh, end_mm, 
+      flag, create_time)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{advance,jdbcType=INTEGER}, 
+      #{status,jdbcType=CHAR}, #{reason,jdbcType=VARCHAR}, #{startHh,jdbcType=VARCHAR}, 
+      #{startMm,jdbcType=VARCHAR}, #{endHh,jdbcType=VARCHAR}, #{endMm,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.platform.snail.edu.model.Site" >
+    insert into site
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="advance != null" >
+        advance,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="startHh != null" >
+        start_hh,
+      </if>
+      <if test="startMm != null" >
+        start_mm,
+      </if>
+      <if test="endHh != null" >
+        end_hh,
+      </if>
+      <if test="endMm != null" >
+        end_mm,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="advance != null" >
+        #{advance,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="startHh != null" >
+        #{startHh,jdbcType=VARCHAR},
+      </if>
+      <if test="startMm != null" >
+        #{startMm,jdbcType=VARCHAR},
+      </if>
+      <if test="endHh != null" >
+        #{endHh,jdbcType=VARCHAR},
+      </if>
+      <if test="endMm != null" >
+        #{endMm,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.Site" >
+    update site
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="advance != null" >
+        advance = #{advance,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="startHh != null" >
+        start_hh = #{startHh,jdbcType=VARCHAR},
+      </if>
+      <if test="startMm != null" >
+        start_mm = #{startMm,jdbcType=VARCHAR},
+      </if>
+      <if test="endHh != null" >
+        end_hh = #{endHh,jdbcType=VARCHAR},
+      </if>
+      <if test="endMm != null" >
+        end_mm = #{endMm,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.Site" >
+    update site
+    set name = #{name,jdbcType=VARCHAR},
+      advance = #{advance,jdbcType=INTEGER},
+      status = #{status,jdbcType=CHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      start_hh = #{startHh,jdbcType=VARCHAR},
+      start_mm = #{startMm,jdbcType=VARCHAR},
+      end_hh = #{endHh,jdbcType=VARCHAR},
+      end_mm = #{endMm,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="isExit" resultType="int">
+		select count(*) from
+		site
+		where name=#{name}
+	</select>
+	<sql id="whereCondition">
+		from site
+		where 0=0
+		<if test="condition.name!=null and condition.name!=&quot;&quot;">
+			and
+			name like
+			concat('%',concat(#{condition.name,jdbcType=VARCHAR},'%'))
+
+		</if>
+		
+	</sql>
+	<select id="findCount" resultType="int">
+		SELECT COUNT(*)
+		<include refid="whereCondition" />
+	</select>
+	<select id="findList" resultMap="BaseResultMapVo">
+		SELECT 
+      <include refid="Base_Column_List" />
+		<include refid="whereCondition" />
+		<choose>
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+				ORDER BY ${orderBy}
+			</when>
+			<otherwise>
+				ORDER BY create_time desc
+			</otherwise>
+		</choose>
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+</mapper>

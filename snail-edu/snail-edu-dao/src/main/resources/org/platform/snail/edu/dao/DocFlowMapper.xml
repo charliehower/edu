@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.DocFlowMapper">
+	<resultMap id="BaseResultMap" type="org.platform.snail.edu.model.DocFlow">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="doc_dept" property="docDept" jdbcType="VARCHAR" />
+		<result column="doc_date" property="docDate" jdbcType="VARCHAR" />
+		<result column="doc_no" property="docNo" jdbcType="VARCHAR" />
+		<result column="native_no" property="nativeNo" jdbcType="VARCHAR" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="LONGVARCHAR" />
+		<result column="deploy_date" property="deployDate" jdbcType="VARCHAR" />
+		<result column="deploy_user" property="deployUser" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		doc_flow.id, doc_flow.doc_dept, doc_flow.doc_date, doc_flow.doc_no,
+		doc_flow.native_no, doc_flow.title,doc_flow.content,
+		doc_flow.deploy_date, doc_flow.deploy_user, doc_flow.status,
+		doc_flow.create_time
+	</sql>
+	<resultMap id="BaseResultMapVo" type="org.platform.snail.edu.vo.DocFlowVo"
+		extends="BaseResultMap">
+		<result column="name" property="name" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMapVo"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,users.name
+		from doc_flow left join users on doc_flow.deploy_user=users.user_id
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from doc_flow
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="org.platform.snail.edu.model.DocFlow">
+		insert into doc_flow (id, doc_dept, doc_date,
+		doc_no, native_no, title,content,
+		deploy_date, deploy_user, status,
+		create_time)
+		values (#{id,jdbcType=VARCHAR}, #{docDept,jdbcType=VARCHAR},
+		#{docDate,jdbcType=VARCHAR},
+		#{docNo,jdbcType=VARCHAR}, #{nativeNo,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},
+		#{content,jdbcType=LONGVARCHAR},
+		#{deployDate,jdbcType=VARCHAR}, #{deployUser,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="org.platform.snail.edu.model.DocFlow">
+		insert into doc_flow
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="docDept != null">
+				doc_dept,
+			</if>
+			<if test="docDate != null">
+				doc_date,
+			</if>
+			<if test="docNo != null">
+				doc_no,
+			</if>
+			<if test="nativeNo != null">
+				native_no,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="deployDate != null">
+				deploy_date,
+			</if>
+			<if test="deployUser != null">
+				deploy_user,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="docDept != null">
+				#{docDept,jdbcType=VARCHAR},
+			</if>
+			<if test="docDate != null">
+				#{docDate,jdbcType=VARCHAR},
+			</if>
+			<if test="docNo != null">
+				#{docNo,jdbcType=VARCHAR},
+			</if>
+			<if test="nativeNo != null">
+				#{nativeNo,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="deployDate != null">
+				#{deployDate,jdbcType=VARCHAR},
+			</if>
+			<if test="deployUser != null">
+				#{deployUser,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.DocFlow">
+		update doc_flow
+		<set>
+			<if test="docDept != null">
+				doc_dept = #{docDept,jdbcType=VARCHAR},
+			</if>
+			<if test="docDate != null">
+				doc_date = #{docDate,jdbcType=VARCHAR},
+			</if>
+			<if test="docNo != null">
+				doc_no = #{docNo,jdbcType=VARCHAR},
+			</if>
+			<if test="nativeNo != null">
+				native_no = #{nativeNo,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="deployDate != null">
+				deploy_date = #{deployDate,jdbcType=VARCHAR},
+			</if>
+			<if test="deployUser != null">
+				deploy_user = #{deployUser,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.DocFlow">
+		update doc_flow
+		set doc_dept = #{docDept,jdbcType=VARCHAR},
+		doc_date = #{docDate,jdbcType=VARCHAR},
+		doc_no = #{docNo,jdbcType=VARCHAR},
+		native_no = #{nativeNo,jdbcType=VARCHAR},
+		title = #{title,jdbcType=VARCHAR},
+		content=#{content,jdbcType=LONGVARCHAR},
+		deploy_date = #{deployDate,jdbcType=VARCHAR},
+		deploy_user = #{deployUser,jdbcType=VARCHAR},
+		status = #{status,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<select id="isExit" resultType="int">
+		select count(*) from
+		doc_flow
+		where title=#{title}
+	</select>
+	<sql id="whereCondition">
+		from doc_flow left join users on doc_flow.deploy_user=users.user_id
+		where 0=0
+		<if test="condition.title!=null and condition.title!=&quot;&quot;">
+			and
+			doc_flow.title like
+			concat('%',concat(#{condition.title,jdbcType=VARCHAR},'%'))
+		</if>
+		<if
+			test="condition.deployUser!=null and condition.deployUser!=&quot;&quot;">
+			and
+			doc_flow.deploy_user=#{condition.deployUser,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.status!=null and condition.status!=&quot;&quot;">
+			and
+			doc_flow.status=#{condition.status,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.qt!=null and condition.qt!=&quot;&quot;">
+			and
+			doc_flow.id in(
+			SELECT
+			doc_flow_id
+			FROM
+			doc_flow_task
+			WHERE
+			pi_user IN (SELECT
+			DEPARTMENT_ID
+			FROM
+			DEPARTMENT
+			WHERE
+			USER_ID = #{condition.piUser})
+			AND pi_status = '0'
+			)
+		</if>
+	</sql>
+	<select id="findCount" resultType="int">
+		SELECT COUNT(*)
+		<include refid="whereCondition" />
+	</select>
+	<select id="findList" resultMap="BaseResultMapVo">
+		SELECT
+		<include refid="Base_Column_List" />
+		,users.name
+		<include refid="whereCondition" />
+		<choose>
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+				ORDER BY ${doc_flow.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY doc_flow.create_time desc
+			</otherwise>
+		</choose>
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+</mapper>

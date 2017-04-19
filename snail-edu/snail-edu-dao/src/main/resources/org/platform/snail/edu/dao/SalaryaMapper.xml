@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.SalaryaMapper" >
+  <resultMap id="BaseResultMap" type="org.platform.snail.edu.model.Salarya" >
+    <id column="salary_id" property="salaryId" jdbcType="VARCHAR" />
+    <result column="salary_import_id" property="salaryImportId" jdbcType="VARCHAR" />
+    <result column="xh" property="序号" jdbcType="INTEGER" />
+    <result column="zgkh" property="职工卡号" jdbcType="VARCHAR" />
+    <result column="xm" property="姓名" jdbcType="VARCHAR" />
+    <result column="jbgz" property="基本工资" jdbcType="VARCHAR" />
+    <result column="jxgz" property="绩效工资" jdbcType="VARCHAR" />
+    <result column="yfgz" property="应发工资" jdbcType="VARCHAR" />
+    <result column="grjjsb" property="个人缴交社保" jdbcType="VARCHAR" />
+    <result column="grjjzfgjj" property="个人缴交住房公积金" jdbcType="VARCHAR" />
+    <result column="sds" property="所得税" jdbcType="VARCHAR" />
+    <result column="ykhj" property="应扣合计" jdbcType="VARCHAR" />
+    <result column="dwsb" property="单位社保" jdbcType="VARCHAR" />
+    <result column="fgzfbt" property="房改住房补贴" jdbcType="VARCHAR" />
+    <result column="dwjjzfgjj" property="单位缴交住房公积金" jdbcType="VARCHAR" />
+    <result column="sfhj" property="实发合计" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    salary_id, salary_import_id, 序号, 职工卡号, 姓名, 基本工资, 绩效工资, 应发工资, 个人缴交社保, 个人缴交住房公积金, 所得税, 
+    应扣合计, 单位社保, 房改住房补贴, 单位缴交住房公积金, 实发合计, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from salarya
+    where salary_id = #{salaryId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from salarya
+    where salary_id = #{salaryId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.platform.snail.edu.model.Salarya" >
+    insert into salarya (salary_id, salary_import_id, 序号, 
+      职工卡号, 姓名, 基本工资, 绩效工资, 
+      应发工资, 个人缴交社保, 个人缴交住房公积金, 
+      所得税, 应扣合计, 单位社保, 房改住房补贴, 
+      单位缴交住房公积金, 实发合计, create_time
+      )
+    values (#{salaryId,jdbcType=VARCHAR}, #{salaryImportId,jdbcType=VARCHAR}, #{序号,jdbcType=INTEGER}, 
+      #{职工卡号,jdbcType=VARCHAR}, #{姓名,jdbcType=VARCHAR}, #{基本工资,jdbcType=VARCHAR}, #{绩效工资,jdbcType=VARCHAR}, 
+      #{应发工资,jdbcType=VARCHAR}, #{个人缴交社保,jdbcType=VARCHAR}, #{个人缴交住房公积金,jdbcType=VARCHAR}, 
+      #{所得税,jdbcType=VARCHAR}, #{应扣合计,jdbcType=VARCHAR}, #{单位社保,jdbcType=VARCHAR}, #{房改住房补贴,jdbcType=VARCHAR}, 
+      #{单位缴交住房公积金,jdbcType=VARCHAR}, #{实发合计,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.platform.snail.edu.model.Salarya" >
+    insert into salarya
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="salaryId != null" >
+        salary_id,
+      </if>
+      <if test="salaryImportId != null" >
+        salary_import_id,
+      </if>
+      <if test="序号 != null" >
+        序号,
+      </if>
+      <if test="职工卡号 != null" >
+        职工卡号,
+      </if>
+      <if test="姓名 != null" >
+        姓名,
+      </if>
+      <if test="基本工资 != null" >
+        基本工资,
+      </if>
+      <if test="绩效工资 != null" >
+        绩效工资,
+      </if>
+      <if test="应发工资 != null" >
+        应发工资,
+      </if>
+      <if test="个人缴交社保 != null" >
+        个人缴交社保,
+      </if>
+      <if test="个人缴交住房公积金 != null" >
+        个人缴交住房公积金,
+      </if>
+      <if test="所得税 != null" >
+        所得税,
+      </if>
+      <if test="应扣合计 != null" >
+        应扣合计,
+      </if>
+      <if test="单位社保 != null" >
+        单位社保,
+      </if>
+      <if test="房改住房补贴 != null" >
+        房改住房补贴,
+      </if>
+      <if test="单位缴交住房公积金 != null" >
+        单位缴交住房公积金,
+      </if>
+      <if test="实发合计 != null" >
+        实发合计,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="salaryId != null" >
+        #{salaryId,jdbcType=VARCHAR},
+      </if>
+      <if test="salaryImportId != null" >
+        #{salaryImportId,jdbcType=VARCHAR},
+      </if>
+      <if test="序号 != null" >
+        #{序号,jdbcType=INTEGER},
+      </if>
+      <if test="职工卡号 != null" >
+        #{职工卡号,jdbcType=VARCHAR},
+      </if>
+      <if test="姓名 != null" >
+        #{姓名,jdbcType=VARCHAR},
+      </if>
+      <if test="基本工资 != null" >
+        #{基本工资,jdbcType=VARCHAR},
+      </if>
+      <if test="绩效工资 != null" >
+        #{绩效工资,jdbcType=VARCHAR},
+      </if>
+      <if test="应发工资 != null" >
+        #{应发工资,jdbcType=VARCHAR},
+      </if>
+      <if test="个人缴交社保 != null" >
+        #{个人缴交社保,jdbcType=VARCHAR},
+      </if>
+      <if test="个人缴交住房公积金 != null" >
+        #{个人缴交住房公积金,jdbcType=VARCHAR},
+      </if>
+      <if test="所得税 != null" >
+        #{所得税,jdbcType=VARCHAR},
+      </if>
+      <if test="应扣合计 != null" >
+        #{应扣合计,jdbcType=VARCHAR},
+      </if>
+      <if test="单位社保 != null" >
+        #{单位社保,jdbcType=VARCHAR},
+      </if>
+      <if test="房改住房补贴 != null" >
+        #{房改住房补贴,jdbcType=VARCHAR},
+      </if>
+      <if test="单位缴交住房公积金 != null" >
+        #{单位缴交住房公积金,jdbcType=VARCHAR},
+      </if>
+      <if test="实发合计 != null" >
+        #{实发合计,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.Salarya" >
+    update salarya
+    <set >
+      <if test="salaryImportId != null" >
+        salary_import_id = #{salaryImportId,jdbcType=VARCHAR},
+      </if>
+      <if test="序号 != null" >
+        序号 = #{序号,jdbcType=INTEGER},
+      </if>
+      <if test="职工卡号 != null" >
+        职工卡号 = #{职工卡号,jdbcType=VARCHAR},
+      </if>
+      <if test="姓名 != null" >
+        姓名 = #{姓名,jdbcType=VARCHAR},
+      </if>
+      <if test="基本工资 != null" >
+        基本工资 = #{基本工资,jdbcType=VARCHAR},
+      </if>
+      <if test="绩效工资 != null" >
+        绩效工资 = #{绩效工资,jdbcType=VARCHAR},
+      </if>
+      <if test="应发工资 != null" >
+        应发工资 = #{应发工资,jdbcType=VARCHAR},
+      </if>
+      <if test="个人缴交社保 != null" >
+        个人缴交社保 = #{个人缴交社保,jdbcType=VARCHAR},
+      </if>
+      <if test="个人缴交住房公积金 != null" >
+        个人缴交住房公积金 = #{个人缴交住房公积金,jdbcType=VARCHAR},
+      </if>
+      <if test="所得税 != null" >
+        所得税 = #{所得税,jdbcType=VARCHAR},
+      </if>
+      <if test="应扣合计 != null" >
+        应扣合计 = #{应扣合计,jdbcType=VARCHAR},
+      </if>
+      <if test="单位社保 != null" >
+        单位社保 = #{单位社保,jdbcType=VARCHAR},
+      </if>
+      <if test="房改住房补贴 != null" >
+        房改住房补贴 = #{房改住房补贴,jdbcType=VARCHAR},
+      </if>
+      <if test="单位缴交住房公积金 != null" >
+        单位缴交住房公积金 = #{单位缴交住房公积金,jdbcType=VARCHAR},
+      </if>
+      <if test="实发合计 != null" >
+        实发合计 = #{实发合计,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where salary_id = #{salaryId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.Salarya" >
+    update salarya
+    set salary_import_id = #{salaryImportId,jdbcType=VARCHAR},
+      序号 = #{序号,jdbcType=INTEGER},
+      职工卡号 = #{职工卡号,jdbcType=VARCHAR},
+      姓名 = #{姓名,jdbcType=VARCHAR},
+      基本工资 = #{基本工资,jdbcType=VARCHAR},
+      绩效工资 = #{绩效工资,jdbcType=VARCHAR},
+      应发工资 = #{应发工资,jdbcType=VARCHAR},
+      个人缴交社保 = #{个人缴交社保,jdbcType=VARCHAR},
+      个人缴交住房公积金 = #{个人缴交住房公积金,jdbcType=VARCHAR},
+      所得税 = #{所得税,jdbcType=VARCHAR},
+      应扣合计 = #{应扣合计,jdbcType=VARCHAR},
+      单位社保 = #{单位社保,jdbcType=VARCHAR},
+      房改住房补贴 = #{房改住房补贴,jdbcType=VARCHAR},
+      单位缴交住房公积金 = #{单位缴交住房公积金,jdbcType=VARCHAR},
+      实发合计 = #{实发合计,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where salary_id = #{salaryId,jdbcType=VARCHAR}
+  </update>
+   <select id="findList" resultMap="BaseResultMap">
+  SELECT 
+     salary_id, salarya.salary_import_id, 序号 as xh, 职工卡号 as zgkh, 姓名 as xm, 基本工资 as jbgz, 绩效工资 as jxgz, 应发工资 as yfgz, 个人缴交社保 grjjsb, 
+    个人缴交住房公积金 grjjzfgjj, 所得税 sds, 应扣合计 ykhj, 单位社保 dwsb, 单位缴交住房公积金 dwjjzfgjj, 实发合计 sfhj, 房改住房补贴 fgzfbt,
+    salarya.create_time,
+    salary_import.month,
+    salary_import.year,
+    salary_import.category
+FROM
+    salarya
+        INNER JOIN
+    salary_import ON salarya.salary_import_id = salary_import.salary_import_id
+WHERE
+    0 = 0
+     <if test="condition.year!=null and condition.year!=&quot;&quot;">
+			and salary_import.year=#{condition.year}
+		</if>
+ 		<if test="condition.month!=null and condition.month!=&quot;&quot;">
+			and salary_import.month=#{condition.month}
+		</if>
+		<if test="condition.category!=null and condition.category!=&quot;&quot;">
+			and salary_import.category=#{condition.category}
+		</if>
+		<if test="condition.salaryImportId!=null and condition.salaryImportId!=&quot;&quot;">
+			and salary_import.salary_import_id =#{condition.salaryImportId}
+		</if>
+		<if test="condition.userId!=null and condition.userId!=&quot;&quot;">
+			and salarya.职工卡号=#{condition.userId}
+		</if>
+		<if test="condition.userName!=null and condition.userName!=&quot;&quot;">
+			and salarya.姓名=#{condition.userName}
+		</if>
+    order by month desc,序号
+  </select>
+  
+</mapper>

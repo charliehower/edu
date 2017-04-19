@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.StudentMapper" >
+  <resultMap id="BaseResultMap" type="org.platform.snail.edu.model.Student" >
+    <id column="student_id" property="studentId" jdbcType="VARCHAR" />
+    <result column="category_id" property="categoryId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="addr" property="addr" jdbcType="VARCHAR" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="householder" property="householder" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="classes_id" property="classesId" jdbcType="VARCHAR" />
+    <result column="in_year" property="inYear" jdbcType="INTEGER" />
+    <result column="out_year" property="outYear" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="BaseResultMapVo" type="org.platform.snail.edu.vo.StudentVo"
+		extends="BaseResultMap">
+		<result column="classes_name" property="classesName" jdbcType="VARCHAR" />
+		<result column="grade_name" property="gradeName" jdbcType="VARCHAR" />
+	</resultMap>
+  <sql id="Base_Column_List" >
+    student_id, category_id, name, sex, birthday, addr, id_card, householder, tel, classes_id, 
+    in_year, out_year, status, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where student_id = #{studentId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from student
+    where student_id = #{studentId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.platform.snail.edu.model.Student" >
+    insert into student (student_id, category_id, name, 
+      sex, birthday, addr, id_card, 
+      householder, tel, classes_id, 
+      in_year, out_year, status, 
+      create_time)
+    values (#{studentId,jdbcType=VARCHAR}, #{categoryId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=CHAR}, #{birthday,jdbcType=DATE}, #{addr,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, 
+      #{householder,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{classesId,jdbcType=VARCHAR}, 
+      #{inYear,jdbcType=INTEGER}, #{outYear,jdbcType=INTEGER}, #{status,jdbcType=CHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.platform.snail.edu.model.Student" >
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="studentId != null" >
+        student_id,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="addr != null" >
+        addr,
+      </if>
+      <if test="idCard != null" >
+        id_card,
+      </if>
+      <if test="householder != null" >
+        householder,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="classesId != null" >
+        classes_id,
+      </if>
+      <if test="inYear != null" >
+        in_year,
+      </if>
+      <if test="outYear != null" >
+        out_year,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="studentId != null" >
+        #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="addr != null" >
+        #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="householder != null" >
+        #{householder,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="classesId != null" >
+        #{classesId,jdbcType=VARCHAR},
+      </if>
+      <if test="inYear != null" >
+        #{inYear,jdbcType=INTEGER},
+      </if>
+      <if test="outYear != null" >
+        #{outYear,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.Student" >
+    update student
+    <set >
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="addr != null" >
+        addr = #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="householder != null" >
+        householder = #{householder,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="classesId != null" >
+        classes_id = #{classesId,jdbcType=VARCHAR},
+      </if>
+      <if test="inYear != null" >
+        in_year = #{inYear,jdbcType=INTEGER},
+      </if>
+      <if test="outYear != null" >
+        out_year = #{outYear,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where student_id = #{studentId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.Student" >
+    update student
+    set category_id = #{categoryId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      addr = #{addr,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      householder = #{householder,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      classes_id = #{classesId,jdbcType=VARCHAR},
+      in_year = #{inYear,jdbcType=INTEGER},
+      out_year = #{outYear,jdbcType=INTEGER},
+      status = #{status,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where student_id = #{studentId,jdbcType=VARCHAR}
+  </update>
+  <sql id="whereCondition">
+		from student
+		 LEFT JOIN
+            classes a ON student.classes_id = a.classes_id
+                LEFT JOIN
+            grade b ON b.grade_id = a.grade_id
+		where 0=0
+		<if test="condition.name!=null and condition.name!=&quot;&quot;">
+			and
+			student.name like
+			concat('%',concat(#{condition.name,jdbcType=VARCHAR},'%'))
+
+		</if>
+		<if test="condition.classesId!=null and condition.classesId!=&quot;&quot;">
+			and
+			student.classes_id = #{condition.classesId,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.studentId!=null and condition.studentId!=&quot;&quot;">
+			and
+			student_id = #{condition.studentId,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.categoryId!=null and condition.categoryId!=&quot;&quot;">
+			and
+			category_id = #{condition.categoryId,jdbcType=VARCHAR}
+		</if>
+	</sql>
+	<select id="findCount" resultType="int">
+		SELECT COUNT(*)
+		<include refid="whereCondition" />
+	</select>
+	<select id="findList" resultMap="BaseResultMapVo">
+		SELECT student.student_id,
+    student.category_id,
+    student.name,
+    student.sex,
+    student.birthday,
+    student.addr,
+    student.id_card,
+    student.householder,
+    student.tel,
+    student.classes_id,
+    student.in_year,
+    student.out_year,
+    student.status,
+    student.remark,
+    student.create_time,
+    a.classes_name,
+    b.grade_name
+		<include refid="whereCondition" />
+		<choose>
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+				ORDER BY ${orderBy}
+			</when>
+			<otherwise>
+				ORDER BY create_time desc
+			</otherwise>
+		</choose>
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+</mapper>

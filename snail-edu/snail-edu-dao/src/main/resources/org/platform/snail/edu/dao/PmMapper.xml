@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.PmMapper">
+	<resultMap id="BaseResultMap" type="org.platform.snail.edu.model.Pm">
+		<id column="pm_id" property="pmId" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="student_id" property="studentId" jdbcType="VARCHAR" />
+		<result column="subject_id" property="subjectId" jdbcType="VARCHAR" />
+		<result column="years" property="years" jdbcType="VARCHAR" />
+		<result column="score" property="score" jdbcType="DECIMAL" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="BaseResultMapVo" type="org.platform.snail.edu.vo.PmVo"
+		extends="BaseResultMap">
+		<result column="student_name" property="studentName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		pm_id, name, student_id, subject_id, years, score, remark,
+		create_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from pm
+		where pm_id = #{pmId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from pm
+		where pm_id = #{pmId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="org.platform.snail.edu.model.Pm">
+		insert into pm (pm_id, name,
+		student_id,
+		subject_id, years, score,
+		remark, create_time)
+		values
+		(#{pmId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+		#{studentId,jdbcType=VARCHAR},
+		#{subjectId,jdbcType=VARCHAR},
+		#{years,jdbcType=VARCHAR}, #{score,jdbcType=DECIMAL},
+		#{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="org.platform.snail.edu.model.Pm">
+		insert into pm
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="pmId != null">
+				pm_id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="studentId != null">
+				student_id,
+			</if>
+			<if test="subjectId != null">
+				subject_id,
+			</if>
+			<if test="years != null">
+				years,
+			</if>
+			<if test="score != null">
+				score,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="pmId != null">
+				#{pmId,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="studentId != null">
+				#{studentId,jdbcType=VARCHAR},
+			</if>
+			<if test="subjectId != null">
+				#{subjectId,jdbcType=VARCHAR},
+			</if>
+			<if test="years != null">
+				#{years,jdbcType=VARCHAR},
+			</if>
+			<if test="score != null">
+				#{score,jdbcType=DECIMAL},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.Pm">
+		update pm
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="studentId != null">
+				student_id = #{studentId,jdbcType=VARCHAR},
+			</if>
+			<if test="subjectId != null">
+				subject_id = #{subjectId,jdbcType=VARCHAR},
+			</if>
+			<if test="years != null">
+				years = #{years,jdbcType=VARCHAR},
+			</if>
+			<if test="score != null">
+				score = #{score,jdbcType=DECIMAL},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where pm_id = #{pmId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.Pm">
+		update pm
+		set name
+		= #{name,jdbcType=VARCHAR},
+		student_id = #{studentId,jdbcType=VARCHAR},
+		subject_id = #{subjectId,jdbcType=VARCHAR},
+		years =
+		#{years,jdbcType=VARCHAR},
+		score = #{score,jdbcType=DECIMAL},
+		remark =
+		#{remark,jdbcType=VARCHAR},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP}
+		where name=#{name} and subject_id=#{subjectId} and years =
+		#{years,jdbcType=VARCHAR} and student_id =
+		#{studentId,jdbcType=VARCHAR}
+	</update>
+	<select id="isExit" resultType="int">
+		select count(*) from
+		pm
+		where
+		name=#{name} and subject_id=#{subjectId} and years =
+		#{years,jdbcType=VARCHAR} and student_id =
+		#{studentId,jdbcType=VARCHAR}
+	</select>
+	<sql id="whereCondition">
+		from pm
+		left join student on
+		pm.student_id=student.student_id
+		where 0=0
+		<if test="condition.name!=null and condition.name!=&quot;&quot;">
+			and
+			pm.name like
+			concat('%',concat(#{condition.name,jdbcType=VARCHAR},'%'))
+
+		</if>
+		<if
+			test="condition.studentName!=null and condition.studentName!=&quot;&quot;">
+			and
+			student.name like
+			concat('%',concat(#{condition.studentName,jdbcType=VARCHAR},'%'))
+
+		</if>
+
+		<if test="condition.years!=null and condition.years!=&quot;&quot;">
+			and
+			pm.years =
+			#{condition.years,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.subjectId!=null and condition.subjectId!=&quot;&quot;">
+			and
+			pm.subject_id =
+			#{condition.subjectId,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.classesId!=null and condition.classesId!=&quot;&quot;">
+			and
+			student.classes_id =
+			#{condition.classesId,jdbcType=VARCHAR}
+		</if>
+		<if test='condition.startDate!=null and condition.startDate!=""'>
+			<![CDATA[
+			and pm.create_time>=str_to_date(#{condition.startDate},'%Y-%m-%d %H:%i:%S')
+			]]>
+		</if>
+		<if test='condition.endDate!=null and condition.endDate!=""'>
+			 <![CDATA[
+				and pm.create_time<=str_to_date(#{condition.endDate},'%Y-%m-%d %H:%i:%S')   
+				]]>
+		</if>
+	</sql>
+	<select id="findCount" resultType="int">
+		SELECT COUNT(*)
+		<include refid="whereCondition" />
+	</select>
+	<select id="findList" resultMap="BaseResultMapVo">
+		SELECT
+		student.name student_name,
+		pm.pm_id, pm.name, pm.student_id,
+		pm.subject_id, pm.years, pm.score, pm.remark, pm.create_time
+		<include refid="whereCondition" />
+		<choose>
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+				ORDER BY pm.${orderBy}
+			</when>
+			<otherwise>
+				ORDER BY pm.create_time desc
+			</otherwise>
+		</choose>
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+	
+	<select id="selectSubject" resultType="map">
+		select discipline_id CODE ,discipline_name NAME from discipline
+	</select>
+	<select id="selectStudent" resultType="map">
+		SELECT student_id CODE,name NAME from student
+	</select>
+	<select id="selectYears" resultType="map">
+	SELECT years_id CODE,years_name NAME FROM years
+	</select>
+	
+</mapper>

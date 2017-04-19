@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.GradeMapper" >
+  <resultMap id="BaseResultMap" type="org.platform.snail.edu.model.Grade" >
+    <id column="grade_id" property="gradeId" jdbcType="VARCHAR" />
+    <result column="grade_name" property="gradeName" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="BaseResultMapVo"
+		type="org.platform.snail.edu.vo.GradeVo">
+
+	</resultMap>
+  <sql id="Base_Column_List" >
+    grade_id, grade_name, remark, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from grade
+    where grade_id = #{gradeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from grade
+    where grade_id = #{gradeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.platform.snail.edu.model.Grade" >
+    insert into grade (grade_id, grade_name, remark, 
+      create_time)
+    values (#{gradeId,jdbcType=VARCHAR}, #{gradeName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.platform.snail.edu.model.Grade" >
+    insert into grade
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gradeId != null" >
+        grade_id,
+      </if>
+      <if test="gradeName != null" >
+        grade_name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gradeId != null" >
+        #{gradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeName != null" >
+        #{gradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.Grade" >
+    update grade
+    <set >
+      <if test="gradeName != null" >
+        grade_name = #{gradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where grade_id = #{gradeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.Grade" >
+    update grade
+    set grade_name = #{gradeName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where grade_id = #{gradeId,jdbcType=VARCHAR}
+  </update>
+  <sql id="whereCondition">
+
+		from grade where 0=0
+
+		
+		<if test="condition.gradeName!=null and condition.gradeName!=&quot;&quot;">
+
+			and
+			grade.grade_name like concat(#{condition.gradeName,jdbcType=VARCHAR},'%')
+		</if>
+
+	</sql>
+
+	<select id="findCount" resultType="int">
+
+		SELECT COUNT(*)
+
+		<include refid="whereCondition" />
+
+	</select>
+
+	<select id="findList" resultMap="BaseResultMapVo">
+		select
+		<include refid="Base_Column_List" />
+
+		<include refid="whereCondition" />
+
+		<choose>
+
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+
+				ORDER BY ${orderBy}
+
+			</when>
+
+			<otherwise>
+
+				ORDER BY grade_id
+
+			</otherwise>
+
+		</choose>
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+	<select id="isExitByName" resultType="int">
+		select count(*) from
+		grade where grade_name=#{name}
+	</select>
+	<update id="updateUpgrade">
+    update classes set grade_id=#{year} where grade_id='3';
+    update classes set grade_id='3' where grade_id='2';
+    update classes set grade_id='2' where grade_id='1';
+  </update>
+  <update id="updateunDoUpgrade">
+    update classes set grade_id='1' where grade_id ='2';
+    update classes set grade_id='2' where grade_id='3';
+    update classes set grade_id='3' where grade_id=#{year};
+  </update>
+  <select id="isExitById" resultType="int">
+		select count(*) from
+		grade where grade_id=#{id}
+	</select>
+</mapper>

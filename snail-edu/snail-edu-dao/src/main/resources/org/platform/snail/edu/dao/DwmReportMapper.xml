@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.DwmReportMapper">
+	<resultMap id="BaseResultMap" type="org.platform.snail.edu.model.DwmReport">
+		<id column="dwm_report_id" property="dwmReportId" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="category_id" property="categoryId" jdbcType="VARCHAR" />
+		<result column="sub_category_id" property="subCategoryId"
+			jdbcType="VARCHAR" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="week_id" property="weekId" jdbcType="VARCHAR" />
+		<result column="publisher" property="publisher" jdbcType="VARCHAR" />
+		<result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
+		<result column="department_id" property="departmentId"
+			jdbcType="VARCHAR" />
+		<result column="author_groups_id" property="authorGroupsId"
+			jdbcType="VARCHAR" />
+		<result column="author_department_id" property="authorDepartmentId"
+			jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="CHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="org.platform.snail.edu.model.DwmReport"
+		extends="BaseResultMap">
+		<result column="content" property="content" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<resultMap extends="ResultMapWithBLOBs" id="BaseResultMapVo"
+		type="org.platform.snail.edu.vo.DwmReportVo">
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="department_name" property="departmentName"
+			jdbcType="VARCHAR" />
+			<result column="category_name" property="categoryName"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		dwm_report_id, type, category_id, sub_category_id, title, week_id, publisher,
+		publish_time,
+		department_id, author_groups_id, author_department_id, status, create_time
+	</sql>
+	<sql id="Blob_Column_List">
+		content
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from dwm_report
+		where dwm_report_id = #{dwmReportId,jdbcType=VARCHAR}
+	</select>
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from dwm_report
+		where dwm_report_id = #{dwmReportId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="org.platform.snail.edu.model.DwmReport">
+		insert into dwm_report (dwm_report_id, type, category_id,
+		sub_category_id, title, week_id,
+		publisher, publish_time, department_id,
+		author_groups_id, author_department_id, status,
+		create_time, content)
+		values (#{dwmReportId,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR},
+		#{categoryId,jdbcType=VARCHAR},
+		#{subCategoryId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{weekId,jdbcType=VARCHAR},
+		#{publisher,jdbcType=VARCHAR}, #{publishTime,jdbcType=DATE},
+		#{departmentId,jdbcType=VARCHAR},
+		#{authorGroupsId,jdbcType=VARCHAR}, #{authorDepartmentId,jdbcType=VARCHAR}, #{status,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="org.platform.snail.edu.model.DwmReport">
+		insert into dwm_report
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="dwmReportId != null">
+				dwm_report_id,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="categoryId != null">
+				category_id,
+			</if>
+			<if test="subCategoryId != null">
+				sub_category_id,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="weekId != null">
+				week_id,
+			</if>
+			<if test="publisher != null">
+				publisher,
+			</if>
+			<if test="publishTime != null">
+				publish_time,
+			</if>
+			<if test="departmentId != null">
+				department_id,
+			</if>
+			<if test="authorGroupsId != null">
+				author_groups_id,
+			</if>
+			<if test="authorDepartmentId != null">
+				author_department_id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="dwmReportId != null">
+				#{dwmReportId,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="categoryId != null">
+				#{categoryId,jdbcType=VARCHAR},
+			</if>
+			<if test="subCategoryId != null">
+				#{subCategoryId,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="weekId != null">
+				#{weekId,jdbcType=VARCHAR},
+			</if>
+			<if test="publisher != null">
+				#{publisher,jdbcType=VARCHAR},
+			</if>
+			<if test="publishTime != null">
+				#{publishTime,jdbcType=DATE},
+			</if>
+			<if test="departmentId != null">
+				#{departmentId,jdbcType=VARCHAR},
+			</if>
+			<if test="authorGroupsId != null">
+				#{authorGroupsId,jdbcType=VARCHAR},
+			</if>
+			<if test="authorDepartmentId != null">
+				#{authorDepartmentId,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.DwmReport">
+		update dwm_report
+		<set>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="categoryId != null">
+				category_id = #{categoryId,jdbcType=VARCHAR},
+			</if>
+			<if test="subCategoryId != null">
+				sub_category_id = #{subCategoryId,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="weekId != null">
+				week_id = #{weekId,jdbcType=VARCHAR},
+			</if>
+			<if test="publisher != null">
+				publisher = #{publisher,jdbcType=VARCHAR},
+			</if>
+			<if test="publishTime != null">
+				publish_time = #{publishTime,jdbcType=DATE},
+			</if>
+			<if test="departmentId != null">
+				department_id = #{departmentId,jdbcType=VARCHAR},
+			</if>
+			<if test="authorGroupsId != null">
+				author_groups_id = #{authorGroupsId,jdbcType=VARCHAR},
+			</if>
+			<if test="authorDepartmentId != null">
+				author_department_id = #{authorDepartmentId,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where dwm_report_id = #{dwmReportId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="org.platform.snail.edu.model.DwmReport">
+		update dwm_report
+		set type = #{type,jdbcType=VARCHAR},
+		category_id = #{categoryId,jdbcType=VARCHAR},
+		sub_category_id = #{subCategoryId,jdbcType=VARCHAR},
+		title = #{title,jdbcType=VARCHAR},
+		week_id = #{weekId,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		content = #{content,jdbcType=LONGVARCHAR}
+		where dwm_report_id = #{dwmReportId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.DwmReport">
+		update dwm_report
+		set type = #{type,jdbcType=VARCHAR},
+		category_id = #{categoryId,jdbcType=VARCHAR},
+		sub_category_id = #{subCategoryId,jdbcType=VARCHAR},
+		title = #{title,jdbcType=VARCHAR},
+		week_id = #{weekId,jdbcType=VARCHAR},
+		publisher = #{publisher,jdbcType=VARCHAR},
+		publish_time = #{publishTime,jdbcType=TIMESTAMP},
+		department_id = #{departmentId,jdbcType=VARCHAR},
+		author_groups_id = #{authorGroupsId,jdbcType=VARCHAR},
+		author_department_id = #{authorDepartmentId,jdbcType=VARCHAR}
+		
+		where dwm_report_id = #{dwmReportId,jdbcType=VARCHAR}
+	</update>
+	<select id="isExitByTitle" resultType="int">
+
+		select count(*) from dwm_report where title=#{title}
+
+	</select>
+
+	<sql id="whereCondition">
+
+
+
+		from dwm_report
+
+		left join users on dwm_report.publisher=users.user_id
+
+		left join department on dwm_report.department_id=department.department_id
+
+
+
+		where 0=0
+
+
+
+
+
+		<if test="condition.title!=null and condition.title!=&quot;&quot;">
+
+
+
+			and
+
+			title like
+
+			concat('%',concat(#{condition.title,jdbcType=VARCHAR},'%'))
+
+		</if>
+
+		<if
+
+			test="condition.categoryId!=null and condition.categoryId!=&quot;&quot;">
+
+
+
+			and
+
+			category_id = #{condition.categoryId,jdbcType=VARCHAR}
+
+		</if>
+
+		<if test="condition.type!=null and condition.type!=&quot;&quot;">
+
+
+
+			and
+
+			type = #{condition.type,jdbcType=VARCHAR}
+
+		</if>
+
+		<if
+
+			test="condition.subCategoryId!=null and condition.subCategoryId!=&quot;&quot;">
+
+
+
+			and
+
+			sub_category_id = #{condition.subCategoryId,jdbcType=VARCHAR}
+
+		</if>
+
+		<if test="condition.weekId!=null and condition.weekId!=&quot;&quot;">
+
+
+
+			and
+
+			week_id = #{condition.weekId,jdbcType=VARCHAR}
+
+		</if>
+		<if test="condition.departmentId!=null and condition.departmentId!=&quot;&quot;">
+
+
+
+			and
+
+			dwm_report.department_id = #{condition.departmentId,jdbcType=VARCHAR}
+
+		</if>
+<if test='condition.startDate!=null and condition.startDate!=""'>
+			<![CDATA[
+			and dwm_report.publish_time>=str_to_date(#{condition.startDate},'%Y-%m-%d %H:%i:%S')
+			]]>
+		</if>
+		<if test='condition.endDate!=null and condition.endDate!=""'>
+			 <![CDATA[
+				and dwm_report.publish_time<=str_to_date(#{condition.endDate},'%Y-%m-%d %H:%i:%S')   
+				]]>
+		</if>
+
+
+	</sql>
+
+
+
+	<select id="findCount" resultType="int">
+
+
+
+		SELECT COUNT(*)
+
+
+
+		<include refid="whereCondition" />
+
+
+
+	</select>
+
+
+
+	<select id="findList" resultMap="BaseResultMapVo">
+
+		select
+
+		dwm_report_id,
+    type,
+    dwm_report.category_id,
+    sub_category_id,
+    title,
+    week_id,
+    publisher,
+    dwm_report.status,
+    publish_time,
+    dwm_report.department_id,
+    author_groups_id,
+    author_department_id,
+    dwm_report.create_time,
+    users.name,
+    department.department_name
+
+
+		<include refid="whereCondition" />
+
+
+
+		<choose>
+
+
+
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+
+
+
+				ORDER BY ${orderBy}
+
+
+
+			</when>
+
+
+
+			<otherwise>
+
+
+
+				ORDER BY create_time desc
+
+
+
+			</otherwise>
+
+
+
+		</choose>
+
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+
+	</select>
+
+	<update id="updateForTopByPrimaryKey">
+
+		update dwm_report
+
+		set
+
+		top = '0' where category_id=#{categoryId,jdbcType=CHAR};
+
+		update dwm_report
+
+		set
+
+		top = '1'
+
+		where dwm_report_id = #{dwmReportId,jdbcType=VARCHAR};
+
+	</update>
+
+	<update id="updateForStatusByPrimaryKey">
+
+
+
+		update dwm_report
+
+		set
+
+		status = #{status,jdbcType=CHAR}
+
+		where dwm_report_id = #{dwmReportId,jdbcType=VARCHAR};
+
+	</update>
+
+	<select id="selectUserIdByDepartmentId" resultType="map">
+
+		select user_id ID,mobile TEL,NAME from users where department_id like
+
+		concat(#{departmentId,jdbcType=VARCHAR},'%')
+
+	</select>
+
+	<select id="selectSqlTextByGroupId" resultType="string">
+
+		select sql_text from groups where group_id=#{groupId,jdbcType=VARCHAR}
+
+	</select>
+
+	<select id="selectDictNameByCategoryIdAndCode" resultType="string">
+
+		select name from dict where category_id=#{categoryId,jdbcType=VARCHAR}
+
+		and code=#{code,jdbcType=VARCHAR}
+
+	</select>
+
+	<select id="findListTop" resultMap="BaseResultMapVo">
+		SELECT 
+    dwm_report_id,
+    type,
+    dwm_report.category_id,
+    s.name category_name,
+    sub_category_id,
+    title,
+    week_id,
+    publisher,
+    publish_time,
+    dwm_report.department_id,
+    author_groups_id,
+    author_department_id,
+    dwm_report.create_time,
+    users.name,
+    department.department_name
+FROM
+    dwm_report
+        LEFT JOIN
+    users ON dwm_report.publisher = users.user_id
+        LEFT JOIN
+    department ON dwm_report.department_id = department.department_id
+        LEFT JOIN
+    (SELECT 
+        *
+    FROM
+        dict
+    WHERE
+        category_id = '31') s ON dwm_report.category_id = s.code
+WHERE
+    dwm_report.status = '1'
+        AND dwm_report.category_id = #{categoryId}
+        and dwm_report.dwm_report_id in(
+        SELECT obj_id FROM task where user_id=#{userId} and category='02'
+        )
+ORDER BY dwm_report.create_time DESC
+LIMIT 0 , #{limit}
+
+	</select>
+	<select id="selectVoByPrimaryKey" resultMap="BaseResultMapVo"
+		parameterType="java.lang.String">
+		SELECT 
+    dwm_report_id,
+    type,
+    dwm_report.category_id,
+    s.name category_name,
+    sub_category_id,
+    title,
+    content,
+    week_id,
+    publisher,
+    publish_time,
+    dwm_report.department_id,
+    author_groups_id,
+    author_department_id,
+    dwm_report.create_time,
+    users.name,
+    department.department_name
+FROM
+    dwm_report
+        LEFT JOIN
+    users ON dwm_report.publisher = users.user_id
+        LEFT JOIN
+    department ON dwm_report.department_id = department.department_id
+        LEFT JOIN
+    (SELECT 
+        *
+    FROM
+        dict
+    WHERE
+        category_id = '31') s ON dwm_report.category_id = s.code
+WHERE dwm_report_id = #{dwmReportId,jdbcType=VARCHAR}
+	</select>
+	<select id="getReportByCategoryIdAndTime" resultType="map">
+	SELECT 
+    department.DEPARTMENT_NAME NAME,count(*) COUNT
+FROM
+    dwm_report,
+    department
+WHERE
+    dwm_report.department_id = department.DEPARTMENT_ID
+    and dwm_report.status='1'
+    <if test="condition.startDate!=null and condition.startDate!=&quot;&quot;">
+		 <![CDATA[
+			and dwm_report.publish_time >=str_to_date(#{condition.startDate},'%Y-%m-%d')  
+		]]>
+	</if>
+	<if test="condition.endDate=null and condition.endDate!=&quot;&quot;">
+		 <![CDATA[
+			and dwm_report.publish_time <=str_to_date(#{condition.endDate},'%Y-%m-%d')  
+		]]>
+	</if>
+    
+    and dwm_report.category_id=#{condition.categoryId}
+    group by department.DEPARTMENT_NAME
+	</select>
+	<select id="selectUsersByObjId" resultType="map">
+	SELECT users.name FROM task left join users on task.user_id=users.user_id where category='02' and obj_id=#{id}
+	</select>
+	<select id="selectDeptIdByUserId" resultType="map">
+	SELECT department_id code,DEPARTMENT_NAME name FROM department
+
+ where user_id=#{userId}
+	</select>
+</mapper>

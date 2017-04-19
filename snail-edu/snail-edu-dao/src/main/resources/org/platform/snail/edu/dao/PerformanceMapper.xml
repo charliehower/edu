@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.PerformanceMapper">
+	<resultMap id="BaseResultMap" type="org.platform.snail.edu.model.Performance">
+		<id column="performance_id" property="performanceId" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="section" property="section" jdbcType="VARCHAR" />
+		<result column="subject_id" property="subjectId" jdbcType="VARCHAR" />
+		<result column="organization" property="organization" jdbcType="VARCHAR" />
+		<result column="w_entries" property="wEntries" jdbcType="VARCHAR" />
+		<result column="w_level" property="wLevel" jdbcType="VARCHAR" />
+		<result column="w_grade" property="wGrade" jdbcType="VARCHAR" />
+		<result column="w_time" property="wTime" jdbcType="TIMESTAMP" />
+		<result column="category" property="category" jdbcType="VARCHAR" />
+		<result column="reg_user_id" property="regUserId" jdbcType="VARCHAR" />
+		<result column="money" property="money" jdbcType="DECIMAL" />
+		<result column="file" property="file" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="BaseResultMapVo" type="org.platform.snail.edu.vo.PerformanceVo"
+		extends="BaseResultMap">
+		<result column="reg_user_name" property="regUserName" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		performance_id, name, section, subject_id, organization,
+		w_entries, w_level, w_grade,
+		w_time, category, reg_user_id, money,
+		file, remark, create_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from performance
+		where performance_id =
+		#{performanceId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		performance
+		where performance_id = #{performanceId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="org.platform.snail.edu.model.Performance">
+		insert into performance
+		(performance_id, name, section,
+		subject_id, organization, w_entries,
+		w_level, w_grade, w_time,
+		category, reg_user_id, money,
+		file, remark,
+		create_time
+		)
+		values (#{performanceId,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{section,jdbcType=VARCHAR},
+		#{subjectId,jdbcType=VARCHAR}, #{organization,jdbcType=VARCHAR},
+		#{wEntries,jdbcType=VARCHAR},
+		#{wLevel,jdbcType=VARCHAR},
+		#{wGrade,jdbcType=VARCHAR},
+		#{wTime,jdbcType=TIMESTAMP},
+		#{category,jdbcType=VARCHAR}, #{regUserId,jdbcType=VARCHAR},
+		#{money,jdbcType=DECIMAL},
+		#{file,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="org.platform.snail.edu.model.Performance">
+		insert into performance
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="performanceId != null">
+				performance_id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="section != null">
+				section,
+			</if>
+			<if test="subjectId != null">
+				subject_id,
+			</if>
+			<if test="organization != null">
+				organization,
+			</if>
+			<if test="wEntries != null">
+				w_entries,
+			</if>
+			<if test="wLevel != null">
+				w_level,
+			</if>
+			<if test="wGrade != null">
+				w_grade,
+			</if>
+			<if test="wTime != null">
+				w_time,
+			</if>
+			<if test="category != null">
+				category,
+			</if>
+			<if test="regUserId != null">
+				reg_user_id,
+			</if>
+			<if test="money != null">
+				money,
+			</if>
+			<if test="file != null">
+				file,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="performanceId != null">
+				#{performanceId,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="section != null">
+				#{section,jdbcType=VARCHAR},
+			</if>
+			<if test="subjectId != null">
+				#{subjectId,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				#{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="wEntries != null">
+				#{wEntries,jdbcType=VARCHAR},
+			</if>
+			<if test="wLevel != null">
+				#{wLevel,jdbcType=VARCHAR},
+			</if>
+			<if test="wGrade != null">
+				#{wGrade,jdbcType=VARCHAR},
+			</if>
+			<if test="wTime != null">
+				#{wTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="category != null">
+				#{category,jdbcType=VARCHAR},
+			</if>
+			<if test="regUserId != null">
+				#{regUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="money != null">
+				#{money,jdbcType=DECIMAL},
+			</if>
+			<if test="file != null">
+				#{file,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.Performance">
+		update performance
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="section != null">
+				section = #{section,jdbcType=VARCHAR},
+			</if>
+			<if test="subjectId != null">
+				subject_id = #{subjectId,jdbcType=VARCHAR},
+			</if>
+			<if test="organization != null">
+				organization = #{organization,jdbcType=VARCHAR},
+			</if>
+			<if test="wEntries != null">
+				w_entries = #{wEntries,jdbcType=VARCHAR},
+			</if>
+			<if test="wLevel != null">
+				w_level = #{wLevel,jdbcType=VARCHAR},
+			</if>
+			<if test="wGrade != null">
+				w_grade = #{wGrade,jdbcType=VARCHAR},
+			</if>
+			<if test="wTime != null">
+				w_time = #{wTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="category != null">
+				category = #{category,jdbcType=VARCHAR},
+			</if>
+			<if test="regUserId != null">
+				reg_user_id = #{regUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="money != null">
+				money = #{money,jdbcType=DECIMAL},
+			</if>
+			<if test="file != null">
+				file = #{file,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where performance_id = #{performanceId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.Performance">
+		update performance
+		set name = #{name,jdbcType=VARCHAR},
+		section =
+		#{section,jdbcType=VARCHAR},
+		subject_id =
+		#{subjectId,jdbcType=VARCHAR},
+		organization =
+		#{organization,jdbcType=VARCHAR},
+		w_entries =
+		#{wEntries,jdbcType=VARCHAR},
+		w_level = #{wLevel,jdbcType=VARCHAR},
+		w_grade = #{wGrade,jdbcType=VARCHAR},
+		w_time =
+		#{wTime,jdbcType=TIMESTAMP},
+		category = #{category,jdbcType=VARCHAR},
+		reg_user_id = #{regUserId,jdbcType=VARCHAR},
+		money =
+		#{money,jdbcType=DECIMAL},
+		file = #{file,jdbcType=VARCHAR},
+		remark =
+		#{remark,jdbcType=VARCHAR},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP}
+		where performance_id =
+		#{performanceId,jdbcType=VARCHAR}
+	</update>
+	<select id="isExit" resultType="int">
+		select count(*) from
+		performance
+		where name=#{name} and reg_user_id=#{regUserId}
+	</select>
+	<sql id="whereCondition">
+		from performance
+		left join users on
+		performance.reg_user_id=users.user_id
+		where 0=0
+		<if test="condition.name!=null and condition.name!=&quot;&quot;">
+			and
+			performance.name like
+			concat('%',concat(#{condition.name,jdbcType=VARCHAR},'%'))
+
+		</if>
+		<if test="condition.regUserId!=null and condition.regUserId!=&quot;&quot;">
+			and
+			performance.reg_user_id =
+			#{condition.regUserId,jdbcType=VARCHAR}
+		</if>
+		<if test='condition.startDate!=null and condition.startDate!=""'>
+			<![CDATA[
+			and performance.w_time>=str_to_date(#{condition.startDate},'%Y-%m-%d %H:%i:%S')
+			]]>
+		</if>
+		<if test='condition.endDate!=null and condition.endDate!=""'>
+			 <![CDATA[
+				and performance.w_time<=str_to_date(#{condition.endDate},'%Y-%m-%d %H:%i:%S')   
+				]]>
+		</if>
+	</sql>
+	<select id="findCount" resultType="int">
+		SELECT COUNT(*)
+		<include refid="whereCondition" />
+	</select>
+	<select id="findList" resultMap="BaseResultMapVo">
+		SELECT
+		users.name reg_user_name,
+		performance.performance_id,
+		performance.name, performance.section, performance.subject_id,
+		performance.organization, performance.w_entries, performance.w_level,
+		performance.w_grade,
+		performance.w_time, performance.category,
+		performance.reg_user_id, performance.money, performance.file,
+		performance.remark, performance.create_time
+		<include refid="whereCondition" />
+		<choose>
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+				ORDER BY performance.${orderBy}
+			</when>
+			<otherwise>
+				ORDER BY performance.create_time desc
+			</otherwise>
+		</choose>
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+</mapper>

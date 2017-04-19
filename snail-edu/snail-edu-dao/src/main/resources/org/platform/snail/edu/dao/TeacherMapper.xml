@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.TeacherMapper">
+	<resultMap id="BaseResultMap" type="org.platform.snail.edu.model.Teacher">
+		<id column="teacher_id" property="teacherId" jdbcType="VARCHAR" />
+		<result column="category" property="category" jdbcType="CHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="CHAR" />
+		<result column="id_card" property="idCard" jdbcType="VARCHAR" />
+		<result column="poaf" property="poaf" jdbcType="CHAR" />
+		<result column="eb" property="eb" jdbcType="CHAR" />
+		<result column="major" property="major" jdbcType="VARCHAR" />
+		<result column="gi" property="gi" jdbcType="VARCHAR" />
+		<result column="gt" property="gt" jdbcType="DATE" />
+		<result column="ft_year" property="ftYear" jdbcType="INTEGER" />
+		<result column="w_years" property="wYears" jdbcType="INTEGER" />
+		<result column="entry_time" property="entryTime" jdbcType="VARCHAR" />
+		<result column="tqc_category" property="tqcCategory" jdbcType="CHAR" />
+		<result column="tqc_no" property="tqcNo" jdbcType="VARCHAR" />
+		<result column="soattr" property="soattr" jdbcType="VARCHAR" />
+		<result column="ppt" property="ppt" jdbcType="VARCHAR" />
+		<result column="position" property="position" jdbcType="VARCHAR" />
+		<result column="department_id" property="departmentId"
+			jdbcType="VARCHAR" />
+		<result column="grade_id" property="gradeId" jdbcType="VARCHAR" />
+		<result column="classes_taught" property="classesTaught"
+			jdbcType="VARCHAR" />
+		<result column="discipline_id" property="disciplineId"
+			jdbcType="VARCHAR" />
+		<result column="pe" property="pe" jdbcType="VARCHAR" />
+		<result column="photo" property="photo" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="domicile" property="domicile" jdbcType="VARCHAR" />
+		<result column="tel" property="tel" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="stauts" property="stauts" jdbcType="VARCHAR" />
+		<result column="salary_type" property="salaryType" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="org.platform.snail.edu.model.Teacher"
+		extends="BaseResultMap">
+		<result column="resume" property="resume" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="BaseResultMapVo"
+		type="org.platform.snail.edu.vo.TeacherVo">
+
+	</resultMap>
+	<sql id="Base_Column_List">
+		teacher_id, category, name, sex, id_card, poaf, eb, major, gi, gt, ft_year,
+		w_years,
+		entry_time, tqc_category, tqc_no, soattr, ppt, position, department_id, grade_id,
+		classes_taught, discipline_id, pe, photo, address, domicile, tel,
+		email, create_time,stauts,salary_type
+	</sql>
+	<sql id="Blob_Column_List">
+		resume
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from teacher
+		where teacher_id = #{teacherId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from teacher
+		where teacher_id = #{teacherId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="org.platform.snail.edu.model.Teacher">
+		insert into teacher (teacher_id, category, name,
+		sex, id_card, poaf, eb,
+		major, gi, gt, ft_year,
+		w_years, entry_time, tqc_category,
+		tqc_no, soattr, ppt,
+		position, department_id, grade_id,
+		classes_taught, discipline_id, pe,
+		photo, address, domicile,
+		tel, email, create_time,
+		resume)
+		values (#{teacherId,jdbcType=VARCHAR}, #{category,jdbcType=CHAR},
+		#{name,jdbcType=VARCHAR},
+		#{sex,jdbcType=CHAR}, #{idCard,jdbcType=VARCHAR}, #{poaf,jdbcType=CHAR},
+		#{eb,jdbcType=CHAR},
+		#{major,jdbcType=VARCHAR}, #{gi,jdbcType=VARCHAR}, #{gt,jdbcType=DATE},
+		#{ftYear,jdbcType=INTEGER},
+		#{wYears,jdbcType=INTEGER}, #{entryTime,jdbcType=VARCHAR}, #{tqcCategory,jdbcType=CHAR},
+		#{tqcNo,jdbcType=VARCHAR}, #{soattr,jdbcType=VARCHAR},
+		#{ppt,jdbcType=VARCHAR},
+		#{position,jdbcType=VARCHAR}, #{departmentId,jdbcType=VARCHAR}, #{gradeId,jdbcType=VARCHAR},
+		#{classesTaught,jdbcType=VARCHAR}, #{disciplineId,jdbcType=VARCHAR},
+		#{pe,jdbcType=VARCHAR},
+		#{photo,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{domicile,jdbcType=VARCHAR},
+		#{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{resume,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="org.platform.snail.edu.model.Teacher">
+		insert into teacher
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="teacherId != null">
+				teacher_id,
+			</if>
+			<if test="category != null">
+				category,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="idCard != null">
+				id_card,
+			</if>
+			<if test="poaf != null">
+				poaf,
+			</if>
+			<if test="eb != null">
+				eb,
+			</if>
+			<if test="major != null">
+				major,
+			</if>
+			<if test="gi != null">
+				gi,
+			</if>
+			<if test="gt != null">
+				gt,
+			</if>
+			<if test="ftYear != null">
+				ft_year,
+			</if>
+			<if test="wYears != null">
+				w_years,
+			</if>
+			<if test="entryTime != null">
+				entry_time,
+			</if>
+			<if test="tqcCategory != null">
+				tqc_category,
+			</if>
+			<if test="tqcNo != null">
+				tqc_no,
+			</if>
+			<if test="soattr != null">
+				soattr,
+			</if>
+			<if test="ppt != null">
+				ppt,
+			</if>
+			<if test="position != null">
+				position,
+			</if>
+			<if test="departmentId != null">
+				department_id,
+			</if>
+			<if test="gradeId != null">
+				grade_id,
+			</if>
+			<if test="classesTaught != null">
+				classes_taught,
+			</if>
+			<if test="disciplineId != null">
+				discipline_id,
+			</if>
+			<if test="pe != null">
+				pe,
+			</if>
+			<if test="photo != null">
+				photo,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="domicile != null">
+				domicile,
+			</if>
+			<if test="tel != null">
+				tel,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="resume != null">
+				resume,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="teacherId != null">
+				#{teacherId,jdbcType=VARCHAR},
+			</if>
+			<if test="category != null">
+				#{category,jdbcType=CHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=CHAR},
+			</if>
+			<if test="idCard != null">
+				#{idCard,jdbcType=VARCHAR},
+			</if>
+			<if test="poaf != null">
+				#{poaf,jdbcType=CHAR},
+			</if>
+			<if test="eb != null">
+				#{eb,jdbcType=CHAR},
+			</if>
+			<if test="major != null">
+				#{major,jdbcType=VARCHAR},
+			</if>
+			<if test="gi != null">
+				#{gi,jdbcType=VARCHAR},
+			</if>
+			<if test="gt != null">
+				#{gt,jdbcType=DATE},
+			</if>
+			<if test="ftYear != null">
+				#{ftYear,jdbcType=INTEGER},
+			</if>
+			<if test="wYears != null">
+				#{wYears,jdbcType=INTEGER},
+			</if>
+			<if test="entryTime != null">
+				#{entryTime,jdbcType=VARCHAR},
+			</if>
+			<if test="tqcCategory != null">
+				#{tqcCategory,jdbcType=CHAR},
+			</if>
+			<if test="tqcNo != null">
+				#{tqcNo,jdbcType=VARCHAR},
+			</if>
+			<if test="soattr != null">
+				#{soattr,jdbcType=VARCHAR},
+			</if>
+			<if test="ppt != null">
+				#{ppt,jdbcType=VARCHAR},
+			</if>
+			<if test="position != null">
+				#{position,jdbcType=VARCHAR},
+			</if>
+			<if test="departmentId != null">
+				#{departmentId,jdbcType=VARCHAR},
+			</if>
+			<if test="gradeId != null">
+				#{gradeId,jdbcType=VARCHAR},
+			</if>
+			<if test="classesTaught != null">
+				#{classesTaught,jdbcType=VARCHAR},
+			</if>
+			<if test="disciplineId != null">
+				#{disciplineId,jdbcType=VARCHAR},
+			</if>
+			<if test="pe != null">
+				#{pe,jdbcType=VARCHAR},
+			</if>
+			<if test="photo != null">
+				#{photo,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="domicile != null">
+				#{domicile,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				#{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="resume != null">
+				#{resume,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.Teacher">
+		update teacher
+		<set>
+			<if test="category != null">
+				category = #{category,jdbcType=CHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=CHAR},
+			</if>
+			<if test="idCard != null">
+				id_card = #{idCard,jdbcType=VARCHAR},
+			</if>
+			<if test="poaf != null">
+				poaf = #{poaf,jdbcType=CHAR},
+			</if>
+			<if test="eb != null">
+				eb = #{eb,jdbcType=CHAR},
+			</if>
+			<if test="major != null">
+				major = #{major,jdbcType=VARCHAR},
+			</if>
+			<if test="gi != null">
+				gi = #{gi,jdbcType=VARCHAR},
+			</if>
+			<if test="gt != null">
+				gt = #{gt,jdbcType=DATE},
+			</if>
+			<if test="ftYear != null">
+				ft_year = #{ftYear,jdbcType=INTEGER},
+			</if>
+			<if test="wYears != null">
+				w_years = #{wYears,jdbcType=INTEGER},
+			</if>
+			<if test="entryTime != null">
+				entry_time = #{entryTime,jdbcType=VARCHAR},
+			</if>
+			<if test="tqcCategory != null">
+				tqc_category = #{tqcCategory,jdbcType=CHAR},
+			</if>
+			<if test="tqcNo != null">
+				tqc_no = #{tqcNo,jdbcType=VARCHAR},
+			</if>
+			<if test="soattr != null">
+				soattr = #{soattr,jdbcType=VARCHAR},
+			</if>
+			<if test="ppt != null">
+				ppt = #{ppt,jdbcType=VARCHAR},
+			</if>
+			<if test="position != null">
+				position = #{position,jdbcType=VARCHAR},
+			</if>
+			<if test="departmentId != null">
+				department_id = #{departmentId,jdbcType=VARCHAR},
+			</if>
+			<if test="gradeId != null">
+				grade_id = #{gradeId,jdbcType=VARCHAR},
+			</if>
+			<if test="classesTaught != null">
+				classes_taught = #{classesTaught,jdbcType=VARCHAR},
+			</if>
+			<if test="disciplineId != null">
+				discipline_id = #{disciplineId,jdbcType=VARCHAR},
+			</if>
+			<if test="pe != null">
+				pe = #{pe,jdbcType=VARCHAR},
+			</if>
+			<if test="photo != null">
+				photo = #{photo,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="domicile != null">
+				domicile = #{domicile,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				tel = #{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="resume != null">
+				resume = #{resume,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where teacher_id = #{teacherId,jdbcType=VARCHAR};
+		<include refid="update_users" />
+		;
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="org.platform.snail.edu.model.Teacher">
+		update teacher
+		set category = #{category,jdbcType=CHAR},
+		name = #{name,jdbcType=VARCHAR},
+		sex = #{sex,jdbcType=CHAR},
+		id_card = #{idCard,jdbcType=VARCHAR},
+		poaf = #{poaf,jdbcType=CHAR},
+		eb = #{eb,jdbcType=CHAR},
+		major = #{major,jdbcType=VARCHAR},
+		gi = #{gi,jdbcType=VARCHAR},
+		gt = #{gt,jdbcType=DATE},
+		ft_year = #{ftYear,jdbcType=INTEGER},
+		w_years = #{wYears,jdbcType=INTEGER},
+		entry_time = #{entryTime,jdbcType=VARCHAR},
+		tqc_category = #{tqcCategory,jdbcType=CHAR},
+		tqc_no = #{tqcNo,jdbcType=VARCHAR},
+		soattr = #{soattr,jdbcType=VARCHAR},
+		ppt = #{ppt,jdbcType=VARCHAR},
+		position = #{position,jdbcType=VARCHAR},
+
+		pe = #{pe,jdbcType=VARCHAR},
+		photo = #{photo,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR},
+		domicile = #{domicile,jdbcType=VARCHAR},
+		tel = #{tel,jdbcType=VARCHAR},
+		email = #{email,jdbcType=VARCHAR},
+		salary_type = #{salaryType,jdbcType=VARCHAR},
+		resume = #{resume,jdbcType=LONGVARCHAR}
+		where teacher_id = #{teacherId,jdbcType=VARCHAR};
+		<include refid="update_users" />
+		;
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.Teacher">
+		update teacher
+		set category = #{category,jdbcType=CHAR},
+		name = #{name,jdbcType=VARCHAR},
+		sex = #{sex,jdbcType=CHAR},
+		id_card = #{idCard,jdbcType=VARCHAR},
+		poaf = #{poaf,jdbcType=CHAR},
+		eb = #{eb,jdbcType=CHAR},
+		major = #{major,jdbcType=VARCHAR},
+		gi = #{gi,jdbcType=VARCHAR},
+		gt = #{gt,jdbcType=DATE},
+		ft_year = #{ftYear,jdbcType=INTEGER},
+		w_years = #{wYears,jdbcType=INTEGER},
+		entry_time = #{entryTime,jdbcType=VARCHAR},
+		tqc_category = #{tqcCategory,jdbcType=CHAR},
+		tqc_no = #{tqcNo,jdbcType=VARCHAR},
+		soattr = #{soattr,jdbcType=VARCHAR},
+		ppt = #{ppt,jdbcType=VARCHAR},
+		position = #{position,jdbcType=VARCHAR},
+		department_id = #{departmentId,jdbcType=VARCHAR},
+		grade_id = #{gradeId,jdbcType=VARCHAR},
+		classes_taught = #{classesTaught,jdbcType=VARCHAR},
+		discipline_id = #{disciplineId,jdbcType=VARCHAR},
+		pe = #{pe,jdbcType=VARCHAR},
+		photo = #{photo,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR},
+		domicile = #{domicile,jdbcType=VARCHAR},
+		tel = #{tel,jdbcType=VARCHAR},
+		email = #{email,jdbcType=VARCHAR}
+		where teacher_id = #{teacherId,jdbcType=VARCHAR};
+		<include refid="update_users" />
+		;
+	</update>
+	<sql id="whereCondition">
+
+		from teacher where 0=0
+
+		<if test="condition.category!=null and condition.category!=&quot;&quot;">
+
+			and
+			teacher.category=#{condition.category,jdbcType=VARCHAR}
+
+		</if>
+
+		<if test="condition.name!=null and condition.name!=&quot;&quot;">
+			and teacher.name like
+			concat(#{condition.name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="condition.teacherId!=null and condition.teacherId!=&quot;&quot;">
+
+			and
+			teacher.teacher_id=#{condition.teacherId,jdbcType=VARCHAR}
+
+		</if>
+
+		<if test="condition.stauts!=null and condition.stauts==1">
+
+			AND
+			NOT EXISTS( SELECT
+			b.user_id
+			FROM
+			users b
+			WHERE
+			teacher.teacher_id = b.user_id)
+
+		</if>
+		<if test="condition.stauts!=null and condition.stauts==2">
+
+			AND
+			EXISTS( SELECT
+			b.user_id
+			FROM
+			users b
+			WHERE
+			teacher.teacher_id = b.user_id)
+
+		</if>
+		<if test="condition.disciplineId!=null and condition.disciplineId!=&quot;&quot;">
+			and teacher.discipline_id = #{condition.disciplineId,jdbcType=VARCHAR}
+		</if>
+
+	</sql>
+
+	<select id="findCount" resultType="int">
+
+		SELECT COUNT(*)
+
+		<include refid="whereCondition" />
+
+	</select>
+
+	<select id="findList" resultMap="BaseResultMapVo">
+		select
+		<include refid="Base_Column_List" />
+
+		<include refid="whereCondition" />
+
+		<choose>
+
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+
+				ORDER BY ${orderBy}
+
+			</when>
+
+			<otherwise>
+
+				ORDER BY teacher_id
+
+			</otherwise>
+
+		</choose>
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+	<select id="isExitByIdCard" resultType="int">
+		select count(*) from
+		teacher where id_card=#{idCard}
+	</select>
+	<insert id="saveOrUpdateUsersByTeacherId">
+		<selectKey keyProperty="c" resultType="java.lang.Long"
+			order="BEFORE">
+			select count(1) as c from users where
+			user_id=#{teacherId,jdbcType=VARCHAR}
+		</selectKey>
+		<!-- str_to_date(CONCAT(right(left(id_card,10),4),'-',right(left(id_card,12),2) 
+			,'-',right(left(id_card,14),2)),'%Y-%m-%d') -->
+		<if test="c==0">
+			insert into portal.USERS (USER_ID, ACCOUNT, PASSWORD,
+			SEX,
+			ID_CARD, NAME, DEPARTMENT_ID,
+			AREA_CODE, BIRTHDAY, STAUTS,
+			LAST_LOGIN_TIME, MOBILE, EMAIL,
+			SEAT, USER_LEVEL, CREATE_TIME
+			)
+			select
+			teacher_id,teacher_id as account,upper(md5('123123'))
+			passwd,sex,id_card,name,ifnull(department_id,'01'),domicile,null,'1',null,tel,email,null,1,now()
+
+			from portal.teacher where teacher_id=#{teacherId};
+			INSERT INTO
+			users_role(USER_ID,ROLE_ID,CREATE_TIME)
+			select
+			teacher_id,'9',now()
+			from portal.teacher where
+			teacher_id=#{teacherId};
+		</if>
+		<if test="c==1">
+
+			<include refid="update_users" />
+		</if>
+
+	</insert>
+	<update id="updateGroupByPrimaryKey" parameterType="org.platform.snail.edu.model.Teacher">
+		update teacher
+		set
+		department_id = #{departmentId,jdbcType=VARCHAR},
+		grade_id = #{gradeId,jdbcType=VARCHAR},
+		classes_taught = #{classesTaught,jdbcType=VARCHAR},
+		discipline_id = #{disciplineId,jdbcType=VARCHAR}
+		where teacher_id = #{teacherId,jdbcType=VARCHAR};
+		<include refid="update_users" />
+		;
+	</update>
+	<sql id="update_users">
+		update users a,teacher b
+		set a.sex=b.sex,
+		a.name=b.name,
+		a.mobile=b.tel,
+		a.email=b.email,
+		a.id_card=b.id_card,
+		<if test="1==2">
+			a.birthday=str_to_date(CONCAT(right(left(b.id_card,10),4),'-',right(left(b.id_card,12),2)
+			,'-',right(left(b.id_card,14),2)),'%Y-%m-%d'),
+		</if>
+
+		a.area_code=b.domicile,
+		a.department_id=ifnull(b.department_id,a.department_id)
+		where a.user_id=b.teacher_id and a.user_id=#{teacherId}
+	</sql>
+	<select id="isExitByIdTeacherId" resultType="int">
+		select count(*) from
+		teacher where teacher_id=#{teacherId}
+	</select>
+	<select id="getDictList" resultType="map">
+		SELECT CODE,NAME FROM dict
+	</select>
+	<update id="updateQuitByIdTeacherId">
+		update teacher set stauts='4' where teacher_id=#{teacherId};
+		update users set stauts='0' where user_id=#{teacherId};
+	</update>
+</mapper>

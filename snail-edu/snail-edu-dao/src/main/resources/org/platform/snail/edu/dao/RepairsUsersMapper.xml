@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.RepairsUsersMapper">
+	<resultMap id="BaseResultMap" type="org.platform.snail.edu.model.RepairsUsers">
+		<id column="repairs_users_id" property="repairsUsersId" jdbcType="VARCHAR" />
+		<result column="category_id" property="categoryId" jdbcType="VARCHAR" />
+		<result column="sub_category" property="subCategory" jdbcType="VARCHAR" />
+		<result column="user_id" property="userId" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="BaseResultMapVo"
+		type="org.platform.snail.edu.vo.RepairsUsersVo">
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="tel" property="tel" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		repairs_users_id, category_id, sub_category, user_id,
+		create_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from repairs_users
+		where repairs_users_id =
+		#{repairsUsersId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		repairs_users
+		where repairs_users_id =
+		#{repairsUsersId,jdbcType=VARCHAR};
+		
+	</delete>
+	<insert id="insert" parameterType="org.platform.snail.edu.model.RepairsUsers">
+		insert into repairs_users
+		(repairs_users_id, category_id,
+		sub_category,
+		user_id, create_time)
+		values (#{repairsUsersId,jdbcType=VARCHAR},
+		#{categoryId,jdbcType=VARCHAR},
+		#{subCategory,jdbcType=VARCHAR},
+		#{userId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="org.platform.snail.edu.model.RepairsUsers">
+		insert into repairs_users
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="repairsUsersId != null">
+				repairs_users_id,
+			</if>
+			<if test="categoryId != null">
+				category_id,
+			</if>
+			<if test="subCategory != null">
+				sub_category,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="repairsUsersId != null">
+				#{repairsUsersId,jdbcType=VARCHAR},
+			</if>
+			<if test="categoryId != null">
+				#{categoryId,jdbcType=VARCHAR},
+			</if>
+			<if test="subCategory != null">
+				#{subCategory,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.RepairsUsers">
+		update repairs_users
+		<set>
+			<if test="categoryId != null">
+				category_id = #{categoryId,jdbcType=VARCHAR},
+			</if>
+			<if test="subCategory != null">
+				sub_category = #{subCategory,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where repairs_users_id = #{repairsUsersId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.RepairsUsers">
+		update
+		repairs_users
+		set category_id = #{categoryId,jdbcType=VARCHAR},
+		sub_category = #{subCategory,jdbcType=VARCHAR},
+		user_id =
+		#{userId,jdbcType=VARCHAR},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP}
+		where repairs_users_id =
+		#{repairsUsersId,jdbcType=VARCHAR}
+	</update>
+	<sql id="whereCondition">
+
+		from repairs_users
+		left join users on repairs_users.user_id=users.user_id
+
+
+		where 0=0
+
+
+		<if
+			test="condition.categoryId!=null and condition.categoryId!=&quot;&quot;">
+
+			and
+			repairs_users.category_id =
+			#{condition.categoryId,jdbcType=VARCHAR}
+		</if>
+
+	</sql>
+
+	<select id="findCount" resultType="int">
+
+		SELECT COUNT(*)
+
+		<include refid="whereCondition" />
+
+	</select>
+
+	<select id="findList" resultMap="BaseResultMapVo">
+		select
+		repairs_users_id, category_id, sub_category,
+		repairs_users.user_id, repairs_users.create_time,users.name
+		,users.mobile tel
+
+
+		<include refid="whereCondition" />
+
+		<choose>
+
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+
+				ORDER BY ${orderBy}
+
+			</when>
+
+			<otherwise>
+
+				ORDER BY create_time desc
+
+			</otherwise>
+
+		</choose>
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+	<select id="isExitByUserId" resultType="int">
+		select count(*) from
+		repairs_users where user_id=#{id}
+	</select>
+	<insert id="batchInsertOrUpdate">
+		delete from users_location where user_id=#{userId};
+		<foreach item="item" index="index" collection="list" open=""
+			separator="" close="">
+			insert into users_location
+			(user_id, location_id,
+			create_time)
+			values
+			(#{item.userId,jdbcType=VARCHAR},
+			#{item.locationId,jdbcType=VARCHAR},
+			#{item.createTime,jdbcType=TIMESTAMP});
+		</foreach>
+	</insert>
+	<select id="selectLocationTreeList" resultType="map">
+		select 
+    t.location_id ID,
+    t.parent_id PID,
+    t.full_name TEXT,
+    '' ICON,
+    if(s.location_id is not null,
+        'true',
+        'false') CHECKED,
+    (select 
+            cast(count(*) as char)
+        from
+            location
+        where
+            location.parent_id = t.location_id) CHILD_COUNT
+from
+    location t
+        left join
+    (select 
+        location_id
+    from
+        users_location
+    where
+        user_id = #{userId} group by location_id) s on t.location_id = s.location_id
+order by cast(t.location_id as unsigned int)
+	</select>
+	<select id="selectOnlyUserIdByLocationId" resultType="string">
+		select max(user_id) from users_location where location_id=#{locationId}
+	</select>
+	<select id="selectUserListByCategoryId" resultType="map">
+		select user_id USERID from repairs_users where  category_id=#{categoryId}
+	</select>
+	<delete id="deleteUsersLocation">
+		delete from users_location where user_id=#{userId}
+	</delete>
+	
+</mapper>

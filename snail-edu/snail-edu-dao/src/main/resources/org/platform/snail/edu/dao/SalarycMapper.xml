@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.SalarycMapper">
+	<resultMap id="BaseResultMap" type="org.platform.snail.edu.model.Salaryc">
+		<id column="salary_id" property="salaryId" jdbcType="VARCHAR" />
+		<result column="salary_import_id" property="salaryImportId"
+			jdbcType="VARCHAR" />
+		<result column="xh" property="序号" jdbcType="INTEGER" />
+		<result column="ryxm" property="人员姓名" jdbcType="VARCHAR" />
+		<result column="zwgz" property="职务工资" jdbcType="VARCHAR" />
+		<result column="jbgz" property="级别工资" jdbcType="VARCHAR" />
+		<result column="jxgz" property="见习工资" jdbcType="VARCHAR" />
+		<result column="jxgz_" property="绩效工资" jdbcType="VARCHAR" />
+		<result column="tqjt" property="特区津贴" jdbcType="VARCHAR" />
+		<result column="tgjt" property="特岗津贴" jdbcType="VARCHAR" />
+		<result column="dsznf" property="独生子女费" jdbcType="VARCHAR" />
+		<result column="gwjt" property="岗位津贴" jdbcType="VARCHAR" />
+		<result column="yfgz" property="应发工资" jdbcType="VARCHAR" />
+		<result column="grhj" property="个人合计" jdbcType="VARCHAR" />
+		<result column="gryl" property="个人医疗" jdbcType="VARCHAR" />
+		<result column="gryl_" property="个人养老" jdbcType="VARCHAR" />
+		<result column="sds" property="所得税" jdbcType="VARCHAR" />
+		<result column="grgjj" property="个人公积金" jdbcType="VARCHAR" />
+		<result column="sfgz" property="实发工资" jdbcType="VARCHAR" />
+		<result column="fgbt" property="房改补贴" jdbcType="VARCHAR" />
+		<result column="dwgjj" property="单位公积金" jdbcType="VARCHAR" />
+		<result column="dwsbhj" property="单位社保合计" jdbcType="VARCHAR" />
+		<result column="dwyy" property="单位医疗" jdbcType="VARCHAR" />
+		<result column="dwyl" property="单位养老" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		salary_id, salary_import_id, 序号, 人员姓名, 职务工资, 级别工资, 见习工资,
+		绩效工资, 特区津贴, 特岗津贴,
+		独生子女费,
+		岗位津贴, 应发工资, 个人合计, 个人医疗, 个人养老, 所得税, 个人公积金, 实发工资,
+		房改补贴, 单位公积金, 单位社保合计, 单位医疗,
+		单位养老,
+		create_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from salaryc
+		where salary_id = #{salaryId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		salaryc
+		where salary_id = #{salaryId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="org.platform.snail.edu.model.Salaryc">
+		insert into salaryc
+		(salary_id, salary_import_id, 序号,
+		人员姓名, 职务工资, 级别工资, 见习工资,
+		绩效工资, 特区津贴,
+		特岗津贴, 独生子女费,
+		岗位津贴, 应发工资, 个人合计, 个人医疗,
+		个人养老, 所得税, 个人公积金, 实发工资,
+		房改补贴, 单位公积金,
+		单位社保合计,
+		单位医疗, 单位养老, create_time
+		)
+		values (#{salaryId,jdbcType=VARCHAR},
+		#{salaryImportId,jdbcType=VARCHAR},
+		#{序号,jdbcType=INTEGER},
+		#{人员姓名,jdbcType=VARCHAR}, #{职务工资,jdbcType=VARCHAR},
+		#{级别工资,jdbcType=VARCHAR},
+		#{见习工资,jdbcType=VARCHAR},
+		#{绩效工资,jdbcType=VARCHAR}, #{特区津贴,jdbcType=VARCHAR},
+		#{特岗津贴,jdbcType=VARCHAR},
+		#{独生子女费,jdbcType=VARCHAR},
+		#{岗位津贴,jdbcType=VARCHAR}, #{应发工资,jdbcType=VARCHAR},
+		#{个人合计,jdbcType=VARCHAR},
+		#{个人医疗,jdbcType=VARCHAR},
+		#{个人养老,jdbcType=VARCHAR}, #{所得税,jdbcType=VARCHAR},
+		#{个人公积金,jdbcType=VARCHAR},
+		#{实发工资,jdbcType=VARCHAR},
+		#{房改补贴,jdbcType=VARCHAR}, #{单位公积金,jdbcType=VARCHAR},
+		#{单位社保合计,jdbcType=VARCHAR},
+		#{单位医疗,jdbcType=VARCHAR},
+		#{单位养老,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="org.platform.snail.edu.model.Salaryc">
+		insert into salaryc
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="salaryId != null">
+				salary_id,
+			</if>
+			<if test="salaryImportId != null">
+				salary_import_id,
+			</if>
+			<if test="序号 != null">
+				序号,
+			</if>
+			<if test="人员姓名 != null">
+				人员姓名,
+			</if>
+			<if test="职务工资 != null">
+				职务工资,
+			</if>
+			<if test="级别工资 != null">
+				级别工资,
+			</if>
+			<if test="见习工资 != null">
+				见习工资,
+			</if>
+			<if test="绩效工资 != null">
+				绩效工资,
+			</if>
+			<if test="特区津贴 != null">
+				特区津贴,
+			</if>
+			<if test="特岗津贴 != null">
+				特岗津贴,
+			</if>
+			<if test="独生子女费 != null">
+				独生子女费,
+			</if>
+			<if test="岗位津贴 != null">
+				岗位津贴,
+			</if>
+			<if test="应发工资 != null">
+				应发工资,
+			</if>
+			<if test="个人合计 != null">
+				个人合计,
+			</if>
+			<if test="个人医疗 != null">
+				个人医疗,
+			</if>
+			<if test="个人养老 != null">
+				个人养老,
+			</if>
+			<if test="所得税 != null">
+				所得税,
+			</if>
+			<if test="个人公积金 != null">
+				个人公积金,
+			</if>
+			<if test="实发工资 != null">
+				实发工资,
+			</if>
+			<if test="房改补贴 != null">
+				房改补贴,
+			</if>
+			<if test="单位公积金 != null">
+				单位公积金,
+			</if>
+			<if test="单位社保合计 != null">
+				单位社保合计,
+			</if>
+			<if test="单位医疗 != null">
+				单位医疗,
+			</if>
+			<if test="单位养老 != null">
+				单位养老,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="salaryId != null">
+				#{salaryId,jdbcType=VARCHAR},
+			</if>
+			<if test="salaryImportId != null">
+				#{salaryImportId,jdbcType=VARCHAR},
+			</if>
+			<if test="序号 != null">
+				#{序号,jdbcType=INTEGER},
+			</if>
+			<if test="人员姓名 != null">
+				#{人员姓名,jdbcType=VARCHAR},
+			</if>
+			<if test="职务工资 != null">
+				#{职务工资,jdbcType=VARCHAR},
+			</if>
+			<if test="级别工资 != null">
+				#{级别工资,jdbcType=VARCHAR},
+			</if>
+			<if test="见习工资 != null">
+				#{见习工资,jdbcType=VARCHAR},
+			</if>
+			<if test="绩效工资 != null">
+				#{绩效工资,jdbcType=VARCHAR},
+			</if>
+			<if test="特区津贴 != null">
+				#{特区津贴,jdbcType=VARCHAR},
+			</if>
+			<if test="特岗津贴 != null">
+				#{特岗津贴,jdbcType=VARCHAR},
+			</if>
+			<if test="独生子女费 != null">
+				#{独生子女费,jdbcType=VARCHAR},
+			</if>
+			<if test="岗位津贴 != null">
+				#{岗位津贴,jdbcType=VARCHAR},
+			</if>
+			<if test="应发工资 != null">
+				#{应发工资,jdbcType=VARCHAR},
+			</if>
+			<if test="个人合计 != null">
+				#{个人合计,jdbcType=VARCHAR},
+			</if>
+			<if test="个人医疗 != null">
+				#{个人医疗,jdbcType=VARCHAR},
+			</if>
+			<if test="个人养老 != null">
+				#{个人养老,jdbcType=VARCHAR},
+			</if>
+			<if test="所得税 != null">
+				#{所得税,jdbcType=VARCHAR},
+			</if>
+			<if test="个人公积金 != null">
+				#{个人公积金,jdbcType=VARCHAR},
+			</if>
+			<if test="实发工资 != null">
+				#{实发工资,jdbcType=VARCHAR},
+			</if>
+			<if test="房改补贴 != null">
+				#{房改补贴,jdbcType=VARCHAR},
+			</if>
+			<if test="单位公积金 != null">
+				#{单位公积金,jdbcType=VARCHAR},
+			</if>
+			<if test="单位社保合计 != null">
+				#{单位社保合计,jdbcType=VARCHAR},
+			</if>
+			<if test="单位医疗 != null">
+				#{单位医疗,jdbcType=VARCHAR},
+			</if>
+			<if test="单位养老 != null">
+				#{单位养老,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.Salaryc">
+		update salaryc
+		<set>
+			<if test="salaryImportId != null">
+				salary_import_id = #{salaryImportId,jdbcType=VARCHAR},
+			</if>
+			<if test="序号 != null">
+				序号 = #{序号,jdbcType=INTEGER},
+			</if>
+			<if test="人员姓名 != null">
+				人员姓名 = #{人员姓名,jdbcType=VARCHAR},
+			</if>
+			<if test="职务工资 != null">
+				职务工资 = #{职务工资,jdbcType=VARCHAR},
+			</if>
+			<if test="级别工资 != null">
+				级别工资 = #{级别工资,jdbcType=VARCHAR},
+			</if>
+			<if test="见习工资 != null">
+				见习工资 = #{见习工资,jdbcType=VARCHAR},
+			</if>
+			<if test="绩效工资 != null">
+				绩效工资 = #{绩效工资,jdbcType=VARCHAR},
+			</if>
+			<if test="特区津贴 != null">
+				特区津贴 = #{特区津贴,jdbcType=VARCHAR},
+			</if>
+			<if test="特岗津贴 != null">
+				特岗津贴 = #{特岗津贴,jdbcType=VARCHAR},
+			</if>
+			<if test="独生子女费 != null">
+				独生子女费 = #{独生子女费,jdbcType=VARCHAR},
+			</if>
+			<if test="岗位津贴 != null">
+				岗位津贴 = #{岗位津贴,jdbcType=VARCHAR},
+			</if>
+			<if test="应发工资 != null">
+				应发工资 = #{应发工资,jdbcType=VARCHAR},
+			</if>
+			<if test="个人合计 != null">
+				个人合计 = #{个人合计,jdbcType=VARCHAR},
+			</if>
+			<if test="个人医疗 != null">
+				个人医疗 = #{个人医疗,jdbcType=VARCHAR},
+			</if>
+			<if test="个人养老 != null">
+				个人养老 = #{个人养老,jdbcType=VARCHAR},
+			</if>
+			<if test="所得税 != null">
+				所得税 = #{所得税,jdbcType=VARCHAR},
+			</if>
+			<if test="个人公积金 != null">
+				个人公积金 = #{个人公积金,jdbcType=VARCHAR},
+			</if>
+			<if test="实发工资 != null">
+				实发工资 = #{实发工资,jdbcType=VARCHAR},
+			</if>
+			<if test="房改补贴 != null">
+				房改补贴 = #{房改补贴,jdbcType=VARCHAR},
+			</if>
+			<if test="单位公积金 != null">
+				单位公积金 = #{单位公积金,jdbcType=VARCHAR},
+			</if>
+			<if test="单位社保合计 != null">
+				单位社保合计 = #{单位社保合计,jdbcType=VARCHAR},
+			</if>
+			<if test="单位医疗 != null">
+				单位医疗 = #{单位医疗,jdbcType=VARCHAR},
+			</if>
+			<if test="单位养老 != null">
+				单位养老 = #{单位养老,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where salary_id = #{salaryId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.Salaryc">
+		update salaryc
+		set
+		salary_import_id = #{salaryImportId,jdbcType=VARCHAR},
+		序号 =
+		#{序号,jdbcType=INTEGER},
+		人员姓名 = #{人员姓名,jdbcType=VARCHAR},
+		职务工资 =
+		#{职务工资,jdbcType=VARCHAR},
+		级别工资 = #{级别工资,jdbcType=VARCHAR},
+		见习工资 =
+		#{见习工资,jdbcType=VARCHAR},
+		绩效工资 = #{绩效工资,jdbcType=VARCHAR},
+		特区津贴 =
+		#{特区津贴,jdbcType=VARCHAR},
+		特岗津贴 = #{特岗津贴,jdbcType=VARCHAR},
+		独生子女费 =
+		#{独生子女费,jdbcType=VARCHAR},
+		岗位津贴 = #{岗位津贴,jdbcType=VARCHAR},
+		应发工资 =
+		#{应发工资,jdbcType=VARCHAR},
+		个人合计 = #{个人合计,jdbcType=VARCHAR},
+		个人医疗 =
+		#{个人医疗,jdbcType=VARCHAR},
+		个人养老 = #{个人养老,jdbcType=VARCHAR},
+		所得税 =
+		#{所得税,jdbcType=VARCHAR},
+		个人公积金 = #{个人公积金,jdbcType=VARCHAR},
+		实发工资 =
+		#{实发工资,jdbcType=VARCHAR},
+		房改补贴 = #{房改补贴,jdbcType=VARCHAR},
+		单位公积金 =
+		#{单位公积金,jdbcType=VARCHAR},
+		单位社保合计 = #{单位社保合计,jdbcType=VARCHAR},
+		单位医疗 =
+		#{单位医疗,jdbcType=VARCHAR},
+		单位养老 = #{单位养老,jdbcType=VARCHAR},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP}
+		where salary_id =
+		#{salaryId,jdbcType=VARCHAR}
+	</update>
+	<select id="findList" resultMap="BaseResultMap">
+		SELECT
+		序号 xh, 人员姓名 ryxm, 职务工资 zwgz, 级别工资 jbgz, 见习工资 jxgz, 绩效工资 jxgz_,
+		特区津贴 tqjt, 特岗津贴 tgjt,
+		独生子女费 dsznf,
+		岗位津贴 gwjt, 应发工资 yfgz,
+		个人合计 grhj, 个人医疗 gryl, 个人养老 gryl_, 所得税 sds, 个人公积金 grgjj, 实发工资 sfgz, 房改补贴 fgbt, 单位公积金
+		dwgjj, 单位社保合计 dwsbhj, 单位医疗 dwyy,
+		单位养老 dwyl,
+		salaryc.create_time,
+		salary_import.month,
+		salary_import.year,
+		salary_import.category
+		FROM
+		salaryc
+		INNER JOIN
+		salary_import ON
+		salaryc.salary_import_id =
+		salary_import.salary_import_id
+		WHERE
+		0 = 0
+		<if test="condition.year!=null and condition.year!=&quot;&quot;">
+			and salary_import.year=#{condition.year}
+		</if>
+		<if test="condition.month!=null and condition.month!=&quot;&quot;">
+			and salary_import.month=#{condition.month}
+		</if>
+		<if test="condition.category!=null and condition.category!=&quot;&quot;">
+			and salary_import.category=#{condition.category}
+		</if>
+		<if
+			test="condition.salaryImportId!=null and condition.salaryImportId!=&quot;&quot;">
+			and salary_import.salary_import_id =#{condition.salaryImportId}
+		</if>
+
+		<if test="condition.userName!=null and condition.userName!=&quot;&quot;">
+			and salaryc.人员姓名=#{condition.userName}
+		</if>
+		order by month desc,序号
+	</select>
+</mapper>

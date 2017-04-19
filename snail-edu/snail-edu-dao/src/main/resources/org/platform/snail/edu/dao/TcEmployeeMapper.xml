@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.TcEmployeeMapper" >
+  <resultMap id="BaseResultMap" type="org.platform.snail.edu.model.TcEmployee" >
+    <id column="EmployeeID" property="employeeid" jdbcType="BIGINT" />
+    <result column="DepartmentID" property="departmentid" jdbcType="VARCHAR" />
+    <result column="EmployeeName" property="employeename" jdbcType="VARCHAR" />
+    <result column="EmployeePwd" property="employeepwd" jdbcType="VARCHAR" />
+    <result column="EmployeeStrID" property="employeestrid" jdbcType="VARCHAR" />
+    <result column="EmployeePWDWeb" property="employeepwdweb" jdbcType="VARCHAR" />
+    <result column="CardID" property="cardid" jdbcType="INTEGER" />
+    <result column="EmployeeStatusID" property="employeestatusid" jdbcType="INTEGER" />
+    <result column="SexID" property="sexid" jdbcType="BIT" />
+    <result column="Identifier" property="identifier" jdbcType="VARCHAR" />
+    <result column="Birthday" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="PositionID" property="positionid" jdbcType="INTEGER" />
+    <result column="EducationID" property="educationid" jdbcType="INTEGER" />
+    <result column="EthnicalID" property="ethnicalid" jdbcType="INTEGER" />
+    <result column="NativePlace" property="nativeplace" jdbcType="VARCHAR" />
+    <result column="MarriageID" property="marriageid" jdbcType="BIT" />
+    <result column="EmployeeTEL" property="employeetel" jdbcType="VARCHAR" />
+    <result column="ContractDate" property="contractdate" jdbcType="TIMESTAMP" />
+    <result column="Address" property="address" jdbcType="VARCHAR" />
+    <result column="PostCode" property="postcode" jdbcType="VARCHAR" />
+    <result column="StatusChangeTime" property="statuschangetime" jdbcType="TIMESTAMP" />
+    <result column="ModifyTime" property="modifytime" jdbcType="TIMESTAMP" />
+    <result column="AdminID" property="adminid" jdbcType="INTEGER" />
+    <result column="IsManager" property="ismanager" jdbcType="BIT" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="FreeDuration" property="freeduration" jdbcType="INTEGER" />
+    <result column="InitialFreeDuration" property="initialfreeduration" jdbcType="INTEGER" />
+    <result column="guid" property="guid" jdbcType="VARCHAR" />
+    <result column="RFSIMCardID" property="rfsimcardid" jdbcType="BIGINT" />
+    <result column="BankName" property="bankname" jdbcType="VARCHAR" />
+    <result column="AccountNo" property="accountno" jdbcType="VARCHAR" />
+    <result column="IMs" property="ims" jdbcType="VARCHAR" />
+    <result column="EMail" property="email" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="LinkMan" property="linkman" jdbcType="VARCHAR" />
+    <result column="LinkManTel" property="linkmantel" jdbcType="VARCHAR" />
+    <result column="LinkManRelation" property="linkmanrelation" jdbcType="VARCHAR" />
+    <result column="LinkManAddr" property="linkmanaddr" jdbcType="VARCHAR" />
+    <result column="AUTOID" property="autoid" jdbcType="VARCHAR" />
+    <result column="CardTypeID" property="cardtypeid" jdbcType="INTEGER" />
+    <result column="CardValidDate" property="cardvaliddate" jdbcType="TIMESTAMP" />
+    <result column="SID" property="sid" jdbcType="VARCHAR" />
+    <result column="ManualNotes" property="manualnotes" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    EmployeeID, DepartmentID, EmployeeName, EmployeePwd, EmployeeStrID, EmployeePWDWeb, 
+    CardID, EmployeeStatusID, SexID, Identifier, Birthday, PositionID, EducationID, EthnicalID, 
+    NativePlace, MarriageID, EmployeeTEL, ContractDate, Address, PostCode, StatusChangeTime, 
+    ModifyTime, AdminID, IsManager, Remark, FreeDuration, InitialFreeDuration, guid, 
+    RFSIMCardID, BankName, AccountNo, IMs, EMail, URL, LinkMan, LinkManTel, LinkManRelation, 
+    LinkManAddr, AUTOID, CardTypeID, CardValidDate, SID, ManualNotes
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tc_employee
+    where EmployeeID = #{employeeid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tc_employee
+    where EmployeeID = #{employeeid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="org.platform.snail.edu.model.TcEmployee" >
+    insert into tc_employee (EmployeeID, DepartmentID, EmployeeName, 
+      EmployeePwd, EmployeeStrID, EmployeePWDWeb, 
+      CardID, EmployeeStatusID, SexID, 
+      Identifier, Birthday, PositionID, 
+      EducationID, EthnicalID, NativePlace, 
+      MarriageID, EmployeeTEL, ContractDate, 
+      Address, PostCode, StatusChangeTime, 
+      ModifyTime, AdminID, IsManager, 
+      Remark, FreeDuration, InitialFreeDuration, 
+      guid, RFSIMCardID, BankName, 
+      AccountNo, IMs, EMail, 
+      URL, LinkMan, LinkManTel, 
+      LinkManRelation, LinkManAddr, AUTOID, 
+      CardTypeID, CardValidDate, SID, 
+      ManualNotes)
+    values (#{employeeid,jdbcType=BIGINT}, #{departmentid,jdbcType=VARCHAR}, #{employeename,jdbcType=VARCHAR}, 
+      #{employeepwd,jdbcType=VARCHAR}, #{employeestrid,jdbcType=VARCHAR}, #{employeepwdweb,jdbcType=VARCHAR}, 
+      #{cardid,jdbcType=INTEGER}, #{employeestatusid,jdbcType=INTEGER}, #{sexid,jdbcType=BIT}, 
+      #{identifier,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, #{positionid,jdbcType=INTEGER}, 
+      #{educationid,jdbcType=INTEGER}, #{ethnicalid,jdbcType=INTEGER}, #{nativeplace,jdbcType=VARCHAR}, 
+      #{marriageid,jdbcType=BIT}, #{employeetel,jdbcType=VARCHAR}, #{contractdate,jdbcType=TIMESTAMP}, 
+      #{address,jdbcType=VARCHAR}, #{postcode,jdbcType=VARCHAR}, #{statuschangetime,jdbcType=TIMESTAMP}, 
+      #{modifytime,jdbcType=TIMESTAMP}, #{adminid,jdbcType=INTEGER}, #{ismanager,jdbcType=BIT}, 
+      #{remark,jdbcType=VARCHAR}, #{freeduration,jdbcType=INTEGER}, #{initialfreeduration,jdbcType=INTEGER}, 
+      #{guid,jdbcType=VARCHAR}, #{rfsimcardid,jdbcType=BIGINT}, #{bankname,jdbcType=VARCHAR}, 
+      #{accountno,jdbcType=VARCHAR}, #{ims,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, #{linkmantel,jdbcType=VARCHAR}, 
+      #{linkmanrelation,jdbcType=VARCHAR}, #{linkmanaddr,jdbcType=VARCHAR}, #{autoid,jdbcType=VARCHAR}, 
+      #{cardtypeid,jdbcType=INTEGER}, #{cardvaliddate,jdbcType=TIMESTAMP}, #{sid,jdbcType=VARCHAR}, 
+      #{manualnotes,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.platform.snail.edu.model.TcEmployee" >
+    insert into tc_employee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="employeeid != null" >
+        EmployeeID,
+      </if>
+      <if test="departmentid != null" >
+        DepartmentID,
+      </if>
+      <if test="employeename != null" >
+        EmployeeName,
+      </if>
+      <if test="employeepwd != null" >
+        EmployeePwd,
+      </if>
+      <if test="employeestrid != null" >
+        EmployeeStrID,
+      </if>
+      <if test="employeepwdweb != null" >
+        EmployeePWDWeb,
+      </if>
+      <if test="cardid != null" >
+        CardID,
+      </if>
+      <if test="employeestatusid != null" >
+        EmployeeStatusID,
+      </if>
+      <if test="sexid != null" >
+        SexID,
+      </if>
+      <if test="identifier != null" >
+        Identifier,
+      </if>
+      <if test="birthday != null" >
+        Birthday,
+      </if>
+      <if test="positionid != null" >
+        PositionID,
+      </if>
+      <if test="educationid != null" >
+        EducationID,
+      </if>
+      <if test="ethnicalid != null" >
+        EthnicalID,
+      </if>
+      <if test="nativeplace != null" >
+        NativePlace,
+      </if>
+      <if test="marriageid != null" >
+        MarriageID,
+      </if>
+      <if test="employeetel != null" >
+        EmployeeTEL,
+      </if>
+      <if test="contractdate != null" >
+        ContractDate,
+      </if>
+      <if test="address != null" >
+        Address,
+      </if>
+      <if test="postcode != null" >
+        PostCode,
+      </if>
+      <if test="statuschangetime != null" >
+        StatusChangeTime,
+      </if>
+      <if test="modifytime != null" >
+        ModifyTime,
+      </if>
+      <if test="adminid != null" >
+        AdminID,
+      </if>
+      <if test="ismanager != null" >
+        IsManager,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="freeduration != null" >
+        FreeDuration,
+      </if>
+      <if test="initialfreeduration != null" >
+        InitialFreeDuration,
+      </if>
+      <if test="guid != null" >
+        guid,
+      </if>
+      <if test="rfsimcardid != null" >
+        RFSIMCardID,
+      </if>
+      <if test="bankname != null" >
+        BankName,
+      </if>
+      <if test="accountno != null" >
+        AccountNo,
+      </if>
+      <if test="ims != null" >
+        IMs,
+      </if>
+      <if test="email != null" >
+        EMail,
+      </if>
+      <if test="url != null" >
+        URL,
+      </if>
+      <if test="linkman != null" >
+        LinkMan,
+      </if>
+      <if test="linkmantel != null" >
+        LinkManTel,
+      </if>
+      <if test="linkmanrelation != null" >
+        LinkManRelation,
+      </if>
+      <if test="linkmanaddr != null" >
+        LinkManAddr,
+      </if>
+      <if test="autoid != null" >
+        AUTOID,
+      </if>
+      <if test="cardtypeid != null" >
+        CardTypeID,
+      </if>
+      <if test="cardvaliddate != null" >
+        CardValidDate,
+      </if>
+      <if test="sid != null" >
+        SID,
+      </if>
+      <if test="manualnotes != null" >
+        ManualNotes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="employeeid != null" >
+        #{employeeid,jdbcType=BIGINT},
+      </if>
+      <if test="departmentid != null" >
+        #{departmentid,jdbcType=VARCHAR},
+      </if>
+      <if test="employeename != null" >
+        #{employeename,jdbcType=VARCHAR},
+      </if>
+      <if test="employeepwd != null" >
+        #{employeepwd,jdbcType=VARCHAR},
+      </if>
+      <if test="employeestrid != null" >
+        #{employeestrid,jdbcType=VARCHAR},
+      </if>
+      <if test="employeepwdweb != null" >
+        #{employeepwdweb,jdbcType=VARCHAR},
+      </if>
+      <if test="cardid != null" >
+        #{cardid,jdbcType=INTEGER},
+      </if>
+      <if test="employeestatusid != null" >
+        #{employeestatusid,jdbcType=INTEGER},
+      </if>
+      <if test="sexid != null" >
+        #{sexid,jdbcType=BIT},
+      </if>
+      <if test="identifier != null" >
+        #{identifier,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="positionid != null" >
+        #{positionid,jdbcType=INTEGER},
+      </if>
+      <if test="educationid != null" >
+        #{educationid,jdbcType=INTEGER},
+      </if>
+      <if test="ethnicalid != null" >
+        #{ethnicalid,jdbcType=INTEGER},
+      </if>
+      <if test="nativeplace != null" >
+        #{nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageid != null" >
+        #{marriageid,jdbcType=BIT},
+      </if>
+      <if test="employeetel != null" >
+        #{employeetel,jdbcType=VARCHAR},
+      </if>
+      <if test="contractdate != null" >
+        #{contractdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null" >
+        #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="statuschangetime != null" >
+        #{statuschangetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null" >
+        #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminid != null" >
+        #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="ismanager != null" >
+        #{ismanager,jdbcType=BIT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="freeduration != null" >
+        #{freeduration,jdbcType=INTEGER},
+      </if>
+      <if test="initialfreeduration != null" >
+        #{initialfreeduration,jdbcType=INTEGER},
+      </if>
+      <if test="guid != null" >
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="rfsimcardid != null" >
+        #{rfsimcardid,jdbcType=BIGINT},
+      </if>
+      <if test="bankname != null" >
+        #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="accountno != null" >
+        #{accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="ims != null" >
+        #{ims,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null" >
+        #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmantel != null" >
+        #{linkmantel,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanrelation != null" >
+        #{linkmanrelation,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanaddr != null" >
+        #{linkmanaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="autoid != null" >
+        #{autoid,jdbcType=VARCHAR},
+      </if>
+      <if test="cardtypeid != null" >
+        #{cardtypeid,jdbcType=INTEGER},
+      </if>
+      <if test="cardvaliddate != null" >
+        #{cardvaliddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="manualnotes != null" >
+        #{manualnotes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.TcEmployee" >
+    update tc_employee
+    <set >
+      <if test="departmentid != null" >
+        DepartmentID = #{departmentid,jdbcType=VARCHAR},
+      </if>
+      <if test="employeename != null" >
+        EmployeeName = #{employeename,jdbcType=VARCHAR},
+      </if>
+      <if test="employeepwd != null" >
+        EmployeePwd = #{employeepwd,jdbcType=VARCHAR},
+      </if>
+      <if test="employeestrid != null" >
+        EmployeeStrID = #{employeestrid,jdbcType=VARCHAR},
+      </if>
+      <if test="employeepwdweb != null" >
+        EmployeePWDWeb = #{employeepwdweb,jdbcType=VARCHAR},
+      </if>
+      <if test="cardid != null" >
+        CardID = #{cardid,jdbcType=INTEGER},
+      </if>
+      <if test="employeestatusid != null" >
+        EmployeeStatusID = #{employeestatusid,jdbcType=INTEGER},
+      </if>
+      <if test="sexid != null" >
+        SexID = #{sexid,jdbcType=BIT},
+      </if>
+      <if test="identifier != null" >
+        Identifier = #{identifier,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        Birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="positionid != null" >
+        PositionID = #{positionid,jdbcType=INTEGER},
+      </if>
+      <if test="educationid != null" >
+        EducationID = #{educationid,jdbcType=INTEGER},
+      </if>
+      <if test="ethnicalid != null" >
+        EthnicalID = #{ethnicalid,jdbcType=INTEGER},
+      </if>
+      <if test="nativeplace != null" >
+        NativePlace = #{nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageid != null" >
+        MarriageID = #{marriageid,jdbcType=BIT},
+      </if>
+      <if test="employeetel != null" >
+        EmployeeTEL = #{employeetel,jdbcType=VARCHAR},
+      </if>
+      <if test="contractdate != null" >
+        ContractDate = #{contractdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="address != null" >
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null" >
+        PostCode = #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="statuschangetime != null" >
+        StatusChangeTime = #{statuschangetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null" >
+        ModifyTime = #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adminid != null" >
+        AdminID = #{adminid,jdbcType=INTEGER},
+      </if>
+      <if test="ismanager != null" >
+        IsManager = #{ismanager,jdbcType=BIT},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="freeduration != null" >
+        FreeDuration = #{freeduration,jdbcType=INTEGER},
+      </if>
+      <if test="initialfreeduration != null" >
+        InitialFreeDuration = #{initialfreeduration,jdbcType=INTEGER},
+      </if>
+      <if test="guid != null" >
+        guid = #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="rfsimcardid != null" >
+        RFSIMCardID = #{rfsimcardid,jdbcType=BIGINT},
+      </if>
+      <if test="bankname != null" >
+        BankName = #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="accountno != null" >
+        AccountNo = #{accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="ims != null" >
+        IMs = #{ims,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMail = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null" >
+        LinkMan = #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmantel != null" >
+        LinkManTel = #{linkmantel,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanrelation != null" >
+        LinkManRelation = #{linkmanrelation,jdbcType=VARCHAR},
+      </if>
+      <if test="linkmanaddr != null" >
+        LinkManAddr = #{linkmanaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="autoid != null" >
+        AUTOID = #{autoid,jdbcType=VARCHAR},
+      </if>
+      <if test="cardtypeid != null" >
+        CardTypeID = #{cardtypeid,jdbcType=INTEGER},
+      </if>
+      <if test="cardvaliddate != null" >
+        CardValidDate = #{cardvaliddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sid != null" >
+        SID = #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="manualnotes != null" >
+        ManualNotes = #{manualnotes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where EmployeeID = #{employeeid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.TcEmployee" >
+    update tc_employee
+    set DepartmentID = #{departmentid,jdbcType=VARCHAR},
+      EmployeeName = #{employeename,jdbcType=VARCHAR},
+      EmployeePwd = #{employeepwd,jdbcType=VARCHAR},
+      EmployeeStrID = #{employeestrid,jdbcType=VARCHAR},
+      EmployeePWDWeb = #{employeepwdweb,jdbcType=VARCHAR},
+      CardID = #{cardid,jdbcType=INTEGER},
+      EmployeeStatusID = #{employeestatusid,jdbcType=INTEGER},
+      SexID = #{sexid,jdbcType=BIT},
+      Identifier = #{identifier,jdbcType=VARCHAR},
+      Birthday = #{birthday,jdbcType=TIMESTAMP},
+      PositionID = #{positionid,jdbcType=INTEGER},
+      EducationID = #{educationid,jdbcType=INTEGER},
+      EthnicalID = #{ethnicalid,jdbcType=INTEGER},
+      NativePlace = #{nativeplace,jdbcType=VARCHAR},
+      MarriageID = #{marriageid,jdbcType=BIT},
+      EmployeeTEL = #{employeetel,jdbcType=VARCHAR},
+      ContractDate = #{contractdate,jdbcType=TIMESTAMP},
+      Address = #{address,jdbcType=VARCHAR},
+      PostCode = #{postcode,jdbcType=VARCHAR},
+      StatusChangeTime = #{statuschangetime,jdbcType=TIMESTAMP},
+      ModifyTime = #{modifytime,jdbcType=TIMESTAMP},
+      AdminID = #{adminid,jdbcType=INTEGER},
+      IsManager = #{ismanager,jdbcType=BIT},
+      Remark = #{remark,jdbcType=VARCHAR},
+      FreeDuration = #{freeduration,jdbcType=INTEGER},
+      InitialFreeDuration = #{initialfreeduration,jdbcType=INTEGER},
+      guid = #{guid,jdbcType=VARCHAR},
+      RFSIMCardID = #{rfsimcardid,jdbcType=BIGINT},
+      BankName = #{bankname,jdbcType=VARCHAR},
+      AccountNo = #{accountno,jdbcType=VARCHAR},
+      IMs = #{ims,jdbcType=VARCHAR},
+      EMail = #{email,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      LinkMan = #{linkman,jdbcType=VARCHAR},
+      LinkManTel = #{linkmantel,jdbcType=VARCHAR},
+      LinkManRelation = #{linkmanrelation,jdbcType=VARCHAR},
+      LinkManAddr = #{linkmanaddr,jdbcType=VARCHAR},
+      AUTOID = #{autoid,jdbcType=VARCHAR},
+      CardTypeID = #{cardtypeid,jdbcType=INTEGER},
+      CardValidDate = #{cardvaliddate,jdbcType=TIMESTAMP},
+      SID = #{sid,jdbcType=VARCHAR},
+      ManualNotes = #{manualnotes,jdbcType=VARCHAR}
+    where EmployeeID = #{employeeid,jdbcType=BIGINT}
+  </update>
+  <select id="getList" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tc_employee where create_time>date_sub(now(), interval 2 day) and SID not in(select teacher_id from teacher)
+  </select>
+  <!-- 
+  SELECT EmployeeID,
+    DepartmentID,
+    EmployeeName,
+    EmployeePwd,
+    EmployeeStrID,
+    EmployeePWDWeb,
+    CardID,
+    EmployeeStatusID,
+    SexID,
+    Identifier,
+    Birthday,
+    PositionID,
+    EducationID,
+    EthnicalID,
+    NativePlace,
+    MarriageID,
+    EmployeeTEL,
+    ContractDate,
+    Address,
+    PostCode,
+    StatusChangeTime,
+    ModifyTime,
+    AdminID,
+    IsManager,
+    Remark,
+    FreeDuration,
+    InitialFreeDuration,
+    guid,
+    RFSIMCardID,
+    BankName,
+    AccountNo,
+    IMs,
+    EMail,
+    URL,
+    LinkMan,
+    LinkManTel,
+    LinkManRelation,
+    LinkManAddr,
+    AUTOID,
+    CardTypeID,
+    CardValidDate,
+    SID,
+    ManualNotes
+FROM tc_employee
+  
+  SELECT c.objname_,u1.name,u1.mobile,a.DBID_,a.name_,a.create_ FROM jbpmdb.jbpm4_task a,jbpmdb.jbpm4_execution b,jbpmdb.jbpm4_deployprop c
+,users u1
+where a.execution_id_=b.id_
+and b.procdefid_=c.stringval_
+and a.assignee_=u1.user_id
+and a.create_>date_sub(now(), interval 365 day)
+and a.status=0
+   -->
+</mapper>

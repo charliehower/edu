@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.GrowthMapper">
+	<resultMap id="BaseResultMap" type="org.platform.snail.edu.model.Growth">
+		<id column="growth_id" property="growthId" jdbcType="VARCHAR" />
+		<result column="classes_id" property="classesId" jdbcType="VARCHAR" />
+		<result column="attendance" property="attendance" jdbcType="DECIMAL" />
+		<result column="hygiene_areas" property="hygieneAreas"
+			jdbcType="DECIMAL" />
+		<result column="hygiene_tools" property="hygieneTools"
+			jdbcType="DECIMAL" />
+		<result column="ceremony" property="ceremony" jdbcType="DECIMAL" />
+		<result column="live_flag" property="liveFlag" jdbcType="DECIMAL" />
+		<result column="exercise_body" property="exerciseBody"
+			jdbcType="DECIMAL" />
+		<result column="exercise_eye" property="exerciseEye" jdbcType="DECIMAL" />
+		<result column="security" property="security" jdbcType="DECIMAL" />
+		<result column="contraband" property="contraband" jdbcType="DECIMAL" />
+		<result column="contraband_weekend" property="contrabandWeekend"
+			jdbcType="DECIMAL" />
+		<result column="dormitory" property="dormitory" jdbcType="DECIMAL" />
+		<result column="construction" property="construction" jdbcType="DECIMAL" />
+		<result column="bonus" property="bonus" jdbcType="DECIMAL" />
+		<result column="total_score" property="totalScore" jdbcType="DECIMAL" />
+		<result column="check_date" property="checkDate" jdbcType="TIMESTAMP" />
+		<result column="checker_a" property="checkerA" jdbcType="VARCHAR" />
+		<result column="checker_b" property="checkerB" jdbcType="VARCHAR" />
+		<result column="checker_c" property="checkerC" jdbcType="VARCHAR" />
+		<result column="checker_d" property="checkerD" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="org.platform.snail.edu.model.Growth"
+		extends="BaseResultMap">
+		<result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<resultMap id="BaseResultMapVo" type="org.platform.snail.edu.vo.GrowthVo"
+		extends="ResultMapWithBLOBs">
+		<result column="classes_name" property="className" jdbcType="VARCHAR" />
+		<result column="checker_a_name" property="checkeraName" jdbcType="VARCHAR" />
+		<result column="checker_b_name" property="checkerbName" jdbcType="VARCHAR" />
+		<result column="checker_c_name" property="checkercName" jdbcType="VARCHAR" />
+		<result column="checker_d_name" property="checkerdName" jdbcType="VARCHAR" />
+		<result column="headerMaster" property="headerMaster" jdbcType="VARCHAR" />
+		
+	</resultMap>
+	<sql id="Base_Column_List">
+		growth_id, classes_id, attendance, hygiene_areas,
+		hygiene_tools, ceremony,
+		live_flag,
+		exercise_body, exercise_eye,
+		security, contraband, contraband_weekend, dormitory,
+		construction,
+		bonus, total_score, check_date, checker_a, checker_b,
+		checker_c,
+		checker_d,
+		create_time
+	</sql>
+	<sql id="Blob_Column_List">
+		remark
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMapVo"
+		parameterType="java.lang.String">
+		SELECT
+		growth.growth_id, growth.classes_id, growth.attendance,
+		growth.hygiene_areas, growth.hygiene_tools, growth.ceremony,
+		growth.live_flag,
+		growth.exercise_body, growth.exercise_eye,
+		growth.security, growth.contraband,
+		growth.contraband_weekend,
+		growth.dormitory,
+		growth.construction, growth.bonus,
+		growth.total_score, growth.check_date,
+		growth.checker_a,
+		growth.checker_b, growth.checker_c, growth.checker_d,
+		growth.create_time,
+		concat(grade.grade_name,classes.classes_name) classes_name,
+		u1.name checker_a_name,
+		u2.name checker_b_name,
+		u3.name checker_c_name,
+		u4.name checker_d_name
+		from growth
+		left join classes on
+		growth.classes_id=classes.classes_id
+		left join users u1 on growth.checker_a=u1.user_id
+		left join users u2 on growth.checker_b=u2.user_id
+		left join users u3 on growth.checker_c=u3.user_id
+		left join users u4 on growth.checker_d=u4.user_id
+		left join grade on classes.grade_id=grade.grade_id
+		where growth_id = #{growthId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from growth
+		where growth_id = #{growthId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="org.platform.snail.edu.model.Growth">
+		insert into growth (growth_id,
+		classes_id, attendance,
+		hygiene_areas, hygiene_tools, ceremony,
+		live_flag, exercise_body, exercise_eye,
+		security, contraband,
+		contraband_weekend,
+		dormitory, construction, bonus,
+		total_score,
+		check_date, checker_a,
+		checker_b, checker_c, checker_d,
+		create_time,
+		remark)
+		values (#{growthId,jdbcType=VARCHAR},
+		#{classesId,jdbcType=VARCHAR},
+		#{attendance,jdbcType=DECIMAL},
+		#{hygieneAreas,jdbcType=DECIMAL}, #{hygieneTools,jdbcType=DECIMAL},
+		#{ceremony,jdbcType=DECIMAL},
+		#{liveFlag,jdbcType=DECIMAL},
+		#{exerciseBody,jdbcType=DECIMAL},
+		#{exerciseEye,jdbcType=DECIMAL},
+		#{security,jdbcType=DECIMAL}, #{contraband,jdbcType=DECIMAL},
+		#{contrabandWeekend,jdbcType=DECIMAL},
+		#{dormitory,jdbcType=DECIMAL},
+		#{construction,jdbcType=DECIMAL}, #{bonus,jdbcType=DECIMAL},
+		#{totalScore,jdbcType=DECIMAL}, #{checkDate,jdbcType=TIMESTAMP},
+		#{checkerA,jdbcType=VARCHAR},
+		#{checkerB,jdbcType=VARCHAR},
+		#{checkerC,jdbcType=VARCHAR}, #{checkerD,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="org.platform.snail.edu.model.Growth">
+		insert into growth
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="growthId != null">
+				growth_id,
+			</if>
+			<if test="classesId != null">
+				classes_id,
+			</if>
+			<if test="attendance != null">
+				attendance,
+			</if>
+			<if test="hygieneAreas != null">
+				hygiene_areas,
+			</if>
+			<if test="hygieneTools != null">
+				hygiene_tools,
+			</if>
+			<if test="ceremony != null">
+				ceremony,
+			</if>
+			<if test="liveFlag != null">
+				live_flag,
+			</if>
+			<if test="exerciseBody != null">
+				exercise_body,
+			</if>
+			<if test="exerciseEye != null">
+				exercise_eye,
+			</if>
+			<if test="security != null">
+				security,
+			</if>
+			<if test="contraband != null">
+				contraband,
+			</if>
+			<if test="contrabandWeekend != null">
+				contraband_weekend,
+			</if>
+			<if test="dormitory != null">
+				dormitory,
+			</if>
+			<if test="construction != null">
+				construction,
+			</if>
+			<if test="bonus != null">
+				bonus,
+			</if>
+			<if test="totalScore != null">
+				total_score,
+			</if>
+			<if test="checkDate != null">
+				check_date,
+			</if>
+			<if test="checkerA != null">
+				checker_a,
+			</if>
+			<if test="checkerB != null">
+				checker_b,
+			</if>
+			<if test="checkerC != null">
+				checker_c,
+			</if>
+			<if test="checkerD != null">
+				checker_d,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="growthId != null">
+				#{growthId,jdbcType=VARCHAR},
+			</if>
+			<if test="classesId != null">
+				#{classesId,jdbcType=VARCHAR},
+			</if>
+			<if test="attendance != null">
+				#{attendance,jdbcType=DECIMAL},
+			</if>
+			<if test="hygieneAreas != null">
+				#{hygieneAreas,jdbcType=DECIMAL},
+			</if>
+			<if test="hygieneTools != null">
+				#{hygieneTools,jdbcType=DECIMAL},
+			</if>
+			<if test="ceremony != null">
+				#{ceremony,jdbcType=DECIMAL},
+			</if>
+			<if test="liveFlag != null">
+				#{liveFlag,jdbcType=DECIMAL},
+			</if>
+			<if test="exerciseBody != null">
+				#{exerciseBody,jdbcType=DECIMAL},
+			</if>
+			<if test="exerciseEye != null">
+				#{exerciseEye,jdbcType=DECIMAL},
+			</if>
+			<if test="security != null">
+				#{security,jdbcType=DECIMAL},
+			</if>
+			<if test="contraband != null">
+				#{contraband,jdbcType=DECIMAL},
+			</if>
+			<if test="contrabandWeekend != null">
+				#{contrabandWeekend,jdbcType=DECIMAL},
+			</if>
+			<if test="dormitory != null">
+				#{dormitory,jdbcType=DECIMAL},
+			</if>
+			<if test="construction != null">
+				#{construction,jdbcType=DECIMAL},
+			</if>
+			<if test="bonus != null">
+				#{bonus,jdbcType=DECIMAL},
+			</if>
+			<if test="totalScore != null">
+				#{totalScore,jdbcType=DECIMAL},
+			</if>
+			<if test="checkDate != null">
+				#{checkDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="checkerA != null">
+				#{checkerA,jdbcType=VARCHAR},
+			</if>
+			<if test="checkerB != null">
+				#{checkerB,jdbcType=VARCHAR},
+			</if>
+			<if test="checkerC != null">
+				#{checkerC,jdbcType=VARCHAR},
+			</if>
+			<if test="checkerD != null">
+				#{checkerD,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.Growth">
+		update growth
+		<set>
+			
+			<if test="attendance != null">
+				attendance = #{attendance,jdbcType=DECIMAL},
+			</if>
+			<if test="hygieneAreas != null">
+				hygiene_areas = #{hygieneAreas,jdbcType=DECIMAL},
+			</if>
+			<if test="hygieneTools != null">
+				hygiene_tools = #{hygieneTools,jdbcType=DECIMAL},
+			</if>
+			<if test="ceremony != null">
+				ceremony = #{ceremony,jdbcType=DECIMAL},
+			</if>
+			<if test="liveFlag != null">
+				live_flag = #{liveFlag,jdbcType=DECIMAL},
+			</if>
+			<if test="exerciseBody != null">
+				exercise_body = #{exerciseBody,jdbcType=DECIMAL},
+			</if>
+			<if test="exerciseEye != null">
+				exercise_eye = #{exerciseEye,jdbcType=DECIMAL},
+			</if>
+			<if test="security != null">
+				security = #{security,jdbcType=DECIMAL},
+			</if>
+			<if test="contraband != null">
+				contraband = #{contraband,jdbcType=DECIMAL},
+			</if>
+			<if test="contrabandWeekend != null">
+				contraband_weekend =
+				#{contrabandWeekend,jdbcType=DECIMAL},
+			</if>
+			<if test="dormitory != null">
+				dormitory = #{dormitory,jdbcType=DECIMAL},
+			</if>
+			<if test="construction != null">
+				construction = #{construction,jdbcType=DECIMAL},
+			</if>
+			<if test="bonus != null">
+				bonus = #{bonus,jdbcType=DECIMAL},
+			</if>
+			<if test="totalScore != null">
+				total_score = #{totalScore,jdbcType=DECIMAL},
+			</if>
+			<if test="checkDate != null">
+				check_date = #{checkDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="checkerA != null">
+				checker_a = #{checkerA,jdbcType=VARCHAR},
+			</if>
+			<if test="checkerB != null">
+				checker_b = #{checkerB,jdbcType=VARCHAR},
+			</if>
+			<if test="checkerC != null">
+				checker_c = #{checkerC,jdbcType=VARCHAR},
+			</if>
+			<if test="checkerD != null">
+				checker_d = #{checkerD,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where growth_id = #{growthId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="org.platform.snail.edu.model.Growth">
+		update
+		growth
+		set classes_id = #{classesId,jdbcType=VARCHAR},
+		attendance =
+		#{attendance,jdbcType=DECIMAL},
+		hygiene_areas =
+		#{hygieneAreas,jdbcType=DECIMAL},
+		hygiene_tools =
+		#{hygieneTools,jdbcType=DECIMAL},
+		ceremony =
+		#{ceremony,jdbcType=DECIMAL},
+		live_flag = #{liveFlag,jdbcType=DECIMAL},
+		exercise_body = #{exerciseBody,jdbcType=DECIMAL},
+		exercise_eye =
+		#{exerciseEye,jdbcType=DECIMAL},
+		security =
+		#{security,jdbcType=DECIMAL},
+		contraband =
+		#{contraband,jdbcType=DECIMAL},
+		contraband_weekend =
+		#{contrabandWeekend,jdbcType=DECIMAL},
+		dormitory =
+		#{dormitory,jdbcType=DECIMAL},
+		construction =
+		#{construction,jdbcType=DECIMAL},
+		bonus = #{bonus,jdbcType=DECIMAL},
+		total_score = #{totalScore,jdbcType=DECIMAL},
+		check_date =
+		#{checkDate,jdbcType=TIMESTAMP},
+		checker_a =
+		#{checkerA,jdbcType=VARCHAR},
+		checker_b = #{checkerB,jdbcType=VARCHAR},
+		checker_c = #{checkerC,jdbcType=VARCHAR},
+		checker_d =
+		#{checkerD,jdbcType=VARCHAR},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		remark =
+		#{remark,jdbcType=LONGVARCHAR}
+		where growth_id =
+		#{growthId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.Growth">
+		update growth
+		set
+		
+		attendance =
+		#{attendance,jdbcType=DECIMAL},
+		hygiene_areas =
+		#{hygieneAreas,jdbcType=DECIMAL},
+		hygiene_tools =
+		#{hygieneTools,jdbcType=DECIMAL},
+		ceremony =
+		#{ceremony,jdbcType=DECIMAL},
+		live_flag = #{liveFlag,jdbcType=DECIMAL},
+		exercise_body = #{exerciseBody,jdbcType=DECIMAL},
+		exercise_eye =
+		#{exerciseEye,jdbcType=DECIMAL},
+		security =
+		#{security,jdbcType=DECIMAL},
+		contraband =
+		#{contraband,jdbcType=DECIMAL},
+		contraband_weekend =
+		#{contrabandWeekend,jdbcType=DECIMAL},
+		dormitory =
+		#{dormitory,jdbcType=DECIMAL},
+		construction =
+		#{construction,jdbcType=DECIMAL},
+		bonus = #{bonus,jdbcType=DECIMAL},
+		total_score = #{totalScore,jdbcType=DECIMAL},
+		check_date =
+		#{checkDate,jdbcType=TIMESTAMP},
+		checker_a =
+		#{checkerA,jdbcType=VARCHAR},
+		checker_b = #{checkerB,jdbcType=VARCHAR},
+		checker_c = #{checkerC,jdbcType=VARCHAR},
+		checker_d =
+		#{checkerD,jdbcType=VARCHAR},
+			remark =
+		#{remark,jdbcType=LONGVARCHAR},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP}
+		where growth_id =
+		#{growthId,jdbcType=VARCHAR}
+	</update>
+
+	<select id="isExit" resultType="int">
+		select count(*) from
+		growth
+		where
+		classes_id=#{classesId} and
+		DATE_FORMAT(check_date,'%Y-%d-%m')=#{checkDate}
+	</select>
+	<sql id="whereCondition">
+		from growth
+		left join classes on
+		growth.classes_id=classes.classes_id
+		left join users u1 on growth.checker_a=u1.user_id
+		left join users u2 on growth.checker_b=u2.user_id
+		left join users u3 on growth.checker_c=u3.user_id
+		left join users u4 on growth.checker_d=u4.user_id
+		left join grade on classes.grade_id=grade.grade_id
+		left join (select teacher_id,classes_id from headmaster where year=#{condition.year}) headmaster on growth.classes_id=headmaster.classes_id
+		left join teacher on headmaster.teacher_id=teacher.teacher_id
+		where 0=0 and DATE_FORMAT(check_date,'%Y')=DATE_FORMAT(NOW(),'%Y')
+
+		<if test="condition.classesId!=null and condition.classesId!=&quot;&quot;">
+			and
+			growth.classes_id =
+			#{condition.classesId,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.startDate!=null and condition.startDate!=&quot;&quot;">
+			and
+			DATE_FORMAT(growth.check_date,'%Y-%d-%m')=#{condition.startDate}
+		</if>
+
+	</sql>
+	<select id="findCount" resultType="int">
+		SELECT COUNT(*)
+		<include refid="whereCondition" />
+	</select>
+	<select id="findList" resultMap="BaseResultMapVo">
+		SELECT
+		growth.growth_id, growth.classes_id, growth.attendance,
+		growth.hygiene_areas, growth.hygiene_tools, growth.ceremony,
+		growth.live_flag,
+		growth.exercise_body, growth.exercise_eye,
+		growth.security, growth.contraband,
+		growth.contraband_weekend,
+		growth.dormitory,
+		growth.construction, growth.bonus,
+		growth.total_score, growth.check_date,
+		growth.checker_a,
+		growth.checker_b, growth.checker_c, growth.checker_d,
+		growth.create_time,
+		concat(grade.grade_name,classes.classes_name) classes_name,
+		u1.name checker_a_name,
+		u2.name checker_b_name,
+		u3.name checker_c_name,
+		u4.name checker_d_name,
+		teacher.name headerMaster
+		<include refid="whereCondition" />
+		<choose>
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+				ORDER BY growth.${orderBy}
+			</when>
+			<otherwise>
+				ORDER BY growth.classes_id
+			</otherwise>
+		</choose>
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+</mapper>

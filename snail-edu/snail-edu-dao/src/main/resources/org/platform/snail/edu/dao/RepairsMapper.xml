@@ -1,0 +1,775 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.RepairsMapper">
+	<resultMap id="BaseResultMap" type="org.platform.snail.edu.model.Repairs">
+		<id column="repairs_id" property="repairsId" jdbcType="VARCHAR" />
+		<result column="alerts_user_id" property="alertsUserId"
+			jdbcType="VARCHAR" />
+		<result column="department_id" property="departmentId"
+			jdbcType="VARCHAR" />
+		<result column="repairs_time" property="repairsTime" jdbcType="TIMESTAMP" />
+		<result column="location_id" property="locationId" jdbcType="VARCHAR" />
+		<result column="tel" property="tel" jdbcType="VARCHAR" />
+		<result column="repairs_category" property="repairsCategory"
+			jdbcType="CHAR" />
+		<result column="sub_category" property="subCategory" jdbcType="VARCHAR" />
+		<result column="is_sms_alerts" property="isSmsAlerts" jdbcType="CHAR" />
+		<result column="describtion" property="describtion" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="repairs_user_id" property="repairsUserId"
+			jdbcType="VARCHAR" />
+		<result column="stauts" property="stauts" jdbcType="CHAR" />
+		<result column="accept_time" property="acceptTime" jdbcType="TIMESTAMP" />
+		<result column="response_time" property="responseTime"
+			jdbcType="TIMESTAMP" />
+		<result column="accept_user_id" property="acceptUserId"
+			jdbcType="VARCHAR" />
+		<result column="fault_category" property="faultCategory"
+			jdbcType="CHAR" />
+		<result column="fault_describtion" property="faultDescribtion"
+			jdbcType="VARCHAR" />
+		<result column="ic_value" property="icValue" jdbcType="VARCHAR" />
+		<result column="remark2" property="remark2" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="BaseResultMapVo"
+		type="org.platform.snail.edu.vo.RepairsVo">
+		<result column="alerts_user_name" property="alertsUserName"
+			jdbcType="VARCHAR" />
+		<result column="department_name" property="departmentName"
+			jdbcType="VARCHAR" />
+		
+		<result column="full_name" property="fullName" jdbcType="VARCHAR" />
+
+		<result column="repairs_category_name" property="repairsCategoryName"
+			jdbcType="CHAR" />
+		<result column="sub_category_name" property="subCategoryName"
+			jdbcType="VARCHAR" />
+
+		<result column="repairs_user_name" property="repairsUserName"
+			jdbcType="VARCHAR" />
+		<result column="stauts_name" property="stautsName" jdbcType="CHAR" />
+
+		<result column="accept_user_name" property="acceptUserName"
+			jdbcType="VARCHAR" />
+		<result column="fault_category_name" property="faultCategoryName"
+			jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		repairs_id, alerts_user_id, department_id, repairs_time,
+		location_id, tel,
+		repairs_category,
+		sub_category, is_sms_alerts,
+		describtion, remark, repairs_user_id, stauts,
+		accept_time,
+		response_time, accept_user_id, fault_category, fault_describtion,
+		ic_value, remark2,
+		create_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from repairs
+		where repairs_id = #{repairsId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		repairs
+		where repairs_id = #{repairsId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="org.platform.snail.edu.model.Repairs">
+		insert into repairs
+		(repairs_id, alerts_user_id, department_id,
+		repairs_time, location_id,
+		tel,
+		repairs_category, sub_category, is_sms_alerts,
+		describtion, remark,
+		repairs_user_id,
+		stauts, accept_time, response_time,
+		accept_user_id,
+		fault_category, fault_describtion,
+		ic_value, remark2, create_time
+		)
+		values (#{repairsId,jdbcType=VARCHAR},
+		#{alertsUserId,jdbcType=VARCHAR},
+		#{departmentId,jdbcType=VARCHAR},
+		#{repairsTime,jdbcType=TIMESTAMP}, #{locationId,jdbcType=VARCHAR},
+		#{tel,jdbcType=VARCHAR},
+		#{repairsCategory,jdbcType=CHAR},
+		#{subCategory,jdbcType=VARCHAR},
+		#{isSmsAlerts,jdbcType=CHAR},
+		#{describtion,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+		#{repairsUserId,jdbcType=VARCHAR},
+		#{stauts,jdbcType=CHAR},
+		#{acceptTime,jdbcType=TIMESTAMP},
+		#{responseTime,jdbcType=TIMESTAMP},
+		#{acceptUserId,jdbcType=VARCHAR}, #{faultCategory,jdbcType=CHAR},
+		#{faultDescribtion,jdbcType=VARCHAR},
+		#{icValue,jdbcType=VARCHAR},
+		#{remark2,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="org.platform.snail.edu.model.Repairs">
+		insert into repairs
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="repairsId != null">
+				repairs_id,
+			</if>
+			<if test="alertsUserId != null">
+				alerts_user_id,
+			</if>
+			<if test="departmentId != null">
+				department_id,
+			</if>
+			<if test="repairsTime != null">
+				repairs_time,
+			</if>
+			<if test="locationId != null">
+				location_id,
+			</if>
+			<if test="tel != null">
+				tel,
+			</if>
+			<if test="repairsCategory != null">
+				repairs_category,
+			</if>
+			<if test="subCategory != null">
+				sub_category,
+			</if>
+			<if test="isSmsAlerts != null">
+				is_sms_alerts,
+			</if>
+			<if test="describtion != null">
+				describtion,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="repairsUserId != null">
+				repairs_user_id,
+			</if>
+			<if test="stauts != null">
+				stauts,
+			</if>
+			<if test="acceptTime != null">
+				accept_time,
+			</if>
+			<if test="responseTime != null">
+				response_time,
+			</if>
+			<if test="acceptUserId != null">
+				accept_user_id,
+			</if>
+			<if test="faultCategory != null">
+				fault_category,
+			</if>
+			<if test="faultDescribtion != null">
+				fault_describtion,
+			</if>
+			<if test="icValue != null">
+				ic_value,
+			</if>
+			<if test="remark2 != null">
+				remark2,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="repairsId != null">
+				#{repairsId,jdbcType=VARCHAR},
+			</if>
+			<if test="alertsUserId != null">
+				#{alertsUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="departmentId != null">
+				#{departmentId,jdbcType=VARCHAR},
+			</if>
+			<if test="repairsTime != null">
+				#{repairsTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="locationId != null">
+				#{locationId,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				#{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="repairsCategory != null">
+				#{repairsCategory,jdbcType=CHAR},
+			</if>
+			<if test="subCategory != null">
+				#{subCategory,jdbcType=VARCHAR},
+			</if>
+			<if test="isSmsAlerts != null">
+				#{isSmsAlerts,jdbcType=CHAR},
+			</if>
+			<if test="describtion != null">
+				#{describtion,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="repairsUserId != null">
+				#{repairsUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="stauts != null">
+				#{stauts,jdbcType=CHAR},
+			</if>
+			<if test="acceptTime != null">
+				#{acceptTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="responseTime != null">
+				#{responseTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="acceptUserId != null">
+				#{acceptUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="faultCategory != null">
+				#{faultCategory,jdbcType=CHAR},
+			</if>
+			<if test="faultDescribtion != null">
+				#{faultDescribtion,jdbcType=VARCHAR},
+			</if>
+			<if test="icValue != null">
+				#{icValue,jdbcType=VARCHAR},
+			</if>
+			<if test="remark2 != null">
+				#{remark2,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.Repairs">
+		update repairs
+		<set>
+			<if test="alertsUserId != null">
+				alerts_user_id = #{alertsUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="departmentId != null">
+				department_id = #{departmentId,jdbcType=VARCHAR},
+			</if>
+			<if test="repairsTime != null">
+				repairs_time = #{repairsTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="locationId != null">
+				location_id = #{locationId,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				tel = #{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="repairsCategory != null">
+				repairs_category = #{repairsCategory,jdbcType=CHAR},
+			</if>
+			<if test="subCategory != null">
+				sub_category = #{subCategory,jdbcType=VARCHAR},
+			</if>
+			<if test="isSmsAlerts != null">
+				is_sms_alerts = #{isSmsAlerts,jdbcType=CHAR},
+			</if>
+			<if test="describtion != null">
+				describtion = #{describtion,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="repairsUserId != null">
+				repairs_user_id = #{repairsUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="stauts != null">
+				stauts = #{stauts,jdbcType=CHAR},
+			</if>
+			<if test="acceptTime != null">
+				accept_time = #{acceptTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="responseTime != null">
+				response_time = #{responseTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="acceptUserId != null">
+				accept_user_id = #{acceptUserId,jdbcType=VARCHAR},
+			</if>
+			<if test="faultCategory != null">
+				fault_category = #{faultCategory,jdbcType=CHAR},
+			</if>
+			<if test="faultDescribtion != null">
+				fault_describtion = #{faultDescribtion,jdbcType=VARCHAR},
+			</if>
+			<if test="icValue != null">
+				ic_value = #{icValue,jdbcType=VARCHAR},
+			</if>
+			<if test="remark2 != null">
+				remark2 = #{remark2,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where repairs_id = #{repairsId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.Repairs">
+		update repairs
+		set
+		alerts_user_id = #{alertsUserId,jdbcType=VARCHAR},
+		department_id =
+		#{departmentId,jdbcType=VARCHAR},
+		repairs_time =
+		#{repairsTime,jdbcType=TIMESTAMP},
+		location_id =
+		#{locationId,jdbcType=VARCHAR},
+		tel = #{tel,jdbcType=VARCHAR},
+		repairs_category = #{repairsCategory,jdbcType=CHAR},
+		sub_category =
+		#{subCategory,jdbcType=VARCHAR},
+		is_sms_alerts =
+		#{isSmsAlerts,jdbcType=CHAR},
+		describtion =
+		#{describtion,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		repairs_user_id = #{repairsUserId,jdbcType=VARCHAR},
+		stauts =
+		#{stauts,jdbcType=CHAR},
+		accept_time =
+		#{acceptTime,jdbcType=TIMESTAMP},
+		response_time =
+		#{responseTime,jdbcType=TIMESTAMP},
+		accept_user_id =
+		#{acceptUserId,jdbcType=VARCHAR},
+		fault_category =
+		#{faultCategory,jdbcType=CHAR},
+		fault_describtion =
+		#{faultDescribtion,jdbcType=VARCHAR},
+		ic_value =
+		#{icValue,jdbcType=VARCHAR},
+		remark2 = #{remark2,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP}
+		where repairs_id =
+		#{repairsId,jdbcType=VARCHAR}
+	</update>
+	<insert id="insertOrUpdateSelective" parameterType="org.platform.snail.edu.model.Repairs">
+		<selectKey keyProperty="c" resultType="java.lang.Long"
+			order="BEFORE">
+			select count(1) as c from repairs where
+			repairs_id=#{repairsId,jdbcType=VARCHAR}
+		</selectKey>
+		<if test="c==0">
+			insert into repairs
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+				<if test="repairsId != null">
+					repairs_id,
+				</if>
+				<if test="alertsUserId != null">
+					alerts_user_id,
+				</if>
+				<if test="departmentId != null">
+					department_id,
+				</if>
+				<if test="repairsTime != null">
+					repairs_time,
+				</if>
+				<if test="locationId != null">
+					location_id,
+				</if>
+				<if test="tel != null">
+					tel,
+				</if>
+				<if test="repairsCategory != null">
+					repairs_category,
+				</if>
+				<if test="subCategory != null">
+					sub_category,
+				</if>
+				<if test="isSmsAlerts != null">
+					is_sms_alerts,
+				</if>
+				<if test="describtion != null">
+					describtion,
+				</if>
+				<if test="remark != null">
+					remark,
+				</if>
+				<if test="repairsUserId != null">
+					repairs_user_id,
+				</if>
+				<if test="stauts != null">
+					stauts,
+				</if>
+				<if test="acceptTime != null">
+					accept_time,
+				</if>
+				<if test="responseTime != null">
+					response_time,
+				</if>
+				<if test="acceptUserId != null">
+					accept_user_id,
+				</if>
+				<if test="faultCategory != null">
+					fault_category,
+				</if>
+				<if test="faultDescribtion != null">
+					fault_describtion,
+				</if>
+				<if test="icValue != null">
+					ic_value,
+				</if>
+				<if test="remark2 != null">
+					remark2,
+				</if>
+				<if test="createTime != null">
+					create_time,
+				</if>
+			</trim>
+			<trim prefix="values (" suffix=")" suffixOverrides=",">
+				<if test="repairsId != null">
+					#{repairsId,jdbcType=VARCHAR},
+				</if>
+				<if test="alertsUserId != null">
+					#{alertsUserId,jdbcType=VARCHAR},
+				</if>
+				<if test="departmentId != null">
+					#{departmentId,jdbcType=VARCHAR},
+				</if>
+				<if test="repairsTime != null">
+					#{repairsTime,jdbcType=TIMESTAMP},
+				</if>
+				<if test="locationId != null">
+					#{locationId,jdbcType=VARCHAR},
+				</if>
+				<if test="tel != null">
+					#{tel,jdbcType=VARCHAR},
+				</if>
+				<if test="repairsCategory != null">
+					#{repairsCategory,jdbcType=CHAR},
+				</if>
+				<if test="subCategory != null">
+					#{subCategory,jdbcType=VARCHAR},
+				</if>
+				<if test="isSmsAlerts != null">
+					#{isSmsAlerts,jdbcType=CHAR},
+				</if>
+				<if test="describtion != null">
+					#{describtion,jdbcType=VARCHAR},
+				</if>
+				<if test="remark != null">
+					#{remark,jdbcType=VARCHAR},
+				</if>
+				<if test="repairsUserId != null">
+					#{repairsUserId,jdbcType=VARCHAR},
+				</if>
+				<if test="stauts != null">
+					#{stauts,jdbcType=CHAR},
+				</if>
+				<if test="acceptTime != null">
+					#{acceptTime,jdbcType=TIMESTAMP},
+				</if>
+				<if test="responseTime != null">
+					#{responseTime,jdbcType=TIMESTAMP},
+				</if>
+				<if test="acceptUserId != null">
+					#{acceptUserId,jdbcType=VARCHAR},
+				</if>
+				<if test="faultCategory != null">
+					#{faultCategory,jdbcType=CHAR},
+				</if>
+				<if test="faultDescribtion != null">
+					#{faultDescribtion,jdbcType=VARCHAR},
+				</if>
+				<if test="icValue != null">
+					#{icValue,jdbcType=VARCHAR},
+				</if>
+				<if test="remark2 != null">
+					#{remark2,jdbcType=VARCHAR},
+				</if>
+				<if test="createTime != null">
+					#{createTime,jdbcType=TIMESTAMP},
+				</if>
+			</trim>
+		</if>
+		<if test="c==1">
+
+			update repairs
+			<set>
+				<if test="alertsUserId != null">
+					alerts_user_id = #{alertsUserId,jdbcType=VARCHAR},
+				</if>
+				<if test="departmentId != null">
+					department_id = #{departmentId,jdbcType=VARCHAR},
+				</if>
+				<if test="repairsTime != null">
+					repairs_time = #{repairsTime,jdbcType=TIMESTAMP},
+				</if>
+				<if test="locationId != null">
+					location_id = #{locationId,jdbcType=VARCHAR},
+				</if>
+				<if test="tel != null">
+					tel = #{tel,jdbcType=VARCHAR},
+				</if>
+				<if test="repairsCategory != null">
+					repairs_category = #{repairsCategory,jdbcType=CHAR},
+				</if>
+				<if test="subCategory != null">
+					sub_category = #{subCategory,jdbcType=VARCHAR},
+				</if>
+				<if test="isSmsAlerts != null">
+					is_sms_alerts = #{isSmsAlerts,jdbcType=CHAR},
+				</if>
+				<if test="describtion != null">
+					describtion = #{describtion,jdbcType=VARCHAR},
+				</if>
+				<if test="remark != null">
+					remark = #{remark,jdbcType=VARCHAR},
+				</if>
+				<if test="repairsUserId != null">
+					repairs_user_id = #{repairsUserId,jdbcType=VARCHAR},
+				</if>
+				<if test="stauts != null">
+					stauts = #{stauts,jdbcType=CHAR},
+				</if>
+				<if test="acceptTime != null">
+					accept_time = #{acceptTime,jdbcType=TIMESTAMP},
+				</if>
+				<if test="responseTime != null">
+					response_time = #{responseTime,jdbcType=TIMESTAMP},
+				</if>
+				<if test="acceptUserId != null">
+					accept_user_id = #{acceptUserId,jdbcType=VARCHAR},
+				</if>
+				<if test="faultCategory != null">
+					fault_category = #{faultCategory,jdbcType=CHAR},
+				</if>
+				<if test="faultDescribtion != null">
+					fault_describtion =
+					#{faultDescribtion,jdbcType=VARCHAR},
+				</if>
+				<if test="icValue != null">
+					ic_value = #{icValue,jdbcType=VARCHAR},
+				</if>
+				<if test="remark2 != null">
+					remark2 = #{remark2,jdbcType=VARCHAR},
+				</if>
+				
+			</set>
+			where repairs_id = #{repairsId,jdbcType=VARCHAR}
+		</if>
+	</insert>
+	<select id="selectVoByPrimaryKey" resultMap="BaseResultMapVo"
+		parameterType="java.lang.String">
+		SELECT 
+    repairs_id,
+    alerts_user_id,
+    users.name alerts_user_name,
+    repairs.department_id,
+    department.department_name,
+    repairs_time,
+    repairs.location_id,
+    location.full_name,
+    tel,
+    repairs_category,
+    d1.name repairs_category_name,
+    sub_category,
+    d2.name sub_category_name,
+    is_sms_alerts,
+    repairs.describtion,
+    repairs.remark,
+    repairs_user_id,
+    u2.name repairs_user_name,
+    repairs.stauts,
+    d3.name stauts_name,
+    accept_time,
+    response_time,
+    accept_user_id,
+    u3.name accept_user_name,
+    fault_category,
+    d4.name fault_category_name,
+    fault_describtion,
+    ic_value,
+    remark2,
+    repairs.create_time
+FROM
+    repairs
+        LEFT JOIN
+    users ON repairs.alerts_user_id = users.user_id
+        LEFT JOIN
+    department ON repairs.department_id = department.department_id
+        LEFT JOIN
+    location ON repairs.location_id = location.location_id
+        LEFT JOIN
+    (SELECT 
+        *
+    FROM
+        dict
+    WHERE
+        category_id = '24') d1 ON repairs_category = d1.code
+        LEFT JOIN
+    (SELECT 
+        *
+    FROM
+        dict
+    WHERE
+        (category_id = '26' or category_id = '35')) d2 ON sub_category = d2.code
+        LEFT JOIN
+    (SELECT 
+        *
+    FROM
+        dict
+    WHERE
+        category_id = '25') d3 ON repairs.stauts = d3.code
+        LEFT JOIN
+    (SELECT 
+        *
+    FROM
+        dict
+    WHERE
+        category_id = '27') d4 ON repairs.fault_category = d4.code
+        LEFT JOIN
+    users u2 ON repairs.repairs_user_id = u2.user_id
+        LEFT JOIN
+    users u3 ON repairs.accept_user_id = u3.user_id
+WHERE
+		repairs_id=#{repairsId,jdbcType=VARCHAR}
+	</select>
+	
+	<sql id="whereCondition">
+
+		FROM
+    repairs
+        LEFT JOIN
+    users ON repairs.alerts_user_id = users.user_id
+        LEFT JOIN
+    department ON repairs.department_id = department.department_id
+        LEFT JOIN
+    location ON repairs.location_id = location.location_id
+        LEFT JOIN
+    (SELECT 
+        *
+    FROM
+        dict
+    WHERE
+        category_id = '24') d1 ON repairs_category = d1.code
+        LEFT JOIN
+    (SELECT 
+        *
+    FROM
+        dict
+    WHERE
+        category_id = '26') d2 ON sub_category = d2.code
+        LEFT JOIN
+    (SELECT 
+        *
+    FROM
+        dict
+    WHERE
+        category_id = '25') d3 ON repairs.stauts = d3.code
+        LEFT JOIN
+    (SELECT 
+        *
+    FROM
+        dict
+    WHERE
+        category_id = '27') d4 ON repairs.fault_category = d4.code
+        LEFT JOIN
+    users u2 ON repairs.repairs_user_id = u2.user_id
+        LEFT JOIN
+    users u3 ON repairs.accept_user_id = u3.user_id where 0=0
+
+		<if test="condition.repairsCategory!=null and condition.repairsCategory!=&quot;&quot;">
+
+			and
+			repairs.repairs_category=#{condition.repairsCategory,jdbcType=VARCHAR}
+		</if>
+		<if test='condition.startDate!=null and condition.startDate!=""'>
+			<![CDATA[
+			and repairs.repairs_time>=str_to_date(#{condition.startDate},'%Y-%m-%d %H:%i:%S')
+			]]>   
+		</if>
+		<if test='condition.endDate!=null and condition.endDate!=""'>
+			 <![CDATA[
+				and repairs.repairs_time<=str_to_date(#{condition.endDate},'%Y-%m-%d %H:%i:%S')   
+				]]>
+		</if>
+		<if test="condition.repairsId!=null and condition.repairsId!=&quot;&quot;">
+			and
+			repairs.repairs_id=#{condition.repairsId,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.alertsUserId!=null and condition.alertsUserId!=&quot;&quot;">
+			and
+			repairs.alerts_user_id=#{condition.alertsUserId,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.repairsUserId!=null and condition.repairsUserId!=&quot;&quot;">
+			and
+			repairs.repairs_user_id=#{condition.repairsUserId,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.stauts!=null and condition.stauts!=&quot;&quot;">
+			and
+			repairs.stauts=#{condition.stauts,jdbcType=VARCHAR}
+		</if>
+
+	</sql>
+
+	<select id="findCount" resultType="int">
+
+		SELECT COUNT(*)
+
+		<include refid="whereCondition" />
+
+	</select>
+
+	<select id="findList" resultMap="BaseResultMapVo">
+			SELECT 
+    repairs_id,
+    alerts_user_id,
+    users.name alerts_user_name,
+    repairs.department_id,
+    department.department_name,
+    repairs_time,
+    repairs.location_id,
+    location.full_name,
+    tel,
+    repairs_category,
+    d1.name repairs_category_name,
+    sub_category,
+    d2.name sub_category_name,
+    is_sms_alerts,
+    repairs.describtion,
+    repairs.remark,
+    repairs_user_id,
+    u2.name repairs_user_name,
+    repairs.stauts,
+    d3.name stauts_name,
+    accept_time,
+    response_time,
+    accept_user_id,
+    u3.name accept_user_name,
+    fault_category,
+    d4.name fault_category_name,
+    fault_describtion,
+    ic_value,
+    remark2,
+    repairs.create_time
+
+		<include refid="whereCondition" />
+
+		<choose>
+
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+
+				ORDER BY ${orderBy}
+
+			</when>
+
+			<otherwise>
+
+				ORDER BY repairs.create_time
+
+			</otherwise>
+
+		</choose>
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+	<update id="updateByByPrimaryKeyAndRepairsUserId">
+		update repairs set repairs_user_id=#{userId} where repairs_id=#{id}
+	</update>
+</mapper>

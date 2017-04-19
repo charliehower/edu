@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.AssnSubMapper" >
+  <resultMap id="BaseResultMap" type="org.platform.snail.edu.model.AssnSub" >
+    <id column="assn_sub_id" property="assnSubId" jdbcType="VARCHAR" />
+    <result column="assn_id" property="assnId" jdbcType="VARCHAR" />
+    <result column="category_id" property="categoryId" jdbcType="CHAR" />
+    <result column="student_id" property="studentId" jdbcType="VARCHAR" />
+    <result column="student_name" property="studentName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="reg_time" property="regTime" jdbcType="TIMESTAMP" />
+    <result column="auditor" property="auditor" jdbcType="VARCHAR" />
+    <result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="org.platform.snail.edu.model.AssnSub" extends="BaseResultMap" >
+    <result column="deiscri" property="deiscri" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <resultMap id="BaseResultMapVo" type="org.platform.snail.edu.vo.AssnSubVo"
+		extends="ResultMapWithBLOBs">
+		<result column="assn_name" property="assnName" jdbcType="VARCHAR" />
+		<result column="auditor_name" property="auditorName" jdbcType="VARCHAR" />
+		<result column="adviser_name" property="adviserName" jdbcType="VARCHAR" />
+		<result column="classes_name" property="classesName" jdbcType="VARCHAR" />
+	</resultMap>
+  <sql id="Base_Column_List" >
+    assn_sub_id, assn_id, category_id, student_id, student_name, status, reg_time, auditor, 
+    audit_time, create_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    deiscri
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from assn_sub
+    where assn_sub_id = #{assnSubId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from assn_sub
+    where assn_sub_id = #{assnSubId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.platform.snail.edu.model.AssnSub" >
+    insert into assn_sub (assn_sub_id, assn_id, category_id, 
+      student_id, student_name, status, 
+      reg_time, auditor, audit_time, 
+      create_time, deiscri)
+    values (#{assnSubId,jdbcType=VARCHAR}, #{assnId,jdbcType=VARCHAR}, #{categoryId,jdbcType=CHAR}, 
+      #{studentId,jdbcType=VARCHAR}, #{studentName,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, 
+      #{regTime,jdbcType=TIMESTAMP}, #{auditor,jdbcType=VARCHAR}, #{auditTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{deiscri,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.platform.snail.edu.model.AssnSub" >
+    insert into assn_sub
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="assnSubId != null" >
+        assn_sub_id,
+      </if>
+      <if test="assnId != null" >
+        assn_id,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="studentId != null" >
+        student_id,
+      </if>
+      <if test="studentName != null" >
+        student_name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="regTime != null" >
+        reg_time,
+      </if>
+      <if test="auditor != null" >
+        auditor,
+      </if>
+      <if test="auditTime != null" >
+        audit_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="deiscri != null" >
+        deiscri,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="assnSubId != null" >
+        #{assnSubId,jdbcType=VARCHAR},
+      </if>
+      <if test="assnId != null" >
+        #{assnId,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=CHAR},
+      </if>
+      <if test="studentId != null" >
+        #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentName != null" >
+        #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="regTime != null" >
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditor != null" >
+        #{auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="auditTime != null" >
+        #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deiscri != null" >
+        #{deiscri,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.AssnSub" >
+    update assn_sub
+    <set >
+      <if test="assnId != null" >
+        assn_id = #{assnId,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=CHAR},
+      </if>
+      <if test="studentId != null" >
+        student_id = #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentName != null" >
+        student_name = #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="regTime != null" >
+        reg_time = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditor != null" >
+        auditor = #{auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="auditTime != null" >
+        audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deiscri != null" >
+        deiscri = #{deiscri,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where assn_sub_id = #{assnSubId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="org.platform.snail.edu.model.AssnSub" >
+    update assn_sub
+    set assn_id = #{assnId,jdbcType=VARCHAR},
+      category_id = #{categoryId,jdbcType=CHAR},
+      student_id = #{studentId,jdbcType=VARCHAR},
+      student_name = #{studentName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      auditor = #{auditor,jdbcType=VARCHAR},
+      audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      deiscri = #{deiscri,jdbcType=LONGVARCHAR}
+    where assn_sub_id = #{assnSubId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.AssnSub" >
+    update assn_sub
+    set assn_id = #{assnId,jdbcType=VARCHAR},
+      category_id = #{categoryId,jdbcType=CHAR},
+      student_id = #{studentId,jdbcType=VARCHAR},
+      student_name = #{studentName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=CHAR},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      auditor = #{auditor,jdbcType=VARCHAR},
+      audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where assn_sub_id = #{assnSubId,jdbcType=VARCHAR}
+  </update>
+   <sql id="whereCondition">
+		from assn_sub
+		LEFT JOIN
+            student  ON student.student_id = assn_sub.student_id
+		 LEFT JOIN
+            classes a ON student.classes_id = a.classes_id
+                LEFT JOIN
+            grade b ON b.grade_id = a.grade_id
+        LEFT JOIN
+            assn  ON assn.assn_id = assn_sub.assn_id
+         LEFT JOIN
+            users  ON assn.adviser = users.user_id
+		where 0=0
+		<if test="condition.studentName!=null and condition.studentName!=&quot;&quot;">
+			and
+			student.name like
+			concat('%',concat(#{condition.studentName,jdbcType=VARCHAR},'%'))
+
+		</if>
+		<if test="condition.classesId!=null and condition.classesId!=&quot;&quot;">
+			and
+			student.classes_id = #{condition.classesId,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.studentId!=null and condition.studentId!=&quot;&quot;">
+			and
+			student.student_id = #{condition.studentId,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.status!=null and condition.status!=&quot;&quot;">
+			and
+			assn_sub.status = #{condition.status,jdbcType=VARCHAR}
+		</if>
+	</sql>
+	<select id="findCount" resultType="int">
+		SELECT COUNT(*)
+		<include refid="whereCondition" />
+	</select>
+	<select id="findList" resultMap="BaseResultMapVo">
+	
+		SELECT student.student_id,
+		 assn_sub.assn_sub_id,
+    assn.assn_name assn_name,
+    student.name student_name,
+    users.name adviser_name,
+    assn_sub.status,
+    assn_sub.deiscri,
+    assn_sub.create_time,
+    concat(b.grade_name,a.classes_name) classes_name,
+    assn_sub.auditor,
+    assn_sub.audit_time
+    
+		<include refid="whereCondition" />
+		<choose>
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+				ORDER BY ${orderBy}
+			</when>
+			<otherwise>
+				ORDER BY create_time desc
+			</otherwise>
+		</choose>
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+	<update id="updateAuditByPrimaryKey">
+    update assn_sub
+    set 
+      status = #{status,jdbcType=CHAR},
+      auditor = #{auditor,jdbcType=VARCHAR},
+      audit_time = #{auditTime,jdbcType=TIMESTAMP}
+    where assn_sub_id = #{assnSubId,jdbcType=VARCHAR}
+  </update>
+</mapper>

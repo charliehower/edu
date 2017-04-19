@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.HeadmasterMapper" >
+  <resultMap id="BaseResultMap" type="org.platform.snail.edu.model.Headmaster" >
+    <id column="headmaster_id" property="headmasterId" jdbcType="INTEGER" />
+    <result column="year" property="year" jdbcType="VARCHAR" />
+    <result column="classes_id" property="classesId" jdbcType="VARCHAR" />
+    <result column="teacher_id" property="teacherId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    headmaster_id, year, classes_id, teacher_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from headmaster
+    where headmaster_id = #{headmasterId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from headmaster
+    where headmaster_id = #{headmasterId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.platform.snail.edu.model.Headmaster" >
+    insert into headmaster (headmaster_id, year, classes_id, 
+      teacher_id, create_time)
+    values (#{headmasterId,jdbcType=INTEGER}, #{year,jdbcType=VARCHAR}, #{classesId,jdbcType=VARCHAR}, 
+      #{teacherId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.platform.snail.edu.model.Headmaster" >
+    insert into headmaster
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="headmasterId != null" >
+        headmaster_id,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="classesId != null" >
+        classes_id,
+      </if>
+      <if test="teacherId != null" >
+        teacher_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="headmasterId != null" >
+        #{headmasterId,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="classesId != null" >
+        #{classesId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null" >
+        #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.Headmaster" >
+    update headmaster
+    <set >
+      <if test="year != null" >
+        year = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="classesId != null" >
+        classes_id = #{classesId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null" >
+        teacher_id = #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where headmaster_id = #{headmasterId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.Headmaster" >
+    update headmaster
+    set year = #{year,jdbcType=VARCHAR},
+      classes_id = #{classesId,jdbcType=VARCHAR},
+      teacher_id = #{teacherId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where headmaster_id = #{headmasterId,jdbcType=INTEGER}
+  </update>
+  
+  <insert id="saveOrUpdateHeadmaster" parameterType="org.platform.snail.edu.model.Headmaster" >
+		<selectKey keyProperty="c" resultType="java.lang.Long"
+			order="BEFORE">
+			select count(1) as c from headmaster where 
+			classes_id=#{classesId,jdbcType=VARCHAR} and 
+			year = #{year,jdbcType=VARCHAR}
+		</selectKey>
+		<if test="c==0">
+			insert into headmaster (headmaster_id, year, classes_id, 
+      teacher_id, create_time)
+    values (#{headmasterId,jdbcType=INTEGER}, #{year,jdbcType=VARCHAR}, #{classesId,jdbcType=VARCHAR}, 
+      #{teacherId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+		</if>
+		<if test="c==1">
+			
+     update headmaster
+    set 
+      teacher_id = #{teacherId,jdbcType=VARCHAR}
+    where 
+			classes_id=#{classesId,jdbcType=VARCHAR} and  
+			year = #{year,jdbcType=VARCHAR}
+		</if>
+		
+		
+	</insert>
+	
+	 <select id="selectHeadmasterListByYear" resultType="map">
+  SELECT 
+    a.classes_id,
+    d.classes_name,
+    a.teacher_id,
+    b.name
+FROM
+    headmaster a
+        LEFT JOIN
+    teacher b ON a.teacher_id = b.teacher_id
+        LEFT JOIN
+    classes d ON a.classes_id = d.classes_id
+       
+    
+    where a.year=#{year}
+  </select>
+</mapper>

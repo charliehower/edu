@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.QuitMapper" >
+  <resultMap id="BaseResultMap" type="org.platform.snail.edu.model.Quit" >
+    <id column="teacher_id" property="teacherId" jdbcType="VARCHAR" />
+    <result column="instance_id" property="instanceId" jdbcType="VARCHAR" />
+    <result column="quit_time" property="quitTime" jdbcType="DATE" />
+    <result column="quit_category" property="quitCategory" jdbcType="VARCHAR" />
+    <result column="reasion" property="reasion" jdbcType="VARCHAR" />
+    <result column="leader" property="leader" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="cteate_time" property="cteateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+    <resultMap id="BaseResultMap-Teacher" extends="BaseResultMap" type="org.platform.snail.edu.model.Teacher" >
+    <id column="teacher_id" property="teacherId" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="poaf" property="poaf" jdbcType="CHAR" />
+    <result column="eb" property="eb" jdbcType="CHAR" />
+    <result column="major" property="major" jdbcType="VARCHAR" />
+    <result column="gi" property="gi" jdbcType="VARCHAR" />
+    <result column="gt" property="gt" jdbcType="DATE" />
+    <result column="ft_year" property="ftYear" jdbcType="INTEGER" />
+    <result column="w_years" property="wYears" jdbcType="INTEGER" />
+    <result column="entry_time" property="entryTime" jdbcType="VARCHAR" />
+    <result column="tqc_category" property="tqcCategory" jdbcType="CHAR" />
+    <result column="tqc_no" property="tqcNo" jdbcType="VARCHAR" />
+    <result column="soattr" property="soattr" jdbcType="VARCHAR" />
+    <result column="ppt" property="ppt" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="department_id" property="departmentId" jdbcType="VARCHAR" />
+    <result column="grade_id" property="gradeId" jdbcType="VARCHAR" />
+    <result column="classes_taught" property="classesTaught" jdbcType="VARCHAR" />
+    <result column="discipline_id" property="disciplineId" jdbcType="VARCHAR" />
+    <result column="pe" property="pe" jdbcType="VARCHAR" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="domicile" property="domicile" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap extends="BaseResultMap-Teacher" id="BaseResultMapVo"
+		type="org.platform.snail.edu.vo.QuitVo">
+  <result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+  <sql id="Base_Column_List" >
+    teacher_id, instance_id, quit_time, quit_category, reasion, leader, remark, cteate_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from quit
+    where teacher_id = #{teacherId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from quit
+    where teacher_id = #{teacherId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.platform.snail.edu.model.Quit" >
+    insert into quit (teacher_id, instance_id, quit_time, 
+      quit_category, reasion, leader, 
+      remark, cteate_time)
+    values (#{teacherId,jdbcType=VARCHAR}, #{instanceId,jdbcType=VARCHAR}, #{quitTime,jdbcType=DATE}, 
+      #{quitCategory,jdbcType=VARCHAR}, #{reasion,jdbcType=VARCHAR}, #{leader,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{cteateTime,jdbcType=TIMESTAMP});
+       update teacher
+    set 
+     
+      stauts = '4'
+    where teacher_id = #{teacherId,jdbcType=VARCHAR};
+     update users
+    set 
+     
+      stauts = '0'
+    where user_id = #{teacherId,jdbcType=VARCHAR};
+  </insert>
+  <insert id="insertSelective" parameterType="org.platform.snail.edu.model.Quit" >
+    insert into quit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="teacherId != null" >
+        teacher_id,
+      </if>
+      <if test="instanceId != null" >
+        instance_id,
+      </if>
+      <if test="quitTime != null" >
+        quit_time,
+      </if>
+      <if test="quitCategory != null" >
+        quit_category,
+      </if>
+      <if test="reasion != null" >
+        reasion,
+      </if>
+      <if test="leader != null" >
+        leader,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="cteateTime != null" >
+        cteate_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="teacherId != null" >
+        #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="instanceId != null" >
+        #{instanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="quitTime != null" >
+        #{quitTime,jdbcType=DATE},
+      </if>
+      <if test="quitCategory != null" >
+        #{quitCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="reasion != null" >
+        #{reasion,jdbcType=VARCHAR},
+      </if>
+      <if test="leader != null" >
+        #{leader,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="cteateTime != null" >
+        #{cteateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.Quit" >
+    update quit
+    <set >
+      <if test="instanceId != null" >
+        instance_id = #{instanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="quitTime != null" >
+        quit_time = #{quitTime,jdbcType=DATE},
+      </if>
+      <if test="quitCategory != null" >
+        quit_category = #{quitCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="reasion != null" >
+        reasion = #{reasion,jdbcType=VARCHAR},
+      </if>
+      <if test="leader != null" >
+        leader = #{leader,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="cteateTime != null" >
+        cteate_time = #{cteateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where teacher_id = #{teacherId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.Quit" >
+    update quit
+    set instance_id = #{instanceId,jdbcType=VARCHAR},
+      quit_time = #{quitTime,jdbcType=DATE},
+      quit_category = #{quitCategory,jdbcType=VARCHAR},
+      reasion = #{reasion,jdbcType=VARCHAR},
+      leader = #{leader,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      cteate_time = #{cteateTime,jdbcType=TIMESTAMP}
+    where teacher_id = #{teacherId,jdbcType=VARCHAR}
+  </update>
+   <sql id="whereCondition">
+
+		from (select teacher.teacher_id, teacher.category, teacher.name, teacher.sex, teacher.id_card,teacher.entry_time,quit.instance_id,
+		quit.quit_time, quit.quit_category, quit.reasion, quit.leader, quit.cteate_time from teacher left join quit on teacher.teacher_id=quit.teacher_id		
+) teacher where 0=0
+
+ <if test="condition.stauts!=null and condition.stauts==1">
+
+			and teacher.quit_time is null
+
+		</if>
+		<if test="condition.stauts!=null and condition.stauts==2">
+and teacher.quit_time is not null
+
+		</if>
+		<if test="condition.category!=null and condition.category!=&quot;&quot;">
+
+			and
+			teacher.category=#{condition.category,jdbcType=VARCHAR}
+
+		</if>
+
+		<if test="condition.name!=null and condition.name!=&quot;&quot;">
+			and teacher.name like
+			concat(#{condition.name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="condition.teacherId!=null and condition.teacherId!=&quot;&quot;">
+
+			and
+			teacher.teacher_id=#{condition.teacherId,jdbcType=VARCHAR}
+
+		</if>
+	</sql>
+
+	<select id="findCount" resultType="int">
+
+		SELECT COUNT(*)
+
+		<include refid="whereCondition" />
+
+	</select>
+
+	<select id="findList" resultMap="BaseResultMapVo">
+		select
+		teacher.teacher_id, teacher.category, teacher.name, teacher.sex, teacher.id_card,teacher.entry_time,
+		teacher.quit_time, teacher.quit_category, teacher.reasion, teacher.leader, teacher.cteate_time audit_time,teacher.instance_id
+
+		<include refid="whereCondition" />
+
+		<choose>
+
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+
+				ORDER BY ${orderBy}
+
+			</when>
+
+			<otherwise>
+
+				ORDER BY teacher.teacher_id
+
+			</otherwise>
+
+		</choose>
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+	<select id="isExitByTeacherId" resultType="int">
+		select count(1) from quit where teacher_id=#{teacherId}
+	</select>
+	
+</mapper>

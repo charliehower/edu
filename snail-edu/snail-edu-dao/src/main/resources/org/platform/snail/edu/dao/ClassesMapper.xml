@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.ClassesMapper" >
+  <resultMap id="BaseResultMap" type="org.platform.snail.edu.model.Classes" >
+    <id column="classes_id" property="classesId" jdbcType="VARCHAR" />
+    <result column="grade_id" property="gradeId" jdbcType="VARCHAR" />
+    <result column="classes_name" property="classesName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+   <resultMap extends="BaseResultMap" id="BaseResultMapVo"
+		type="org.platform.snail.edu.vo.ClassesVo">
+<result column="grade_name" property="gradeName" jdbcType="VARCHAR" />
+	</resultMap>
+  <sql id="Base_Column_List" >
+    classes_id, grade_id, classes_name, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from classes
+    where classes_id = #{classesId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from classes
+    where classes_id = #{classesId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.platform.snail.edu.model.Classes" >
+    insert into classes (classes_id, grade_id, classes_name, 
+      create_time)
+    values (#{classesId,jdbcType=VARCHAR}, #{gradeId,jdbcType=VARCHAR}, #{classesName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.platform.snail.edu.model.Classes" >
+    insert into classes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="classesId != null" >
+        classes_id,
+      </if>
+      <if test="gradeId != null" >
+        grade_id,
+      </if>
+      <if test="classesName != null" >
+        classes_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="classesId != null" >
+        #{classesId,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeId != null" >
+        #{gradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="classesName != null" >
+        #{classesName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.Classes" >
+    update classes
+    <set >
+      <if test="gradeId != null" >
+        grade_id = #{gradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="classesName != null" >
+        classes_name = #{classesName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where classes_id = #{classesId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.Classes" >
+    update classes
+    set grade_id = #{gradeId,jdbcType=VARCHAR},
+      classes_name = #{classesName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where classes_id = #{classesId,jdbcType=VARCHAR}
+  </update>
+  <sql id="whereCondition">
+
+		from classes left join grade on classes.grade_id=grade.grade_id where 0=0
+
+		<if test="condition.gradeId!=null and condition.gradeId!=&quot;&quot;">
+
+			and
+			classes.grade_id=#{condition.gradeId,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.classesName!=null and condition.classesName!=&quot;&quot;">
+
+			and
+			classes.classes_name like concat(#{condition.classesName,jdbcType=VARCHAR},'%')
+		</if>
+
+	</sql>
+
+	<select id="findCount" resultType="int">
+
+		SELECT COUNT(*)
+
+		<include refid="whereCondition" />
+
+	</select>
+
+	<select id="findList" resultMap="BaseResultMapVo">
+		select
+		classes.classes_id, classes.grade_id, classes.classes_name, classes.create_time,
+		grade.grade_name
+
+		<include refid="whereCondition" />
+
+		<choose>
+
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+
+				ORDER BY ${orderBy}
+
+			</when>
+
+			<otherwise>
+
+				ORDER BY classes.classes_id
+
+			</otherwise>
+
+		</choose>
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+	<select id="isExitByName" resultType="int">
+		select count(*) from
+		classes where classes_name=#{name}
+	</select>
+</mapper>

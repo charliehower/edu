@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.DutyMapper">
+	<resultMap id="BaseResultMap" type="org.platform.snail.edu.model.Duty">
+		<id column="duty_id" property="dutyId" jdbcType="VARCHAR" />
+		<result column="duty_start" property="dutyStart" jdbcType="DATE" />
+		<result column="duty_end" property="dutyEnd" jdbcType="DATE" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		duty_id, duty_start, duty_end, remark, create_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from duty
+		where duty_id = #{dutyId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+	delete from duty_detail where duty_id = #{dutyId,jdbcType=VARCHAR};
+		delete from duty
+		where duty_id = #{dutyId,jdbcType=VARCHAR};
+		
+	</delete>
+	<insert id="insert" parameterType="org.platform.snail.edu.model.Duty">
+		insert into duty (duty_id,
+		duty_start, duty_end,
+		remark, create_time)
+		values
+		(#{dutyId,jdbcType=VARCHAR}, #{dutyStart,jdbcType=DATE},
+		#{dutyEnd,jdbcType=DATE},
+		#{remark,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="org.platform.snail.edu.model.Duty">
+		insert into duty
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="dutyId != null">
+				duty_id,
+			</if>
+			<if test="dutyStart != null">
+				duty_start,
+			</if>
+			<if test="dutyEnd != null">
+				duty_end,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="dutyId != null">
+				#{dutyId,jdbcType=VARCHAR},
+			</if>
+			<if test="dutyStart != null">
+				#{dutyStart,jdbcType=DATE},
+			</if>
+			<if test="dutyEnd != null">
+				#{dutyEnd,jdbcType=DATE},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.Duty">
+		update duty
+		<set>
+			<if test="dutyStart != null">
+				duty_start = #{dutyStart,jdbcType=DATE},
+			</if>
+			<if test="dutyEnd != null">
+				duty_end = #{dutyEnd,jdbcType=DATE},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where duty_id = #{dutyId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.Duty">
+		update duty
+		set
+		duty_start = #{dutyStart,jdbcType=DATE},
+		duty_end =
+		#{dutyEnd,jdbcType=DATE},
+		remark = #{remark,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP}
+		where duty_id =
+		#{dutyId,jdbcType=VARCHAR}
+	</update>
+	<select id="selectTeacherListByNames" resultType="map">
+
+		select TEACHER_ID,NAME,TEL from teacher
+
+		<where>
+
+			name in
+
+			<foreach collection="names" item="item" index="index" open="("
+
+				separator="," close=")">'${item}'</foreach>
+
+		</where>
+
+		and stauts in(1,2,3)
+
+	</select>
+	<insert id="batchInsert">
+		<foreach collection="list" item="item" index="index">
+			insert into duty (duty_id, duty_start, duty_end,
+			remark, create_time)
+			values (#{item.dutyId,jdbcType=VARCHAR}, #{item.dutyStart,jdbcType=DATE},
+			#{item.dutyEnd,jdbcType=DATE},
+			#{item.remark,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP});
+			<foreach collection="item.list" item="o" index="index">
+				insert into duty_detail (duty_detail_id, duty_id, teacher_id,
+				tel, create_time, category
+				)
+				values (#{o.dutyDetailId,jdbcType=INTEGER}, #{o.dutyId,jdbcType=VARCHAR},
+				#{o.teacherId,jdbcType=VARCHAR},
+				#{o.tel,jdbcType=VARCHAR}, #{o.createTime,jdbcType=TIMESTAMP}, #{o.category,jdbcType=CHAR}
+				);
+			</foreach>
+		</foreach>
+	</insert>
+	<sql id="whereCondition">
+
+		FROM
+    (SELECT 
+        a.duty_id,
+            a.duty_start,
+            a.duty_end,
+            GROUP_CONCAT(b.name) name1
+    FROM
+        duty a
+    INNER JOIN (SELECT 
+        teacher.name, duty_detail.duty_id
+    FROM
+        duty_detail
+    INNER JOIN teacher ON duty_detail.teacher_id = teacher.teacher_id
+        AND duty_detail.CATEGORY = '1') b ON a.duty_id = b.duty_id
+        <if test="condition.dateTime!=null and condition.dateTime!=&quot;&quot;">
+		 <![CDATA[
+					and a.duty_start >=str_to_date(#{condition.dateTime},'%Y-%m-%d %H:%i:%S')  
+					and a.duty_end <=str_to_date(#{condition.dateTime},'%Y-%m-%d %H:%i:%S')  
+		]]>
+		</if>
+    GROUP BY a.duty_id , a.duty_start , a.duty_end) m
+        INNER JOIN
+    (SELECT 
+        a.duty_id, GROUP_CONCAT(b.name) name2
+    FROM
+        duty a
+    INNER JOIN (SELECT 
+        teacher.name, duty_detail.duty_id
+    FROM
+        duty_detail
+    INNER JOIN teacher ON duty_detail.teacher_id = teacher.teacher_id
+        AND duty_detail.CATEGORY = '1') b ON a.duty_id = b.duty_id
+        <if test="condition.dateTime!=null and condition.dateTime!=&quot;&quot;">
+		 <![CDATA[
+					and a.duty_start >=str_to_date(#{condition.dateTime},'%Y-%m-%d %H:%i:%S')  
+					and a.duty_end <=str_to_date(#{condition.dateTime},'%Y-%m-%d %H:%i:%S')  
+		]]>
+		</if>
+    GROUP BY a.duty_id) n ON m.duty_id = n.duty_id
+		
+
+		
+
+	</sql>
+
+	<select id="findCount" resultType="int">
+
+		SELECT COUNT(*)
+
+		 from duty a where 0=0
+<if test="condition.dateTime!=null and condition.dateTime!=&quot;&quot;">
+		 <![CDATA[
+					and a.duty_start >=str_to_date(#{condition.dateTime},'%Y-%m-%d %H:%i:%S')  
+					and a.duty_end <=str_to_date(#{condition.dateTime},'%Y-%m-%d %H:%i:%S')  
+		]]>
+		</if>
+	</select>
+
+	<select id="findList" resultType="map">
+		SELECT 
+    m.duty_id, m.duty_start, m.duty_end, m.name1, n.name2
+		<include refid="whereCondition" />
+		<choose>
+
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+
+				ORDER BY ${orderBy}
+
+			</when>
+
+			<otherwise>
+
+				ORDER BY duty_start desc
+
+			</otherwise>
+
+		</choose>
+		
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+</mapper>

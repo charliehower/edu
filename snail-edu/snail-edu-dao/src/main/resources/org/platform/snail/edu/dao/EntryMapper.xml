@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.EntryMapper" >
+  <resultMap id="BaseResultMap" type="org.platform.snail.edu.model.Entry" >
+    <id column="teacher_id" property="teacherId" jdbcType="VARCHAR" />
+    <result column="entery_time" property="enteryTime" jdbcType="DATE" />
+    <result column="department_id" property="departmentId" jdbcType="VARCHAR" />
+    <result column="classes_taught" property="classesTaught" jdbcType="VARCHAR" />
+    <result column="grade_id" property="gradeId" jdbcType="VARCHAR" />
+    <result column="discipline_id" property="disciplineId" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="opertor" property="opertor" jdbcType="VARCHAR" />
+    <result column="cteate_time" property="cteateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="BaseResultMap-Teacher" extends="BaseResultMap" type="org.platform.snail.edu.model.Teacher" >
+    <id column="teacher_id" property="teacherId" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="poaf" property="poaf" jdbcType="CHAR" />
+    <result column="eb" property="eb" jdbcType="CHAR" />
+    <result column="major" property="major" jdbcType="VARCHAR" />
+    <result column="gi" property="gi" jdbcType="VARCHAR" />
+    <result column="gt" property="gt" jdbcType="DATE" />
+    <result column="ft_year" property="ftYear" jdbcType="INTEGER" />
+    <result column="w_years" property="wYears" jdbcType="INTEGER" />
+    <result column="entry_time" property="entryTime" jdbcType="VARCHAR" />
+    <result column="tqc_category" property="tqcCategory" jdbcType="CHAR" />
+    <result column="tqc_no" property="tqcNo" jdbcType="VARCHAR" />
+    <result column="soattr" property="soattr" jdbcType="VARCHAR" />
+    <result column="ppt" property="ppt" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="department_id" property="departmentId" jdbcType="VARCHAR" />
+    <result column="grade_id" property="gradeId" jdbcType="VARCHAR" />
+    <result column="classes_taught" property="classesTaught" jdbcType="VARCHAR" />
+    <result column="discipline_id" property="disciplineId" jdbcType="VARCHAR" />
+    <result column="pe" property="pe" jdbcType="VARCHAR" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="domicile" property="domicile" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap extends="BaseResultMap-Teacher" id="BaseResultMapVo"
+		type="org.platform.snail.edu.vo.EntryVo">
+
+	</resultMap>
+  <sql id="Base_Column_List" >
+    teacher_id, entery_time, department_id, classes_taught, grade_id, discipline_id, 
+    position, remark, opertor, cteate_time
+  </sql>
+  <sql id="Base_Column_List_Teacher" >
+    teacher_id, category, name, sex, id_card, poaf, eb, major, gi, gt, ft_year, w_years, 
+    entry_time, tqc_category, tqc_no, soattr, ppt, position, department_id, grade_id, 
+    classes_taught, discipline_id, pe, photo, address, domicile, tel, email, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from entry
+    where teacher_id = #{teacherId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from entry
+    where teacher_id = #{teacherId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.platform.snail.edu.model.Entry" >
+    insert into entry (teacher_id, entery_time, department_id, 
+      classes_taught, grade_id, discipline_id, 
+      position, remark, opertor, 
+      cteate_time)
+    values (#{teacherId,jdbcType=VARCHAR}, #{enteryTime,jdbcType=DATE}, #{departmentId,jdbcType=VARCHAR}, 
+      #{classesTaught,jdbcType=VARCHAR}, #{gradeId,jdbcType=VARCHAR}, #{disciplineId,jdbcType=VARCHAR}, 
+      #{position,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{opertor,jdbcType=VARCHAR}, 
+      #{cteateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.platform.snail.edu.model.Entry" >
+    insert into entry
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="teacherId != null" >
+        teacher_id,
+      </if>
+      <if test="enteryTime != null" >
+        entery_time,
+      </if>
+      <if test="departmentId != null" >
+        department_id,
+      </if>
+      <if test="classesTaught != null" >
+        classes_taught,
+      </if>
+      <if test="gradeId != null" >
+        grade_id,
+      </if>
+      <if test="disciplineId != null" >
+        discipline_id,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="opertor != null" >
+        opertor,
+      </if>
+      <if test="cteateTime != null" >
+        cteate_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="teacherId != null" >
+        #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="enteryTime != null" >
+        #{enteryTime,jdbcType=DATE},
+      </if>
+      <if test="departmentId != null" >
+        #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="classesTaught != null" >
+        #{classesTaught,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeId != null" >
+        #{gradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="disciplineId != null" >
+        #{disciplineId,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="opertor != null" >
+        #{opertor,jdbcType=VARCHAR},
+      </if>
+      <if test="cteateTime != null" >
+        #{cteateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.Entry" >
+    update entry
+    <set >
+      <if test="enteryTime != null" >
+        entery_time = #{enteryTime,jdbcType=DATE},
+      </if>
+      <if test="departmentId != null" >
+        department_id = #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="classesTaught != null" >
+        classes_taught = #{classesTaught,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeId != null" >
+        grade_id = #{gradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="disciplineId != null" >
+        discipline_id = #{disciplineId,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="opertor != null" >
+        opertor = #{opertor,jdbcType=VARCHAR},
+      </if>
+      <if test="cteateTime != null" >
+        cteate_time = #{cteateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where teacher_id = #{teacherId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.Entry" >
+    update entry
+    set entery_time = #{enteryTime,jdbcType=DATE},
+      department_id = #{departmentId,jdbcType=VARCHAR},
+      classes_taught = #{classesTaught,jdbcType=VARCHAR},
+      grade_id = #{gradeId,jdbcType=VARCHAR},
+      discipline_id = #{disciplineId,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      opertor = #{opertor,jdbcType=VARCHAR},
+      cteate_time = #{cteateTime,jdbcType=TIMESTAMP}
+    where teacher_id = #{teacherId,jdbcType=VARCHAR}
+  </update>
+   <sql id="whereCondition">
+
+		from teacher where 0=0
+
+		<if test="condition.category!=null and condition.category!=&quot;&quot;">
+
+			and
+			teacher.category=#{condition.category,jdbcType=VARCHAR}
+
+		</if>
+
+		<if test="condition.name!=null and condition.name!=&quot;&quot;">
+			and teacher.name like
+			concat(#{condition.name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="condition.teacherId!=null and condition.teacherId!=&quot;&quot;">
+
+			and
+			teacher.teacher_id=#{condition.teacherId,jdbcType=VARCHAR}
+
+		</if>
+		
+		<if test="condition.stauts!=null and condition.stauts==1">
+
+			AND 
+    NOT EXISTS( SELECT 
+            b.teacher_id
+        FROM
+            entry b
+        WHERE
+            teacher.teacher_id = b.teacher_id)
+
+		</if>
+		<if test="condition.stauts!=null and condition.stauts==2">
+
+			AND 
+     EXISTS( SELECT 
+            b.teacher_id
+        FROM
+            entry b
+        WHERE
+            teacher.teacher_id = b.teacher_id)
+
+		</if>
+
+	</sql>
+
+	<select id="findCount" resultType="int">
+
+		SELECT COUNT(*)
+
+		<include refid="whereCondition" />
+
+	</select>
+
+	<select id="findList" resultMap="BaseResultMapVo">
+		select
+		<include refid="Base_Column_List_Teacher" />
+
+		<include refid="whereCondition" />
+
+		<choose>
+
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+
+				ORDER BY ${orderBy}
+
+			</when>
+
+			<otherwise>
+
+				ORDER BY teacher_id
+
+			</otherwise>
+
+		</choose>
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+	<insert id="saveOrUpdateEntry" parameterType="org.platform.snail.edu.model.Entry" >
+		<selectKey keyProperty="c" resultType="java.lang.Long"
+			order="BEFORE">
+			select count(1) as c from entry where
+			teacher_id=#{teacherId,jdbcType=VARCHAR}
+		</selectKey>
+		<if test="c==0">
+			insert into entry (teacher_id, entery_time, department_id, 
+		      classes_taught, grade_id, discipline_id, 
+		      position, remark, opertor, 
+		      cteate_time)
+		    values (#{teacherId,jdbcType=VARCHAR}, #{enteryTime,jdbcType=DATE}, #{departmentId,jdbcType=VARCHAR}, 
+		      #{classesTaught,jdbcType=VARCHAR}, #{gradeId,jdbcType=VARCHAR}, #{disciplineId,jdbcType=VARCHAR}, 
+		      #{position,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{opertor,jdbcType=VARCHAR}, 
+		      #{cteateTime,jdbcType=TIMESTAMP});
+			<include refid="update_teacher" />
+		</if>
+		<if test="c==1">
+			 update entry
+    set entery_time = #{enteryTime,jdbcType=DATE},
+      department_id = #{departmentId,jdbcType=VARCHAR},
+      classes_taught = #{classesTaught,jdbcType=VARCHAR},
+      grade_id = #{gradeId,jdbcType=VARCHAR},
+      discipline_id = #{disciplineId,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      opertor = #{opertor,jdbcType=VARCHAR}
+    where teacher_id = #{teacherId,jdbcType=VARCHAR};
+<include refid="update_teacher" />
+		</if>
+		
+		
+	</insert>
+	  <sql id="update_teacher">
+  update teacher
+    set 
+      department_id = #{departmentId,jdbcType=VARCHAR},
+      grade_id = #{gradeId,jdbcType=VARCHAR},
+      classes_taught = #{classesTaught,jdbcType=VARCHAR},
+      discipline_id = #{disciplineId,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      stauts = '1'
+    where teacher_id = #{teacherId,jdbcType=VARCHAR};
+  </sql>
+</mapper>

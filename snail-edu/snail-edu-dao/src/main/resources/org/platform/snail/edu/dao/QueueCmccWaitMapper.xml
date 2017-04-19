@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.QueueCmccWaitMapper" >
+ 
+  <insert id="insert" parameterType="org.platform.snail.edu.model.QueueCmccWait" >
+    insert into queue_cmcc_wait (queue_id, tel, name, 
+      msg, create_time)
+    values (#{queueId,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{msg,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  
+</mapper>

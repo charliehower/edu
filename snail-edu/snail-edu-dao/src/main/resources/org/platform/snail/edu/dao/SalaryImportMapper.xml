@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.SalaryImportMapper" >
+  <resultMap id="BaseResultMap" type="org.platform.snail.edu.model.SalaryImport" >
+    <id column="salary_import_id" property="salaryImportId" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="VARCHAR" />
+    <result column="year" property="year" jdbcType="VARCHAR" />
+    <result column="month" property="month" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="BaseResultMapVo" type="org.platform.snail.edu.vo.SalaryImportVo" >
+    
+    <result column="name" property="name" jdbcType="VARCHAR" />
+   
+  </resultMap>
+  <sql id="Base_Column_List" >
+    salary_import_id, category, year, month, title, user_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from salary_import
+    where salary_import_id = #{salaryImportId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from salary_import
+    where salary_import_id = #{salaryImportId,jdbcType=VARCHAR};
+    delete from salarya where salary_import_id = #{salaryImportId,jdbcType=VARCHAR};
+    delete from salaryb where salary_import_id = #{salaryImportId,jdbcType=VARCHAR};
+    delete from salaryc where salary_import_id = #{salaryImportId,jdbcType=VARCHAR};
+  </delete>
+  <insert id="insert" parameterType="org.platform.snail.edu.model.SalaryImport" >
+    insert into salary_import (salary_import_id, category, year, 
+      month, title, user_id, 
+      create_time)
+    values (#{salaryImportId,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, #{year,jdbcType=VARCHAR}, 
+      #{month,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.platform.snail.edu.model.SalaryImport" >
+    insert into salary_import
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="salaryImportId != null" >
+        salary_import_id,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="salaryImportId != null" >
+        #{salaryImportId,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.SalaryImport" >
+    update salary_import
+    <set >
+      <if test="category != null" >
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        month = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where salary_import_id = #{salaryImportId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.SalaryImport" >
+    update salary_import
+    set category = #{category,jdbcType=VARCHAR},
+      year = #{year,jdbcType=VARCHAR},
+      month = #{month,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where salary_import_id = #{salaryImportId,jdbcType=VARCHAR}
+  </update>
+  
+  <sql id="whereCondition">
+ 
+FROM
+    salary_import t
+        LEFT JOIN
+    users s ON t.user_id = s.user_id where 0=0
+		<if test="condition.year!=null and condition.year!=&quot;&quot;">
+			and t.year=#{condition.year}
+		</if>
+ 		<if test="condition.month!=null and condition.month!=&quot;&quot;">
+			and t.month=#{condition.month}
+		</if>
+		<if test="condition.category!=null and condition.category!=&quot;&quot;">
+			and t.category=#{condition.category}
+		</if>
+
+	</sql>
+
+	<select id="findCount" resultType="int">
+SELECT COUNT(*)
+
+		<include refid="whereCondition" />
+
+	</select>
+
+	<select id="findList" resultMap="BaseResultMapVo">
+		SELECT 
+       salary_import_id,
+    category,
+    year,
+    month,
+    title,
+    t.user_id,
+    t.create_time,
+    s.name
+		<include refid="whereCondition" />
+		<choose>
+
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+
+				ORDER BY ${orderBy}
+
+			</when>
+
+			<otherwise>
+
+				ORDER BY create_time desc
+
+			</otherwise>
+
+		</choose>
+		
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+	<select id="isExitBySalaryImportId" resultType="int">
+
+		SELECT COUNT(*)
+
+		from salary_import where salary_import_id=#{salaryImportId}
+
+	</select>
+	 <select id="findListAll" resultType="map">
+  select salary_import_id, category, year, month, title, user_id, create_time,
+  (CASE
+        WHEN category = 'b' THEN '正式职工'
+        
+         WHEN category = 'c' THEN '正式职工新'
+         
+        ELSE '临聘职工'
+    END) category_name
+   from salary_import
+WHERE
+    0 = 0
+     <if test="condition.year!=null and condition.year!=&quot;&quot;">
+			and salary_import.year=#{condition.year}
+		</if>
+ 		<if test="condition.month!=null and condition.month!=&quot;&quot;">
+			and salary_import.month=#{condition.month}
+		</if>
+		<if test="condition.salaryImportId!=null and condition.salaryImportId!=&quot;&quot;">
+			and salary_import.salary_import_id=#{condition.salaryImportId}
+		</if>
+		<choose>
+			<when test="condition.category!=null and condition.category!=&quot;&quot;">
+				and salary_import.category='a'
+			</when>
+			<otherwise>
+				and salary_import.category in('b','c')
+			</otherwise>
+		</choose>
+		
+	order by cast(salary_import.year as unsigned int) desc,cast(salary_import.month as unsigned int) desc	
+<!--     order by create_time desc -->
+  </select>
+  <update id="updateTeacherCategoryByNameList">
+  UPDATE teacher 
+SET 
+    category = '3'
+WHERE
+    name IN (SELECT 
+            姓名
+        FROM
+            salarya
+        WHERE
+            salary_import_id = #{salaryImportId})
+  </update>
+</mapper>

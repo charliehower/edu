@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.TaskCmccMapper" >
+  <resultMap id="BaseResultMap" type="org.platform.snail.edu.model.TaskCmcc" >
+    <id column="task_id" property="taskId" jdbcType="VARCHAR" />
+    <result column="task_name" property="taskName" jdbcType="VARCHAR" />
+    <result column="msg" property="msg" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="complete_time" property="completeTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="org.platform.snail.edu.model.TaskCmcc" extends="BaseResultMap" >
+    <result column="tel" property="tel" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    task_id, task_name, msg, create_time, create_user_id, status, complete_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    tel
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from task_cmcc
+    where task_id = #{taskId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from task_cmcc
+    where task_id = #{taskId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="org.platform.snail.edu.model.TaskCmcc" >
+    insert into task_cmcc (task_id, task_name, msg, 
+      create_time, create_user_id, status, 
+      complete_time, tel)
+    values (#{taskId,jdbcType=VARCHAR}, #{taskName,jdbcType=VARCHAR}, #{msg,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{completeTime,jdbcType=VARCHAR}, #{tel,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="org.platform.snail.edu.model.TaskCmcc" >
+    insert into task_cmcc
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="taskId != null" >
+        task_id,
+      </if>
+      <if test="taskName != null" >
+        task_name,
+      </if>
+      <if test="msg != null" >
+        msg,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="completeTime != null" >
+        complete_time,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="taskId != null" >
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskName != null" >
+        #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="msg != null" >
+        #{msg,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="completeTime != null" >
+        #{completeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.TaskCmcc" >
+    update task_cmcc
+    <set >
+      <if test="taskName != null" >
+        task_name = #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="msg != null" >
+        msg = #{msg,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="completeTime != null" >
+        complete_time = #{completeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where task_id = #{taskId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="org.platform.snail.edu.model.TaskCmcc" >
+    update task_cmcc
+    set task_name = #{taskName,jdbcType=VARCHAR},
+      msg = #{msg,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      complete_time = #{completeTime,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=LONGVARCHAR}
+    where task_id = #{taskId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.TaskCmcc" >
+    update task_cmcc
+    set task_name = #{taskName,jdbcType=VARCHAR},
+      msg = #{msg,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      complete_time = #{completeTime,jdbcType=VARCHAR}
+    where task_id = #{taskId,jdbcType=VARCHAR}
+  </update>
+</mapper>

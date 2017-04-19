@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.TeamGradeMapper" >
+  <resultMap id="BaseResultMap" type="org.platform.snail.edu.model.TeamGrade" >
+    <id column="team_grade_id" property="teamGradeId" jdbcType="INTEGER" />
+    <result column="year" property="year" jdbcType="VARCHAR" />
+    <result column="grade_id" property="gradeId" jdbcType="VARCHAR" />
+    <result column="teacher_id" property="teacherId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    team_grade_id, year, grade_id, teacher_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from team_grade
+    where team_grade_id = #{teamGradeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from team_grade
+    where team_grade_id = #{teamGradeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.platform.snail.edu.model.TeamGrade" >
+    insert into team_grade (team_grade_id, year, grade_id, 
+      teacher_id, create_time)
+    values (#{teamGradeId,jdbcType=INTEGER}, #{year,jdbcType=VARCHAR}, #{gradeId,jdbcType=VARCHAR}, 
+      #{teacherId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.platform.snail.edu.model.TeamGrade" >
+    insert into team_grade
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="teamGradeId != null" >
+        team_grade_id,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="gradeId != null" >
+        grade_id,
+      </if>
+      <if test="teacherId != null" >
+        teacher_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="teamGradeId != null" >
+        #{teamGradeId,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeId != null" >
+        #{gradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null" >
+        #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.TeamGrade" >
+    update team_grade
+    <set >
+      <if test="year != null" >
+        year = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeId != null" >
+        grade_id = #{gradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null" >
+        teacher_id = #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where team_grade_id = #{teamGradeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.TeamGrade" >
+    update team_grade
+    set year = #{year,jdbcType=VARCHAR},
+      grade_id = #{gradeId,jdbcType=VARCHAR},
+      teacher_id = #{teacherId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where team_grade_id = #{teamGradeId,jdbcType=INTEGER}
+  </update>
+  <insert id="saveOrUpdateTeamGrade" parameterType="org.platform.snail.edu.model.TeamGrade" >
+		<selectKey keyProperty="c" resultType="java.lang.Long"
+			order="BEFORE">
+			select count(1) as c from team_grade where 
+			 year = #{year,jdbcType=VARCHAR} and  grade_id = #{gradeId,jdbcType=VARCHAR}
+		</selectKey>
+		<if test="c==0">
+			insert into team_grade ( year, 
+      grade_id, teacher_id, create_time
+      )
+    values ( #{year,jdbcType=VARCHAR},
+      #{gradeId,jdbcType=VARCHAR}, #{teacherId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+		</if>
+		<if test="c==1">
+			update team_grade
+    set 
+      teacher_id = #{teacherId,jdbcType=VARCHAR}
+     
+    where grade_id = #{gradeId,jdbcType=VARCHAR}
+			and year = #{year,jdbcType=VARCHAR}
+		</if>
+		
+		
+	</insert>
+	
+	 <select id="selectTeamGradeListByYear" resultType="map">
+  SELECT 
+    a.teacher_id,
+    b.name,
+    c.grade_id,
+    c.grade_name
+FROM
+    team_grade a
+        LEFT JOIN
+    teacher b ON a.teacher_id = b.teacher_id
+        LEFT JOIN
+    grade c ON a.grade_id = c.grade_id
+    where a.year=#{year}
+  </select>
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.report.Leave">
+	<select id="query" resultType="map">
+		SELECT
+		a.name ,t.dates
+		FROM
+		(
+		SELECT
+		t.category_id,
+		sum(t.leave_dates) dates
+		FROM
+		`leave` t
+		WHERE t.status='1'
+		<if test="condition.userId!=null and condition.userId!=&quot;&quot;">
+			and
+			t.leave_user_id=#{condition.userId,jdbcType=VARCHAR}
+		</if>
+
+		<if test="condition.startDate!=null and condition.startDate!=&quot;&quot;">
+			<![CDATA[
+			AND t.time_start >= str_to_date(#{condition.startDate},'%Y-%m-%d')
+			]]>
+		</if>
+		<if test="condition.endDate!=null and condition.endDate!=&quot;&quot;">
+			<![CDATA[
+			AND
+				t.time_start <=str_to_date(#{condition.endDate},'%Y-%m-%d')
+			]]>
+		</if>
+		GROUP BY
+		t.category_id
+		) t
+		LEFT JOIN (
+		SELECT
+		CODE,
+		NAME
+		FROM
+		dict
+		WHERE
+		category_id
+		= '28'
+		) a ON t.category_id = a.`code`
+
+	</select>
+</mapper>

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.DocFlowTaskMapper">
+	<resultMap id="BaseResultMap" type="org.platform.snail.edu.model.DocFlowTask">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="pid" property="pid" jdbcType="VARCHAR" />
+		<result column="doc_flow_id" property="docFlowId" jdbcType="VARCHAR" />
+		<result column="pi_status" property="piStatus" jdbcType="VARCHAR" />
+		<result column="pi_content" property="piContent" jdbcType="VARCHAR" />
+		<result column="pi_date" property="piDate" jdbcType="TIMESTAMP" />
+		<result column="pi_user" property="piUser" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="BaseResultMapVo" type="org.platform.snail.edu.vo.DocFlowTaskVo"
+		extends="BaseResultMap">
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="doc_dept" property="docDept" jdbcType="VARCHAR" />
+		<result column="doc_date" property="docDate" jdbcType="VARCHAR" />
+		<result column="doc_no" property="docNo" jdbcType="VARCHAR" />
+		<result column="native_no" property="nativeNo" jdbcType="VARCHAR" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="deploy_date" property="deployDate" jdbcType="VARCHAR" />
+		<result column="deploy_user" property="deployUser" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		doc_flow_task.id, doc_flow_task.pid,
+		doc_flow_task.doc_flow_id,
+		doc_flow_task.pi_status,
+		doc_flow_task.pi_content,
+		doc_flow_task.pi_date, doc_flow_task.pi_user,
+		doc_flow_task.create_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from doc_flow_task
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		doc_flow_task
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="org.platform.snail.edu.model.DocFlowTask">
+		insert into doc_flow_task (id,
+		pid, doc_flow_id,
+		pi_status, pi_content, pi_date,
+		pi_user, create_time)
+		values (#{id,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR},
+		#{docFlowId,jdbcType=VARCHAR},
+		#{piStatus,jdbcType=VARCHAR},
+		#{piContent,jdbcType=VARCHAR}, #{piDate,jdbcType=TIMESTAMP},
+		#{piUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+	</insert>
+	<update id="updateDocFlowForStatusById">
+		update doc_flow set status=#{status,jdbcType=VARCHAR}
+		where id=#{id}
+	</update>
+	<insert id="insertSelective" parameterType="org.platform.snail.edu.model.DocFlowTask">
+		insert into doc_flow_task
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="pid != null">
+				pid,
+			</if>
+			<if test="docFlowId != null">
+				doc_flow_id,
+			</if>
+			<if test="piStatus != null">
+				pi_status,
+			</if>
+			<if test="piContent != null">
+				pi_content,
+			</if>
+			<if test="piDate != null">
+				pi_date,
+			</if>
+			<if test="piUser != null">
+				pi_user,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				#{pid,jdbcType=VARCHAR},
+			</if>
+			<if test="docFlowId != null">
+				#{docFlowId,jdbcType=VARCHAR},
+			</if>
+			<if test="piStatus != null">
+				#{piStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="piContent != null">
+				#{piContent,jdbcType=VARCHAR},
+			</if>
+			<if test="piDate != null">
+				#{piDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="piUser != null">
+				#{piUser,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.DocFlowTask">
+		update doc_flow_task
+		<set>
+			<if test="pid != null">
+				pid = #{pid,jdbcType=VARCHAR},
+			</if>
+			<if test="docFlowId != null">
+				doc_flow_id = #{docFlowId,jdbcType=VARCHAR},
+			</if>
+			<if test="piStatus != null">
+				pi_status = #{piStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="piContent != null">
+				pi_content = #{piContent,jdbcType=VARCHAR},
+			</if>
+			<if test="piDate != null">
+				pi_date = #{piDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="piUser != null">
+				pi_user = #{piUser,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.DocFlowTask">
+		update
+		doc_flow_task
+		set pid = #{pid,jdbcType=VARCHAR},
+		doc_flow_id =
+		#{docFlowId,jdbcType=VARCHAR},
+		pi_status =
+		#{piStatus,jdbcType=VARCHAR},
+		pi_content =
+		#{piContent,jdbcType=VARCHAR},
+		pi_date = #{piDate,jdbcType=TIMESTAMP},
+		pi_user = #{piUser,jdbcType=VARCHAR},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<select id="isExit" resultType="int">
+		select count(*) from
+		doc_flow_task
+		where id=#{id}
+	</select>
+	<sql id="whereCondition">
+		from doc_flow_task left join department on
+		doc_flow_task.pi_user=department.department_id
+		left join users on
+		department.user_id=users.user_id
+		left join doc_flow on
+		doc_flow_task.doc_flow_id=doc_flow.id
+		inner join (select
+		a.DEPARTMENT_ID from DEPARTMENT a where a.USER_ID =
+		#{condition.piUser}) s on doc_flow_task.pi_user=s.DEPARTMENT_ID
+		where
+		0=0
+
+		<if test="condition.docFlowId!=null and condition.docFlowId!=&quot;&quot;">
+			and
+			doc_flow_task.doc_flow_id=#{condition.docFlowId,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.piStatus!=null and condition.piStatus!=&quot;&quot;">
+			and
+			doc_flow_task.pi_status=#{condition.piStatus,jdbcType=VARCHAR}
+		</if>
+	</sql>
+	<select id="findCount" resultType="int">
+		SELECT COUNT(*)
+		<include refid="whereCondition" />
+	</select>
+	<select id="findList" resultMap="BaseResultMapVo">
+		SELECT
+		<include refid="Base_Column_List" />
+		,users.name,doc_flow.doc_dept, doc_flow.doc_date, doc_flow.doc_no,
+		doc_flow.native_no, doc_flow.title,
+		doc_flow.deploy_date,
+		doc_flow.deploy_user
+		<include refid="whereCondition" />
+		<choose>
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+				ORDER BY ${doc_flow_task.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY doc_flow_task.create_time desc
+			</otherwise>
+		</choose>
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+	<select id="selectMyDeptIds" resultType="map">
+		SELECT DEPARTMENT_ID
+		FROM portal.department where PARENT_DEPARTMENT_ID=#{id}
+	</select>
+	<update id="updateEndTaskByPrimaryKey">
+		update doc_flow_task
+		set
+		pi_status = '1'
+		where id =
+		#{id,jdbcType=VARCHAR}
+	</update>
+	<select id="selectTaskListByDocFlowId" resultMap="BaseResultMapVo">
+		SELECT
+		doc_flow_task.id, doc_flow_task.pid, doc_flow_task.doc_flow_id,
+		doc_flow_task.pi_status, doc_flow_task.pi_content,
+		doc_flow_task.pi_date, doc_flow_task.pi_user,
+		doc_flow_task.create_time,users.name
+		from doc_flow_task left join
+		department on
+		doc_flow_task.pi_user=department.department_id
+		left join
+		users on department.user_id=users.user_id
+		where
+		doc_flow_task.doc_flow_id = #{docFlowId,jdbcType=VARCHAR}
+		ORDER BY
+		doc_flow_task.create_time desc
+	</select>
+	<select id="selectTaskTreeListByPid" resultType="map">
+	 	<![CDATA[
+  select doc_flow_task.ID,
+       doc_flow_task.PID,
+       concat(department.department_name,' ',users.name,' ',doc_flow_task.pi_date) TEXT,
+	'closed' STATE,
+       doc_flow_task.pi_content SRC,
+       '' ICON,
+       '' HREF,
+       (select cast(count(*) as char)
+          from doc_flow_task a
+         where a.pid = doc_flow_task.id) CHILD_COUNT
+  from doc_flow_task
+  left join department on
+		doc_flow_task.pi_user=department.department_id
+		left join users on department.user_id=users.user_id
+   where  doc_flow_task.doc_flow_id=#{docFlowId} and  doc_flow_task.pid=#{pid} order by doc_flow_task.create_time
+   
+  ]]>
+	</select>
+	<select id="selectUserByDeptId" resultType="map">
+	select
+	t.DEPARTMENT_NAME deptName,t.USER_ID userId,a.name userName from department t left join users a on 
+	
+	t.user_id=a.user_id
+	 where
+	t.DEPARTMENT_ID=#{deptId}
+	</select>
+</mapper>

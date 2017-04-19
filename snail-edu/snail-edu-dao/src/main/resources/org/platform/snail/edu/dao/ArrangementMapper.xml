@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.ArrangementMapper" >
+  <resultMap id="BaseResultMap" type="org.platform.snail.edu.model.Arrangement" >
+    <id column="arrangement_id" property="arrangementId" jdbcType="INTEGER" />
+    <result column="year" property="year" jdbcType="VARCHAR" />
+    <result column="grade_id" property="gradeId" jdbcType="VARCHAR" />
+    <result column="classes_id" property="classesId" jdbcType="VARCHAR" />
+    <result column="discipline_id" property="disciplineId" jdbcType="VARCHAR" />
+    <result column="teacher_id" property="teacherId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    arrangement_id, year, grade_id, classes_id, discipline_id, teacher_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from arrangement
+    where arrangement_id = #{arrangementId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from arrangement
+    where arrangement_id = #{arrangementId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.platform.snail.edu.model.Arrangement" >
+    insert into arrangement (arrangement_id, year, grade_id, 
+      classes_id, discipline_id, teacher_id, 
+      create_time)
+    values (#{arrangementId,jdbcType=INTEGER}, #{year,jdbcType=VARCHAR}, #{gradeId,jdbcType=VARCHAR}, 
+      #{classesId,jdbcType=VARCHAR}, #{disciplineId,jdbcType=VARCHAR}, #{teacherId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.platform.snail.edu.model.Arrangement" >
+    insert into arrangement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="arrangementId != null" >
+        arrangement_id,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="gradeId != null" >
+        grade_id,
+      </if>
+      <if test="classesId != null" >
+        classes_id,
+      </if>
+      <if test="disciplineId != null" >
+        discipline_id,
+      </if>
+      <if test="teacherId != null" >
+        teacher_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="arrangementId != null" >
+        #{arrangementId,jdbcType=INTEGER},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeId != null" >
+        #{gradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="classesId != null" >
+        #{classesId,jdbcType=VARCHAR},
+      </if>
+      <if test="disciplineId != null" >
+        #{disciplineId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null" >
+        #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.Arrangement" >
+    update arrangement
+    <set >
+      <if test="year != null" >
+        year = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeId != null" >
+        grade_id = #{gradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="classesId != null" >
+        classes_id = #{classesId,jdbcType=VARCHAR},
+      </if>
+      <if test="disciplineId != null" >
+        discipline_id = #{disciplineId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null" >
+        teacher_id = #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where arrangement_id = #{arrangementId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.Arrangement" >
+    update arrangement
+    set year = #{year,jdbcType=VARCHAR},
+      grade_id = #{gradeId,jdbcType=VARCHAR},
+      classes_id = #{classesId,jdbcType=VARCHAR},
+      discipline_id = #{disciplineId,jdbcType=VARCHAR},
+      teacher_id = #{teacherId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where arrangement_id = #{arrangementId,jdbcType=INTEGER}
+  </update>
+  <select id="selectArrListByYear" resultType="map">
+  SELECT 
+    a.grade_id,
+    e.grade_name,
+    a.classes_id,
+    d.classes_name,
+    a.discipline_id,
+    c.discipline_name,
+    a.teacher_id,
+    b.name
+FROM
+    arrangement a
+        LEFT JOIN
+    teacher b ON a.teacher_id = b.teacher_id
+        LEFT JOIN
+    discipline c ON a.discipline_id = c.discipline_id
+        LEFT JOIN
+    classes d ON a.classes_id = d.classes_id
+        LEFT JOIN
+    grade e ON a.grade_id = e.grade_id
+    
+    where a.year=#{year}
+  </select>
+  <select id="selectAllDisciplineList" resultType="map">
+  select    
+    * from discipline order by discipline_id
+  </select>
+  <select id="selectAllGradeList" resultType="map">
+  select    
+    * from grade order by grade_id
+  </select>
+  <select id="selectClassesListByGradeId" resultType="map">
+  select    
+    a.grade_id,a.classes_id,a.classes_name,b.grade_name from classes a left join grade b on a.grade_id=b.grade_id
+    
+    where a.grade_id=#{gradeId}
+  </select>
+  <insert id="saveOrUpdateArrangement" parameterType="org.platform.snail.edu.model.Arrangement" >
+		<selectKey keyProperty="c" resultType="java.lang.Long"
+			order="BEFORE">
+			select count(1) as c from arrangement where  grade_id = #{gradeId,jdbcType=VARCHAR} and 
+			classes_id=#{classesId,jdbcType=VARCHAR} and  discipline_id = #{disciplineId,jdbcType=VARCHAR} and 
+			year = #{year,jdbcType=VARCHAR}
+		</selectKey>
+		<if test="c==0">
+			insert into arrangement (arrangement_id, year, grade_id, 
+      classes_id, discipline_id, teacher_id, 
+      create_time)
+    values (#{arrangementId,jdbcType=INTEGER}, #{year,jdbcType=VARCHAR}, #{gradeId,jdbcType=VARCHAR}, 
+      #{classesId,jdbcType=VARCHAR}, #{disciplineId,jdbcType=VARCHAR}, #{teacherId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+		</if>
+		<if test="c==1">
+			update arrangement
+    set 
+      teacher_id = #{teacherId,jdbcType=VARCHAR}
+    where grade_id = #{gradeId,jdbcType=VARCHAR} and 
+			classes_id=#{classesId,jdbcType=VARCHAR} and  discipline_id = #{disciplineId,jdbcType=VARCHAR} and 
+			year = #{year,jdbcType=VARCHAR}
+		</if>
+	</insert>
+</mapper>

@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.platform.snail.edu.dao.AssnMapper">
+	<resultMap id="BaseResultMap" type="org.platform.snail.edu.model.Assn">
+		<id column="assn_id" property="assnId" jdbcType="VARCHAR" />
+		<result column="category_id" property="categoryId" jdbcType="VARCHAR" />
+		<result column="assn_name" property="assnName" jdbcType="VARCHAR" />
+		<result column="years" property="years" jdbcType="VARCHAR" />
+		<result column="adviser" property="adviser" jdbcType="VARCHAR" />
+		<result column="limit_max" property="limitMax" jdbcType="INTEGER" />
+		<result column="reg_deadline" property="regDeadline" jdbcType="TIMESTAMP" />
+		<result column="reg_start_date" property="regStartDate"
+			jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="CHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="BaseResultMapVo" type="org.platform.snail.edu.vo.AssnVo"
+		extends="ResultMapWithBLOBs">
+		<result column="adviser_name" property="adviserName" jdbcType="LONGVARCHAR" />
+		<result column="category_name" property="categoryName" jdbcType="LONGVARCHAR" />
+		<result column="chief_name" property="chiefName" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="org.platform.snail.edu.model.Assn"
+		extends="BaseResultMap">
+		<result column="discri" property="discri" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		assn_id, assn_name, years, adviser, limit_max,
+		reg_deadline, reg_start_date,
+		status,
+		create_time
+	</sql>
+	<sql id="Blob_Column_List">
+		discri
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMapVo"
+		parameterType="java.lang.String">
+		select
+		users.name adviser_name,
+		dict.name category_name,
+		assn.assn_id,
+		assn.category_id,
+		assn.assn_name,
+		assn.years,
+		assn.discri,
+		assn.adviser,
+		assn.limit_max,
+		assn.reg_deadline,
+		assn.reg_start_date,
+		assn.status,
+		assn.create_time
+		from assn
+		left join users on assn.adviser=users.user_id
+		left join (select * from dict where category_id='40') dict on assn.category_id=dict.code
+		where assn_id = #{assnId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from assn
+		where assn_id = #{assnId,jdbcType=VARCHAR};
+		delete from assn_sub where
+		assn_id = #{assnId,jdbcType=VARCHAR};
+	</delete>
+	<insert id="insert" parameterType="org.platform.snail.edu.model.Assn">
+		insert into assn (assn_id,category_id,
+		assn_name, years,
+		adviser, limit_max, reg_deadline,
+		reg_start_date,
+		status, create_time,
+		discri)
+		values (#{assnId,jdbcType=VARCHAR},#{categoryId,jdbcType=VARCHAR},
+		#{assnName,jdbcType=VARCHAR},
+		#{years,jdbcType=VARCHAR},
+		#{adviser,jdbcType=VARCHAR}, #{limitMax,jdbcType=INTEGER},
+		#{regDeadline,jdbcType=TIMESTAMP},
+		#{regStartDate,jdbcType=TIMESTAMP},
+		#{status,jdbcType=CHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{discri,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="org.platform.snail.edu.model.Assn">
+		insert into assn
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="assnId != null">
+				assn_id,
+			</if>
+			<if test="assnName != null">
+				assn_name,
+			</if>
+			<if test="years != null">
+				years,
+			</if>
+			<if test="adviser != null">
+				adviser,
+			</if>
+			<if test="limitMax != null">
+				limit_max,
+			</if>
+			<if test="regDeadline != null">
+				reg_deadline,
+			</if>
+			<if test="regStartDate != null">
+				reg_start_date,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="discri != null">
+				discri,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="assnId != null">
+				#{assnId,jdbcType=VARCHAR},
+			</if>
+			<if test="assnName != null">
+				#{assnName,jdbcType=VARCHAR},
+			</if>
+			<if test="years != null">
+				#{years,jdbcType=VARCHAR},
+			</if>
+			<if test="adviser != null">
+				#{adviser,jdbcType=VARCHAR},
+			</if>
+			<if test="limitMax != null">
+				#{limitMax,jdbcType=INTEGER},
+			</if>
+			<if test="regDeadline != null">
+				#{regDeadline,jdbcType=DATE},
+			</if>
+			<if test="regStartDate != null">
+				#{regStartDate,jdbcType=DATE},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="discri != null">
+				#{discri,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="org.platform.snail.edu.model.Assn">
+		update assn
+		<set>
+			<if test="assnName != null">
+				assn_name = #{assnName,jdbcType=VARCHAR},
+			</if>
+			<if test="years != null">
+				years = #{years,jdbcType=VARCHAR},
+			</if>
+			<if test="adviser != null">
+				adviser = #{adviser,jdbcType=VARCHAR},
+			</if>
+			<if test="limitMax != null">
+				limit_max = #{limitMax,jdbcType=INTEGER},
+			</if>
+			<if test="regDeadline != null">
+				reg_deadline = #{regDeadline,jdbcType=DATE},
+			</if>
+			<if test="regStartDate != null">
+				reg_start_date = #{regStartDate,jdbcType=DATE},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=CHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="discri != null">
+				discri = #{discri,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where assn_id = #{assnId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="org.platform.snail.edu.model.Assn">
+		update
+		assn
+		set assn_name = #{assnName,jdbcType=VARCHAR},
+		category_id =
+		#{categoryId,jdbcType=VARCHAR},
+		years =
+		#{years,jdbcType=VARCHAR},
+		adviser = #{adviser,jdbcType=VARCHAR},
+		limit_max = #{limitMax,jdbcType=INTEGER},
+		reg_deadline =
+		#{regDeadline,jdbcType=TIMESTAMP},
+		reg_start_date =
+		#{regStartDate,jdbcType=TIMESTAMP},
+
+		discri =
+		#{discri,jdbcType=LONGVARCHAR}
+		where assn_id =
+		#{assnId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="org.platform.snail.edu.model.Assn">
+		update assn
+		set
+		assn_name = #{assnName,jdbcType=VARCHAR},
+		category_id =
+		#{categoryId,jdbcType=VARCHAR},
+		years =
+		#{years,jdbcType=VARCHAR},
+		adviser = #{adviser,jdbcType=VARCHAR},
+		discri =
+		#{discri,jdbcType=LONGVARCHAR},
+		limit_max =
+		#{limitMax,jdbcType=INTEGER},
+		reg_deadline =
+		#{regDeadline,jdbcType=TIMESTAMP},
+		reg_start_date =
+		#{regStartDate,jdbcType=TIMESTAMP}
+		where assn_id =
+		#{assnId,jdbcType=VARCHAR}
+	</update>
+	<select id="isExitByRecord" resultType="int">
+		select count(*) from
+		assn
+		where assn_name=#{assnName}
+	</select>
+	<sql id="whereCondition">
+		from assn
+		left join users on assn.adviser=users.user_id
+		where 0=0
+		<if test="condition.assnName!=null and condition.assnName!=&quot;&quot;">
+			and
+			assn_name like
+			concat('%',concat(#{condition.assnName,jdbcType=VARCHAR},'%'))
+
+		</if>
+		<if test="condition.years!=null and condition.years!=&quot;&quot;">
+			and
+			years = #{condition.years,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.assnId!=null and condition.assnId!=&quot;&quot;">
+			and
+			assn_id = #{condition.assnId,jdbcType=VARCHAR}
+		</if>
+		<if test="condition.categoryId!=null and condition.categoryId!=&quot;&quot;">
+			and
+			category_id = #{condition.categoryId,jdbcType=VARCHAR}
+		</if>
+	</sql>
+	<select id="findCount" resultType="int">
+		SELECT COUNT(*)
+		<include refid="whereCondition" />
+	</select>
+	<select id="findList" resultMap="BaseResultMapVo">
+		SELECT 
+    users.name adviser_name,
+    (SELECT 
+            GROUP_CONCAT(CONCAT(b.grade_name,
+                            CONCAT(a.classes_name, student.name)))
+        FROM
+            assn_sub
+                LEFT JOIN
+            student ON assn_sub.student_id = student.student_id
+                LEFT JOIN
+            classes a ON student.classes_id = a.classes_id
+                LEFT JOIN
+            grade b ON b.grade_id = a.grade_id
+        WHERE
+            assn_id = assn.assn_id
+                AND assn_sub.category_id = '0' and assn_sub.status='1') chief_name,
+    assn.assn_id,
+    assn.category_id,
+    assn.assn_name,
+    assn.years,
+    assn.discri,
+    assn.adviser,
+    assn.limit_max,
+    assn.reg_deadline,
+    assn.reg_start_date,
+    assn.status,
+    assn.create_time
+		<include refid="whereCondition" />
+		<choose>
+			<when test="orderBy!=null and orderBy!=&quot;&quot;">
+				ORDER BY ${orderBy}
+			</when>
+			<otherwise>
+				ORDER BY create_time desc
+			</otherwise>
+		</choose>
+		limit #{start,jdbcType=DECIMAL}, #{limit,jdbcType=DECIMAL}
+	</select>
+
+	<insert id="insertAssnSub">
+	
+		INSERT INTO assn_sub
+		(assn_sub_id,
+		assn_id,
+		category_id,
+		student_id,
+		student_name,
+		deiscri,
+		status,
+		reg_time,
+		auditor,
+		audit_time,
+		create_time)
+		VALUES
+		(#{assnSubId},
+		#{assnId},
+		#{categoryId},
+		#{studentId},
+		#{studentName},
+		null,
+		'1',
+		now(),
+		#{auditor},
+		now(),
+		now())
+	</insert>
+	<insert id="insertAssnSubReg">
+	delete from assn_sub where student_id=#{studentId} and status='0';
+		INSERT INTO assn_sub
+		(assn_sub_id,
+		assn_id,
+		category_id,
+		student_id,
+		student_name,
+		deiscri,
+		status,
+		reg_time,
+		auditor,
+		audit_time,
+		create_time)
+		VALUES
+		(#{assnSubId},
+		#{assnId},
+		'1',
+		#{studentId},
+		#{studentName},
+		#{deiscri},
+		'0',
+		now(),
+		null,
+		now(),
+		now());
+	</insert>
+	<delete id="deleteSubByAssnId">
+	delete from assn_sub where assn_id=#{assnId} and category_id=#{categoryId};
+	</delete>
+	<select id="isLoadMaxLimit" resultType="int">
+		select count(*) from
+		assn_sub
+		where assn_id=#{assnId} 
+	</select>
+	<select id="selectAssnSubByAssnId" resultType="map">
+		SELECT
+		assn_sub.student_id,
+		assn_sub.category_id,
+		ifnull(student.name,assn_sub.student_name) name,
+		assn_sub.status,
+		assn_sub.reg_time
+		FROM
+		assn_sub
+		LEFT JOIN
+		student ON assn_sub.student_id =
+		student.student_id
+		WHERE
+		assn_sub.assn_id = #{assnId}
+	</select>	
+	
+	<select id="selectAssnCategory" resultType="map">
+		SELECT
+		code,name from dict
+		WHERE
+		category_id = #{id} order by code 
+	</select>
+	
+	<select id="isReg" resultType="int">
+		select count(*) from
+		assn_sub
+		where student_id=#{studentId} and status='1'
+	</select>
+</mapper>
