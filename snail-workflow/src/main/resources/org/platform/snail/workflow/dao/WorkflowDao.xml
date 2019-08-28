@@ -55,7 +55,7 @@ open="(" separator="," close=")">#{item}</foreach>
 		
 	</select>
 	<sql id="whereCondition">
-		FROM jbpmdb.jbpm4_hist_procinst b,jbpmdb.jbpm4_deployprop c,portal.users d
+		FROM jbpmdb.jbpm4_hist_procinst b,jbpmdb.jbpm4_deployprop c,edu.users d
 ,(select distinct(f.ASSIGNEE_) ASSIGNEE_,EXECUTION_  from jbpmdb.jbpm4_hist_task f where f.ASSIGNEE_=#{condition.userId}) e
 where 
 b.procdefid_=c.STRINGVAL_ 

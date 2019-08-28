@@ -267,7 +267,7 @@
 			u2. NAME
 		FROM
 			jbpmdb.jbpm4_hist_task t
-		LEFT JOIN portal.users u2 ON t.ASSIGNEE_ = u2.user_id
+		LEFT JOIN edu.users u2 ON t.ASSIGNEE_ = u2.user_id
 		WHERE
 			t.EXECUTION_ = a.EXECUTION_ID_
 		ORDER BY

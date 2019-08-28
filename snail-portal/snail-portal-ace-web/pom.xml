@@ -12,7 +12,7 @@
   <packaging>war</packaging>
   <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.tomcat.path>/portal</maven.tomcat.path>
+		<maven.tomcat.path>/oa</maven.tomcat.path>
 		<maven.tomcat.port>8092</maven.tomcat.port>
 	</properties>
   <dependencies>

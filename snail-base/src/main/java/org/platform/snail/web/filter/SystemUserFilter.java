@@ -58,9 +58,9 @@ public class SystemUserFilter implements Filter {
 		org.springframework.web.context.WebApplicationContext webApplicationContext = org.springframework.web.context.support.WebApplicationContextUtils
 				.getRequiredWebApplicationContext(servletContext);
 		portalContextPath = cfg.getServletContext().getInitParameter(
-				portalContextPathKey);
+				"portal.contextPath");
 		if (portalContextPath == null) {
-			portalContextPath = "/portal";
+			portalContextPath = "/oa";
 		}
 		if (this.systemService == null) {
 			this.systemService = (SystemService) webApplicationContext

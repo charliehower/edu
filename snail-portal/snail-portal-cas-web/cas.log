@@ -1,0 +1,1579 @@
+2017-05-05 10:41:19,194 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 10:41:20,766 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Starting Quartz Scheduler now
+2017-05-05 10:41:20,782 INFO [org.platform.snail.web.filter.GzipFilter] - init GzipFilter
+2017-05-05 10:41:20,947 INFO [org.platform.snail.service.impl.SystemServiceImpl] - {sys_start_date=2016-08-28, sys_name=校园管理信息化系统V1.0, cyear=2016-2017, sys_login_bg_img=/portal/content/image/login-bg.png, sys_unit=坪山高级中学}
+2017-05-05 10:41:20,948 INFO [org.platform.snail.service.impl.SystemServiceImpl] - loadConfig cfg complete
+2017-05-05 10:41:20,950 INFO [org.platform.snail.web.filter.SystemUserFilter] - init systemUserFilter for params portal.contextPath :/portal
+2017-05-05 10:41:34,286 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Beginning ticket cleanup.
+2017-05-05 10:41:34,288 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - 0 tickets found to be removed.
+2017-05-05 10:41:34,288 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Finished ticket cleanup.
+2017-05-05 10:43:19,376 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 10:43:19,381 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 10:44:44,003 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/portal
+2017-05-05 10:44:44,685 INFO [org.jasig.cas.web.flow.InitialFlowSetupAction] - Setting path for cookies to: /cas/
+2017-05-05 10:44:44,685 INFO [org.jasig.cas.web.flow.InitialFlowSetupAction] - Setting path for cookies to: /cas/
+2017-05-05 10:44:44,850 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: http://127.0.0.1/portal/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_NOT_CREATED
+APPLICATION: CAS
+WHEN: Fri May 05 10:44:44 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 10:44:52,837 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-05-05 10:44:52,839 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-05-05 10:44:52,838 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-05-05 10:44:52,838 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-05-05 10:44:52,837 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-05-05 10:44:52,846 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-05-05 10:44:52,863 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-05-05 10:44:53,192 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-05-05 10:44:56,461 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-05-05 10:45:00,762 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler failed to authenticate [username: admin]
+2017-05-05 10:45:00,767 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: supplied credentials: [username: admin]
+ACTION: AUTHENTICATION_FAILED
+APPLICATION: CAS
+WHEN: Fri May 05 10:45:00 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 10:45:00,771 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: error.authentication.credentials.bad
+ACTION: TICKET_GRANTING_TICKET_NOT_CREATED
+APPLICATION: CAS
+WHEN: Fri May 05 10:45:00 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 10:45:01,262 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-05-05 10:45:07,189 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler successfully authenticated [username: admin]
+2017-05-05 10:45:07,240 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - Resolved principal admin
+2017-05-05 10:45:07,241 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - Principal found: admin
+2017-05-05 10:45:07,245 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: supplied credentials: [username: admin]
+ACTION: AUTHENTICATION_SUCCESS
+APPLICATION: CAS
+WHEN: Fri May 05 10:45:07 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 10:45:07,259 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: TGT-1-11LodbhCFtf3vvgs4p07llVYlnnaFRDvhMIupPxMwXlIeeKEND-cas01.example.org
+ACTION: TICKET_GRANTING_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Fri May 05 10:45:07 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 10:45:07,262 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: TGT-1-ioSt7lWII6FraeJ0RqTvYQIeo2shaQMzRHYvdb1xhScIcjOsac-cas01.example.org
+ACTION: TICKET_GRANTING_TICKET_DESTROYED
+APPLICATION: CAS
+WHEN: Fri May 05 10:45:07 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 10:45:07,290 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - Granted service ticket [ST-1-pb4W2S2WLu2s696rsgFT-cas01.example.org] for service [http://127.0.0.1/portal/j_spring_cas_security_check] for user [admin]
+2017-05-05 10:45:07,292 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: admin
+WHAT: ST-1-pb4W2S2WLu2s696rsgFT-cas01.example.org for http://127.0.0.1/portal/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Fri May 05 10:45:07 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 10:45:07,529 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/portal
+2017-05-05 10:45:07,558 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: ST-1-pb4W2S2WLu2s696rsgFT-cas01.example.org
+ACTION: SERVICE_TICKET_VALIDATED
+APPLICATION: CAS
+WHEN: Fri May 05 10:45:07 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 10:45:16,243 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/portal
+2017-05-05 10:45:16,310 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - Granted service ticket [ST-2-P4s9bpELbMhxRZ0bwxUx-cas01.example.org] for service [http://127.0.0.1/workflow/j_spring_cas_security_check] for user [admin]
+2017-05-05 10:45:16,312 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: admin
+WHAT: ST-2-P4s9bpELbMhxRZ0bwxUx-cas01.example.org for http://127.0.0.1/workflow/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Fri May 05 10:45:16 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 10:45:16,408 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/portal
+2017-05-05 10:45:16,414 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: ST-2-P4s9bpELbMhxRZ0bwxUx-cas01.example.org
+ACTION: SERVICE_TICKET_VALIDATED
+APPLICATION: CAS
+WHEN: Fri May 05 10:45:16 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 10:45:19,255 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 10:45:19,262 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 10:45:21,940 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/portal
+2017-05-05 10:45:21,981 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - Granted service ticket [ST-3-mv2Qez7QUMWoMosmkwTg-cas01.example.org] for service [http://127.0.0.1/edu/j_spring_cas_security_check] for user [admin]
+2017-05-05 10:45:21,983 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: admin
+WHAT: ST-3-mv2Qez7QUMWoMosmkwTg-cas01.example.org for http://127.0.0.1/edu/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Fri May 05 10:45:21 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 10:45:22,338 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/portal
+2017-05-05 10:45:22,341 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: ST-3-mv2Qez7QUMWoMosmkwTg-cas01.example.org
+ACTION: SERVICE_TICKET_VALIDATED
+APPLICATION: CAS
+WHEN: Fri May 05 10:45:22 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 10:45:23,260 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - Granted service ticket [ST-4-MDiTuag4XwwkG6LWvCsE-cas01.example.org] for service [http://127.0.0.1/edu/j_spring_cas_security_check] for user [admin]
+2017-05-05 10:45:23,264 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: admin
+WHAT: ST-4-MDiTuag4XwwkG6LWvCsE-cas01.example.org for http://127.0.0.1/edu/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Fri May 05 10:45:23 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 10:45:23,356 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - Granted service ticket [ST-5-dclHhn09uDrIdPl72vTu-cas01.example.org] for service [http://127.0.0.1/edu/j_spring_cas_security_check] for user [admin]
+2017-05-05 10:45:23,359 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: admin
+WHAT: ST-5-dclHhn09uDrIdPl72vTu-cas01.example.org for http://127.0.0.1/edu/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Fri May 05 10:45:23 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 10:45:23,424 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - Granted service ticket [ST-6-KuISbyFE5ChXVLZPkusW-cas01.example.org] for service [http://127.0.0.1/edu/j_spring_cas_security_check] for user [admin]
+2017-05-05 10:45:23,425 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: admin
+WHAT: ST-6-KuISbyFE5ChXVLZPkusW-cas01.example.org for http://127.0.0.1/edu/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Fri May 05 10:45:23 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 10:45:23,477 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/portal
+2017-05-05 10:45:23,480 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/portal
+2017-05-05 10:45:23,478 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/portal
+2017-05-05 10:45:23,485 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: ST-6-KuISbyFE5ChXVLZPkusW-cas01.example.org
+ACTION: SERVICE_TICKET_VALIDATED
+APPLICATION: CAS
+WHEN: Fri May 05 10:45:23 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 10:45:23,486 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: ST-5-dclHhn09uDrIdPl72vTu-cas01.example.org
+ACTION: SERVICE_TICKET_VALIDATED
+APPLICATION: CAS
+WHEN: Fri May 05 10:45:23 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 10:45:23,489 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: ST-4-MDiTuag4XwwkG6LWvCsE-cas01.example.org
+ACTION: SERVICE_TICKET_VALIDATED
+APPLICATION: CAS
+WHEN: Fri May 05 10:45:23 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 10:47:19,254 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 10:47:19,258 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 10:49:19,250 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 10:49:19,254 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 10:51:19,263 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 10:51:19,274 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 11:18:18,450 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 11:18:19,675 ERROR [org.jasig.cas.web.init.SafeContextLoaderListener] - SafeContextLoaderListener: 
+The Spring ContextLoaderListener we wrap threw on contextInitialized.
+But for our having caught this error, the web application context would not have initialized.
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'centralAuthenticationService' defined in ServletContext resource [/WEB-INF/spring-configuration/applicationContext.xml]: Cannot resolve reference to bean 'authenticationManager' while setting bean property 'authenticationManager'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'authenticationManager' defined in ServletContext resource [/WEB-INF/deployerConfigContext.xml]: Cannot create inner bean 'org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler#2eb60c71' of type [org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler] while setting bean property 'authenticationHandlers' with key [1]; nested exception is org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler] for bean with name 'org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler#2eb60c71' defined in ServletContext resource [/WEB-INF/deployerConfigContext.xml]; nested exception is java.lang.ClassNotFoundException: org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:328)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:106)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1360)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1118)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:585)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:913)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:464)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:385)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:284)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:111)
+	at org.jasig.cas.web.init.SafeContextLoaderListener.contextInitialized_aroundBody0(SafeContextLoaderListener.java:75)
+	at org.jasig.cas.web.init.SafeContextLoaderListener.contextInitialized_aroundBody1$advice(SafeContextLoaderListener.java:57)
+	at org.jasig.cas.web.init.SafeContextLoaderListener.contextInitialized(SafeContextLoaderListener.java:1)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4135)
+	at org.apache.catalina.core.StandardContext.start(StandardContext.java:4630)
+	at org.apache.catalina.core.ContainerBase.start(ContainerBase.java:1045)
+	at org.apache.catalina.core.StandardHost.start(StandardHost.java:785)
+	at org.apache.catalina.core.ContainerBase.start(ContainerBase.java:1045)
+	at org.apache.catalina.core.StandardEngine.start(StandardEngine.java:445)
+	at org.apache.catalina.startup.Embedded.start(Embedded.java:825)
+	at org.codehaus.mojo.tomcat.AbstractRunMojo.startContainer(AbstractRunMojo.java:558)
+	at org.codehaus.mojo.tomcat.AbstractRunMojo.execute(AbstractRunMojo.java:255)
+	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:134)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:207)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:153)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:145)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:116)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:80)
+	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:51)
+	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:307)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:193)
+	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:106)
+	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:863)
+	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:288)
+	at org.apache.maven.cli.MavenCli.main(MavenCli.java:199)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:289)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:229)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:415)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:356)
+	at org.codehaus.classworlds.Launcher.main(Launcher.java:47)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'authenticationManager' defined in ServletContext resource [/WEB-INF/deployerConfigContext.xml]: Cannot create inner bean 'org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler#2eb60c71' of type [org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler] while setting bean property 'authenticationHandlers' with key [1]; nested exception is org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler] for bean with name 'org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler#2eb60c71' defined in ServletContext resource [/WEB-INF/deployerConfigContext.xml]; nested exception is java.lang.ClassNotFoundException: org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveInnerBean(BeanDefinitionValueResolver.java:281)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:120)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveManagedList(BeanDefinitionValueResolver.java:353)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:153)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1360)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1118)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:517)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:322)
+	... 50 more
+Caused by: org.springframework.beans.factory.CannotLoadBeanClassException: Cannot find class [org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler] for bean with name 'org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler#2eb60c71' defined in ServletContext resource [/WEB-INF/deployerConfigContext.xml]; nested exception is java.lang.ClassNotFoundException: org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1262)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:433)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveInnerBean(BeanDefinitionValueResolver.java:270)
+	... 62 more
+Caused by: java.lang.ClassNotFoundException: org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1645)
+	at org.apache.catalina.loader.WebappClassLoader.loadClass(WebappClassLoader.java:1491)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:258)
+	at org.springframework.beans.factory.support.AbstractBeanDefinition.resolveBeanClass(AbstractBeanDefinition.java:417)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doResolveBeanClass(AbstractBeanFactory.java:1283)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveBeanClass(AbstractBeanFactory.java:1254)
+	... 64 more
+2017-05-05 11:18:19,765 INFO [org.platform.snail.web.filter.GzipFilter] - init GzipFilter
+2017-05-05 11:28:43,337 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 11:28:44,389 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Starting Quartz Scheduler now
+2017-05-05 11:28:44,405 INFO [org.platform.snail.web.filter.GzipFilter] - init GzipFilter
+2017-05-05 11:28:44,587 INFO [org.platform.snail.service.impl.SystemServiceImpl] - {sys_start_date=2016-08-28, sys_name=校园管理信息化系统V1.0, cyear=2016-2017, sys_login_bg_img=/portal/content/image/login-bg.png, sys_unit=坪山高级中学}
+2017-05-05 11:28:44,587 INFO [org.platform.snail.service.impl.SystemServiceImpl] - loadConfig cfg complete
+2017-05-05 11:28:44,590 INFO [org.platform.snail.web.filter.SystemUserFilter] - init systemUserFilter for params portal.contextPath :/portal
+2017-05-05 11:28:50,888 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/portal
+2017-05-05 11:28:51,175 INFO [org.jasig.cas.web.flow.InitialFlowSetupAction] - Setting path for cookies to: /cas/
+2017-05-05 11:28:51,175 INFO [org.jasig.cas.web.flow.InitialFlowSetupAction] - Setting path for cookies to: /cas/
+2017-05-05 11:28:51,236 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: http://127.0.0.1/oa/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_NOT_CREATED
+APPLICATION: CAS
+WHEN: Fri May 05 11:28:51 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 11:28:57,404 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-05-05 11:28:57,404 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-05-05 11:28:57,409 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-05-05 11:28:57,413 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-05-05 11:28:57,416 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-05-05 11:28:57,433 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-05-05 11:28:57,435 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-05-05 11:28:57,750 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-05-05 11:28:59,332 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Beginning ticket cleanup.
+2017-05-05 11:28:59,339 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - 0 tickets found to be removed.
+2017-05-05 11:28:59,339 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Finished ticket cleanup.
+2017-05-05 11:29:02,111 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-05-05 11:29:12,772 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler successfully authenticated [username: admin]
+2017-05-05 11:29:12,815 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - Resolved principal admin
+2017-05-05 11:29:12,816 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - Principal found: admin
+2017-05-05 11:29:12,822 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: supplied credentials: [username: admin]
+ACTION: AUTHENTICATION_SUCCESS
+APPLICATION: CAS
+WHEN: Fri May 05 11:29:12 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 11:29:12,835 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: TGT-1-yV4moOtcBo4Xg7gPgFdcThMxtubREMp0LEeBPDc9eU3QisYakJ-cas01.example.org
+ACTION: TICKET_GRANTING_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Fri May 05 11:29:12 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 11:29:12,843 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: TGT-1-11LodbhCFtf3vvgs4p07llVYlnnaFRDvhMIupPxMwXlIeeKEND-cas01.example.org
+ACTION: TICKET_GRANTING_TICKET_DESTROYED
+APPLICATION: CAS
+WHEN: Fri May 05 11:29:12 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 11:29:12,849 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - Granted service ticket [ST-1-vpIljbYaBUIEUTL2tlyy-cas01.example.org] for service [http://127.0.0.1/oa/j_spring_cas_security_check] for user [admin]
+2017-05-05 11:29:12,850 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: admin
+WHAT: ST-1-vpIljbYaBUIEUTL2tlyy-cas01.example.org for http://127.0.0.1/oa/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Fri May 05 11:29:12 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 11:29:12,938 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/portal
+2017-05-05 11:29:12,951 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: ST-1-vpIljbYaBUIEUTL2tlyy-cas01.example.org
+ACTION: SERVICE_TICKET_VALIDATED
+APPLICATION: CAS
+WHEN: Fri May 05 11:29:12 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 11:29:19,550 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/portal
+2017-05-05 11:29:19,602 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - Granted service ticket [ST-2-B01TpiHHbEsfscn25JS7-cas01.example.org] for service [http://127.0.0.1/workflow/j_spring_cas_security_check] for user [admin]
+2017-05-05 11:29:19,603 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: admin
+WHAT: ST-2-B01TpiHHbEsfscn25JS7-cas01.example.org for http://127.0.0.1/workflow/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Fri May 05 11:29:19 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 11:29:19,670 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/portal
+2017-05-05 11:29:19,673 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: ST-2-B01TpiHHbEsfscn25JS7-cas01.example.org
+ACTION: SERVICE_TICKET_VALIDATED
+APPLICATION: CAS
+WHEN: Fri May 05 11:29:19 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 11:29:25,965 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/portal
+2017-05-05 11:29:26,008 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - Granted service ticket [ST-3-UcrGauKchlnKRdkvUhmG-cas01.example.org] for service [http://127.0.0.1/edu/j_spring_cas_security_check] for user [admin]
+2017-05-05 11:29:26,009 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: admin
+WHAT: ST-3-UcrGauKchlnKRdkvUhmG-cas01.example.org for http://127.0.0.1/edu/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Fri May 05 11:29:26 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 11:29:26,225 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/portal
+2017-05-05 11:29:26,233 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: ST-3-UcrGauKchlnKRdkvUhmG-cas01.example.org
+ACTION: SERVICE_TICKET_VALIDATED
+APPLICATION: CAS
+WHEN: Fri May 05 11:29:26 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 11:29:26,619 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - Granted service ticket [ST-5-lacIEc4vADKVtzpccKqi-cas01.example.org] for service [http://127.0.0.1/edu/j_spring_cas_security_check] for user [admin]
+2017-05-05 11:29:26,619 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - Granted service ticket [ST-4-ikIkJrFsg2xcJ41FUn7l-cas01.example.org] for service [http://127.0.0.1/edu/j_spring_cas_security_check] for user [admin]
+2017-05-05 11:29:26,620 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: admin
+WHAT: ST-5-lacIEc4vADKVtzpccKqi-cas01.example.org for http://127.0.0.1/edu/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Fri May 05 11:29:26 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 11:29:26,620 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: admin
+WHAT: ST-4-ikIkJrFsg2xcJ41FUn7l-cas01.example.org for http://127.0.0.1/edu/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Fri May 05 11:29:26 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 11:29:26,626 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - Granted service ticket [ST-6-NsWcgezbcs26NQnoFije-cas01.example.org] for service [http://127.0.0.1/edu/j_spring_cas_security_check] for user [admin]
+2017-05-05 11:29:26,627 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: admin
+WHAT: ST-6-NsWcgezbcs26NQnoFije-cas01.example.org for http://127.0.0.1/edu/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Fri May 05 11:29:26 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 11:29:26,706 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/portal
+2017-05-05 11:29:26,708 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: ST-6-NsWcgezbcs26NQnoFije-cas01.example.org
+ACTION: SERVICE_TICKET_VALIDATED
+APPLICATION: CAS
+WHEN: Fri May 05 11:29:26 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 11:29:26,737 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/portal
+2017-05-05 11:29:26,737 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/portal
+2017-05-05 11:29:26,741 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: ST-4-ikIkJrFsg2xcJ41FUn7l-cas01.example.org
+ACTION: SERVICE_TICKET_VALIDATED
+APPLICATION: CAS
+WHEN: Fri May 05 11:29:26 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 11:29:26,785 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: ST-5-lacIEc4vADKVtzpccKqi-cas01.example.org
+ACTION: SERVICE_TICKET_VALIDATED
+APPLICATION: CAS
+WHEN: Fri May 05 11:29:26 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-05-05 11:30:43,452 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 11:30:43,480 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 11:32:43,390 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 11:32:43,392 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 11:34:43,394 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 11:34:43,395 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 11:36:43,394 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 11:36:43,395 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 11:38:43,394 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 11:38:43,395 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 11:40:43,404 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 11:40:43,413 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 11:42:43,396 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 11:42:43,397 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 11:44:43,393 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 11:44:43,396 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 11:46:43,399 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 11:46:43,401 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 11:48:43,418 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 11:48:43,423 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 11:50:43,403 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 11:50:43,415 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 11:52:43,420 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 11:52:43,424 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 11:54:43,396 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 11:54:43,399 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 11:56:43,400 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 11:56:43,401 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 11:58:43,596 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 11:58:43,598 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:00:43,414 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:00:43,416 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:02:43,391 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:02:43,391 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:04:43,405 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:04:43,408 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:06:43,400 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:06:43,403 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:08:43,396 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:08:43,400 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:10:43,398 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:10:43,403 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:12:43,395 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:12:43,401 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:14:43,396 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:14:43,407 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:16:43,398 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:16:43,400 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:18:43,412 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:18:43,413 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:20:43,394 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:20:43,399 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:22:43,390 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:22:43,392 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:24:43,400 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:24:43,406 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:26:43,401 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:26:43,404 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:28:43,400 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:28:43,402 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:30:43,400 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:30:43,404 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:32:43,399 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:32:43,402 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:34:43,404 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:34:43,419 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:36:43,390 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:36:43,393 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:38:43,392 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:38:43,394 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:40:43,393 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:40:43,396 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:42:43,392 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:42:43,393 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:44:43,408 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:44:43,411 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:46:43,406 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:46:43,415 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:48:43,393 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:48:43,395 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:50:43,389 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:50:43,391 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:52:19,321 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Beginning ticket cleanup.
+2017-05-05 12:52:19,368 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - 0 tickets found to be removed.
+2017-05-05 12:52:19,371 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Finished ticket cleanup.
+2017-05-05 12:52:43,393 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:52:43,394 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:54:43,399 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:54:43,401 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:56:43,396 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:56:43,397 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 12:58:43,392 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 12:58:43,393 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 13:00:43,384 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 13:00:43,384 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 13:02:43,392 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 13:02:43,393 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 13:04:43,390 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 13:04:43,391 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 13:06:43,391 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 13:06:43,392 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 13:08:43,379 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 13:08:43,379 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 13:10:43,401 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 13:10:43,405 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 13:12:43,396 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 13:12:43,398 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 13:14:43,392 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 13:14:43,394 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 13:16:43,399 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 13:16:43,402 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 13:18:43,392 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 13:18:43,394 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 13:20:43,392 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 13:20:43,393 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 13:22:43,381 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 13:22:43,382 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-05-05 13:24:43,384 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-05-05 13:24:43,394 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:01:59,123 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:02:00,272 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Starting Quartz Scheduler now
+2017-06-17 20:02:00,290 INFO [org.platform.snail.web.filter.GzipFilter] - init GzipFilter
+2017-06-17 20:02:30,635 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Shutting down Quartz Scheduler
+2017-06-17 20:08:09,423 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:08:10,904 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Starting Quartz Scheduler now
+2017-06-17 20:08:10,920 INFO [org.platform.snail.web.filter.GzipFilter] - init GzipFilter
+2017-06-17 20:08:11,133 INFO [org.platform.snail.service.impl.SystemServiceImpl] - {sys_start_date=2016-08-28, sys_name=校园管理信息化系统V1.0, cyear=2016-2017, sys_login_bg_img=/portal/content/image/login-bg.png, sys_unit=坪山高级中学}
+2017-06-17 20:08:11,134 INFO [org.platform.snail.service.impl.SystemServiceImpl] - loadConfig cfg complete
+2017-06-17 20:08:11,136 INFO [org.platform.snail.web.filter.SystemUserFilter] - init systemUserFilter for params portal.contextPath :/oa
+2017-06-17 20:08:24,258 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Beginning ticket cleanup.
+2017-06-17 20:08:24,263 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - 0 tickets found to be removed.
+2017-06-17 20:08:24,264 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Finished ticket cleanup.
+2017-06-17 20:09:21,471 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/oa
+2017-06-17 20:09:23,101 INFO [org.jasig.cas.web.flow.InitialFlowSetupAction] - Setting path for cookies to: /cas/
+2017-06-17 20:09:23,101 INFO [org.jasig.cas.web.flow.InitialFlowSetupAction] - Setting path for cookies to: /cas/
+2017-06-17 20:09:28,956 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-06-17 20:09:28,956 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-06-17 20:09:28,956 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-06-17 20:09:28,965 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-06-17 20:09:29,005 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-06-17 20:09:29,019 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-06-17 20:09:29,021 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-06-17 20:09:29,263 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-06-17 20:09:30,322 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-06-17 20:09:47,559 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler successfully authenticated [username: admin]
+2017-06-17 20:09:47,595 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - Resolved principal admin
+2017-06-17 20:09:47,596 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - Principal found: admin
+2017-06-17 20:09:47,609 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: supplied credentials: [username: admin]
+ACTION: AUTHENTICATION_SUCCESS
+APPLICATION: CAS
+WHEN: Sat Jun 17 20:09:47 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-06-17 20:09:47,621 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: TGT-1-WkbqcsAvngcnG9CKV6pmbpVuVE0yqbQpWB9d4CnmqeAmKeXkZ7-cas01.example.org
+ACTION: TICKET_GRANTING_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Sat Jun 17 20:09:47 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-06-17 20:09:48,253 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - Granted service ticket [ST-1-sgXcwwfiQ0hR3z59dmLP-cas01.example.org] for service [http://demo.huacainfo.com/oa/j_spring_cas_security_check] for user [admin]
+2017-06-17 20:09:48,254 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: admin
+WHAT: ST-1-sgXcwwfiQ0hR3z59dmLP-cas01.example.org for http://demo.huacainfo.com/oa/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Sat Jun 17 20:09:48 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-06-17 20:10:09,539 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:10:09,557 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:12:00,651 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:12:01,988 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Starting Quartz Scheduler now
+2017-06-17 20:12:01,999 INFO [org.platform.snail.web.filter.GzipFilter] - init GzipFilter
+2017-06-17 20:12:02,314 INFO [org.platform.snail.service.impl.SystemServiceImpl] - {sys_start_date=2016-08-28, sys_name=校园管理信息化系统V1.0, cyear=2016-2017, sys_login_bg_img=/portal/content/image/login-bg.png, sys_unit=坪山高级中学}
+2017-06-17 20:12:02,314 INFO [org.platform.snail.service.impl.SystemServiceImpl] - loadConfig cfg complete
+2017-06-17 20:12:02,319 INFO [org.platform.snail.web.filter.SystemUserFilter] - init systemUserFilter for params portal.contextPath :/oa
+2017-06-17 20:12:16,106 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Beginning ticket cleanup.
+2017-06-17 20:12:16,111 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - 0 tickets found to be removed.
+2017-06-17 20:12:16,112 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Finished ticket cleanup.
+2017-06-17 20:13:22,669 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/oa
+2017-06-17 20:13:23,682 INFO [org.jasig.cas.web.flow.InitialFlowSetupAction] - Setting path for cookies to: /cas/
+2017-06-17 20:13:23,682 INFO [org.jasig.cas.web.flow.InitialFlowSetupAction] - Setting path for cookies to: /cas/
+2017-06-17 20:13:23,842 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: https://demo.huacainfo.com/oa/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_NOT_CREATED
+APPLICATION: CAS
+WHEN: Sat Jun 17 20:13:23 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-06-17 20:13:28,638 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/oa
+2017-06-17 20:13:28,648 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: https://demo.huacainfo.com/oa/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_NOT_CREATED
+APPLICATION: CAS
+WHEN: Sat Jun 17 20:13:28 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-06-17 20:13:38,847 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: https://demo.huacainfo.com/oa/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_NOT_CREATED
+APPLICATION: CAS
+WHEN: Sat Jun 17 20:13:38 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-06-17 20:13:39,826 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-06-17 20:13:47,301 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler successfully authenticated [username: admin]
+2017-06-17 20:13:47,334 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - Resolved principal admin
+2017-06-17 20:13:47,335 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - Principal found: admin
+2017-06-17 20:13:47,340 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: supplied credentials: [username: admin]
+ACTION: AUTHENTICATION_SUCCESS
+APPLICATION: CAS
+WHEN: Sat Jun 17 20:13:47 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-06-17 20:13:47,351 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: TGT-1-huvljGE27JRXkkeCrfBh2CcBCTPcKk7393foUhRvILG4fU5oqS-cas01.example.org
+ACTION: TICKET_GRANTING_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Sat Jun 17 20:13:47 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-06-17 20:13:47,354 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: TGT-1-WkbqcsAvngcnG9CKV6pmbpVuVE0yqbQpWB9d4CnmqeAmKeXkZ7-cas01.example.org
+ACTION: TICKET_GRANTING_TICKET_DESTROYED
+APPLICATION: CAS
+WHEN: Sat Jun 17 20:13:47 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-06-17 20:13:47,366 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - Granted service ticket [ST-1-p7mcBGfk2iDkCef07vdk-cas01.example.org] for service [https://demo.huacainfo.com/oa/j_spring_cas_security_check] for user [admin]
+2017-06-17 20:13:47,366 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: admin
+WHAT: ST-1-p7mcBGfk2iDkCef07vdk-cas01.example.org for https://demo.huacainfo.com/oa/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Sat Jun 17 20:13:47 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-06-17 20:13:47,620 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - Granted service ticket [ST-2-6gCXqkLVfK5hszEu3f9X-cas01.example.org] for service [https://demo.huacainfo.com/oa/j_spring_cas_security_check] for user [admin]
+2017-06-17 20:13:47,620 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: admin
+WHAT: ST-2-6gCXqkLVfK5hszEu3f9X-cas01.example.org for https://demo.huacainfo.com/oa/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Sat Jun 17 20:13:47 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-06-17 20:13:47,637 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - Granted service ticket [ST-3-sKaGG2RXmRXeIxUtF1A4-cas01.example.org] for service [https://demo.huacainfo.com/oa/j_spring_cas_security_check] for user [admin]
+2017-06-17 20:13:47,639 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: admin
+WHAT: ST-3-sKaGG2RXmRXeIxUtF1A4-cas01.example.org for https://demo.huacainfo.com/oa/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Sat Jun 17 20:13:47 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-06-17 20:14:00,748 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:14:00,751 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:16:00,779 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:16:00,789 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:16:25,000 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/oa
+2017-06-17 20:16:25,031 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - Granted service ticket [ST-4-5Rxk0tg1LigreR2NiErq-cas01.example.org] for service [https://demo.huacainfo.com/oa/j_spring_cas_security_check] for user [admin]
+2017-06-17 20:16:25,049 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: admin
+WHAT: ST-4-5Rxk0tg1LigreR2NiErq-cas01.example.org for https://demo.huacainfo.com/oa/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Sat Jun 17 20:16:25 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-06-17 20:16:26,424 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/oa
+2017-06-17 20:16:26,554 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: ST-4-5Rxk0tg1LigreR2NiErq-cas01.example.org
+ACTION: SERVICE_TICKET_VALIDATED
+APPLICATION: CAS
+WHEN: Sat Jun 17 20:16:26 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-06-17 20:16:36,749 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/oa
+2017-06-17 20:16:36,786 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - Granted service ticket [ST-5-1s9m0ervjP9mpS3ETuaL-cas01.example.org] for service [https://demo.huacainfo.com/edu/j_spring_cas_security_check] for user [admin]
+2017-06-17 20:16:36,788 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: admin
+WHAT: ST-5-1s9m0ervjP9mpS3ETuaL-cas01.example.org for https://demo.huacainfo.com/edu/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Sat Jun 17 20:16:36 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-06-17 20:16:37,833 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/oa
+2017-06-17 20:16:37,837 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: ST-5-1s9m0ervjP9mpS3ETuaL-cas01.example.org
+ACTION: SERVICE_TICKET_VALIDATED
+APPLICATION: CAS
+WHEN: Sat Jun 17 20:16:37 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-06-17 20:18:00,758 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:18:00,760 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:20:00,751 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:20:00,756 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:22:00,756 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:22:00,760 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:24:00,748 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:24:00,752 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:26:00,749 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:26:00,752 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:28:00,752 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:28:00,753 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:30:00,748 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:30:00,772 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:32:00,757 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:32:00,763 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:34:00,749 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:34:00,760 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:36:00,742 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:36:00,744 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:38:00,758 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:38:00,759 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:40:00,752 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:40:00,753 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:42:00,870 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:42:00,870 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:44:00,759 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:44:00,760 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:46:00,748 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:46:00,757 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:48:00,746 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:48:00,751 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:50:00,752 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:50:00,759 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:52:00,753 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:52:00,755 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:54:00,754 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:54:00,761 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:56:00,758 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:56:00,763 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 20:58:00,754 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 20:58:00,756 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:00:00,746 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:00:00,755 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:02:00,761 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:02:00,763 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:04:00,742 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:04:00,746 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:06:00,734 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:06:00,744 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:08:00,751 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:08:00,752 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:10:00,746 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:10:00,751 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:12:00,760 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:12:00,761 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:14:00,749 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:14:00,754 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:16:00,735 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:16:00,736 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:18:00,745 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:18:00,748 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:20:00,761 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:20:00,766 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:22:00,751 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:22:00,752 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:24:00,747 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:24:00,758 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:26:00,747 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:26:00,748 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:28:00,745 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:28:00,747 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:30:00,746 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:30:00,748 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:32:00,759 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:32:00,761 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:34:00,739 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:34:00,741 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:35:36,027 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Beginning ticket cleanup.
+2017-06-17 21:35:36,057 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - 3 tickets found to be removed.
+2017-06-17 21:35:36,059 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Finished ticket cleanup.
+2017-06-17 21:36:00,737 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:36:00,740 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:38:00,746 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:38:00,749 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:40:00,753 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:40:00,753 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:42:00,739 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:42:00,749 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:44:00,754 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:44:00,756 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:46:00,750 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:46:00,751 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:48:00,740 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:48:00,741 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:50:00,759 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:50:00,760 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:52:00,748 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:52:00,753 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:54:00,762 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:54:00,764 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:56:00,734 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:56:00,743 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 21:58:00,754 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 21:58:00,757 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:00:00,745 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:00:00,745 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:02:00,758 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:02:00,761 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:04:00,747 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:04:00,748 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:06:00,752 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:06:00,753 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:08:00,747 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:08:00,749 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:10:00,745 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:10:00,747 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:12:00,748 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:12:00,750 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:14:00,748 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:14:00,749 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:16:00,743 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:16:00,746 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:18:00,752 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:18:00,753 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:20:00,756 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:20:00,758 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:22:00,743 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:22:00,752 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:24:00,749 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:24:00,750 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:26:00,755 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:26:00,756 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:28:00,742 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:28:00,746 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:30:00,746 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:30:00,747 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:32:00,735 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:32:00,744 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:34:00,739 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:34:00,740 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:36:00,755 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:36:00,775 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:38:00,749 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:38:00,750 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:40:00,737 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:40:00,738 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:42:00,750 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:42:00,751 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:44:00,751 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:44:00,751 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:46:00,744 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:46:00,747 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:48:00,752 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:48:00,753 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:50:00,749 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:50:00,751 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:52:00,739 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:52:00,748 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:54:00,753 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:54:00,756 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:56:00,741 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:56:00,750 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:58:00,743 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 22:58:00,753 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 22:58:56,024 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Beginning ticket cleanup.
+2017-06-17 22:58:56,028 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - 1 tickets found to be removed.
+2017-06-17 22:58:56,720 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Finished ticket cleanup.
+2017-06-17 22:58:58,370 WARN [org.jasig.cas.util.HttpClient] - Error Sending message to url endpoint [https://demo.huacainfo.com/oa/j_spring_cas_security_check].  Error is [Server returned HTTP response code: 401 for URL: https://demo.huacainfo.com/oa/j_spring_cas_security_check]
+2017-06-17 22:58:58,371 WARN [org.jasig.cas.util.HttpClient] - Error Sending message to url endpoint [https://demo.huacainfo.com/oa/j_spring_cas_security_check].  Error is [Server returned HTTP response code: 401 for URL: https://demo.huacainfo.com/oa/j_spring_cas_security_check]
+2017-06-17 22:58:58,371 WARN [org.jasig.cas.util.HttpClient] - Error Sending message to url endpoint [https://demo.huacainfo.com/oa/j_spring_cas_security_check].  Error is [Server returned HTTP response code: 401 for URL: https://demo.huacainfo.com/oa/j_spring_cas_security_check]
+2017-06-17 22:58:58,372 WARN [org.jasig.cas.util.HttpClient] - Error Sending message to url endpoint [https://demo.huacainfo.com/oa/j_spring_cas_security_check].  Error is [Server returned HTTP response code: 401 for URL: https://demo.huacainfo.com/oa/j_spring_cas_security_check]
+2017-06-17 22:58:58,590 WARN [org.jasig.cas.util.HttpClient] - Error Sending message to url endpoint [https://demo.huacainfo.com/edu/j_spring_cas_security_check].  Error is [Server returned HTTP response code: 401 for URL: https://demo.huacainfo.com/edu/j_spring_cas_security_check]
+2017-06-17 23:00:00,758 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 23:00:00,763 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 23:02:00,751 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 23:02:00,760 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 23:04:00,737 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 23:04:00,740 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 23:06:00,743 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 23:06:00,744 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 23:08:00,748 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 23:08:00,750 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 23:10:00,741 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 23:10:00,751 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 23:12:00,756 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 23:12:00,758 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 23:14:00,738 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 23:14:00,747 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 23:16:00,764 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 23:16:00,766 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-06-17 23:18:00,746 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-06-17 23:18:00,755 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:14:47,859 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:14:48,963 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Starting Quartz Scheduler now
+2017-08-27 11:14:48,977 INFO [org.platform.snail.web.filter.GzipFilter] - init GzipFilter
+2017-08-27 11:14:49,199 INFO [org.platform.snail.service.impl.SystemServiceImpl] - {sys_start_date=2016-08-28, sys_name=校园管理信息化系统V1.0, cyear=2016-2017, sys_login_bg_img=/portal/content/image/login-bg.png, sys_unit=坪山高级中学}
+2017-08-27 11:14:49,199 INFO [org.platform.snail.service.impl.SystemServiceImpl] - loadConfig cfg complete
+2017-08-27 11:14:49,200 INFO [org.platform.snail.service.impl.CacheServiceImpl] - cache init C0001
+2017-08-27 11:14:49,200 INFO [org.platform.snail.service.impl.CacheServiceImpl] - cache init C0002
+2017-08-27 11:14:49,586 INFO [org.platform.snail.web.filter.SystemUserFilter] - init systemUserFilter for params portal.contextPath :/portal
+2017-08-27 11:15:03,836 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Beginning ticket cleanup.
+2017-08-27 11:15:03,839 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - 0 tickets found to be removed.
+2017-08-27 11:15:03,839 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Finished ticket cleanup.
+2017-08-27 11:16:47,952 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:16:47,954 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:18:47,923 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:18:47,932 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:20:47,930 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:20:47,932 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:22:47,927 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:22:47,928 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:24:47,921 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:24:47,922 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:26:47,923 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:26:47,941 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:28:47,918 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:28:47,937 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:30:47,925 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:30:47,933 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:32:47,923 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:32:47,923 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:34:47,921 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:34:47,929 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:36:47,922 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:36:47,930 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:38:47,918 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:38:47,919 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:40:47,926 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:40:47,926 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:42:47,927 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:42:47,936 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:44:47,944 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:44:47,944 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:46:47,929 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:46:47,929 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:48:47,918 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:48:47,926 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:50:47,920 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:50:47,921 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:52:47,924 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:52:47,932 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:54:47,924 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:54:47,925 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:56:47,920 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:56:47,921 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 11:58:47,921 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 11:58:47,929 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 12:00:47,924 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 12:00:47,924 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 12:02:47,918 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 12:02:47,918 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 12:04:47,925 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 12:04:47,933 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 12:06:47,925 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 12:06:47,925 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 12:08:47,922 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 12:08:47,922 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 12:10:47,932 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 12:10:47,941 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 12:12:47,919 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 12:12:47,919 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 12:14:47,926 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 12:14:47,927 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 12:16:47,928 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 12:16:47,928 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 12:18:47,923 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 12:18:47,931 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 12:20:47,919 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 12:20:47,927 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 12:22:47,919 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 12:22:47,919 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 12:24:47,927 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 12:24:47,928 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 12:26:47,922 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 12:26:47,930 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 12:28:47,922 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 12:28:47,922 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 12:30:47,920 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 12:30:47,921 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 13:04:37,615 INFO [org.platform.snail.web.filter.SystemUserFilter] - post header
+2017-08-27 13:04:37,627 INFO [org.platform.snail.web.filter.SystemUserFilter] - post params
+2017-08-27 13:04:40,065 INFO [org.platform.snail.web.filter.SystemUserFilter] - post header
+2017-08-27 13:04:40,065 INFO [org.platform.snail.web.filter.SystemUserFilter] - post header
+2017-08-27 13:04:40,067 INFO [org.platform.snail.web.filter.SystemUserFilter] - post params
+2017-08-27 13:04:40,068 INFO [org.platform.snail.web.filter.SystemUserFilter] - post header
+2017-08-27 13:04:40,068 INFO [org.platform.snail.web.filter.SystemUserFilter] - post params
+2017-08-27 13:04:40,069 INFO [org.platform.snail.web.filter.SystemUserFilter] - post params
+2017-08-27 13:04:40,070 INFO [org.platform.snail.web.filter.SystemUserFilter] - post header
+2017-08-27 13:04:40,070 INFO [org.platform.snail.web.filter.SystemUserFilter] - post params
+2017-08-27 13:04:40,070 INFO [org.platform.snail.web.filter.SystemUserFilter] - post header
+2017-08-27 13:04:40,074 INFO [org.platform.snail.web.filter.SystemUserFilter] - post params
+2017-08-27 13:04:40,088 INFO [org.platform.snail.web.filter.SystemUserFilter] - post header
+2017-08-27 13:04:40,088 INFO [org.platform.snail.web.filter.SystemUserFilter] - post header
+2017-08-27 13:04:40,088 INFO [org.platform.snail.web.filter.SystemUserFilter] - post params
+2017-08-27 13:04:40,088 INFO [org.platform.snail.web.filter.SystemUserFilter] - post params
+2017-08-27 13:04:40,106 INFO [org.platform.snail.web.filter.SystemUserFilter] - post header
+2017-08-27 13:04:40,107 INFO [org.platform.snail.web.filter.SystemUserFilter] - post params
+2017-08-27 13:04:40,222 INFO [org.platform.snail.web.filter.SystemUserFilter] - post header
+2017-08-27 13:04:40,222 INFO [org.platform.snail.web.filter.SystemUserFilter] - post params
+2017-08-27 13:04:40,229 INFO [org.platform.snail.web.filter.SystemUserFilter] - post header
+2017-08-27 13:04:40,229 INFO [org.platform.snail.web.filter.SystemUserFilter] - post params
+2017-08-27 13:04:40,235 INFO [org.platform.snail.web.filter.SystemUserFilter] - post header
+2017-08-27 13:04:40,235 INFO [org.platform.snail.web.filter.SystemUserFilter] - post params
+2017-08-27 13:04:47,924 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 13:04:47,932 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 13:05:13,218 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-08-27 13:05:14,591 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Starting Quartz Scheduler now
+2017-08-27 13:05:14,602 INFO [org.platform.snail.web.filter.GzipFilter] - init GzipFilter
+2017-08-27 13:05:14,740 INFO [org.platform.snail.service.impl.SystemServiceImpl] - {sys_start_date=2016-08-28, sys_name=校园管理信息化系统V1.0, cyear=2016-2017, sys_login_bg_img=/portal/content/image/login-bg.png, sys_unit=坪山高级中学}
+2017-08-27 13:05:14,740 INFO [org.platform.snail.service.impl.SystemServiceImpl] - loadConfig cfg complete
+2017-08-27 13:05:14,749 INFO [org.platform.snail.web.filter.SystemUserFilter] - init systemUserFilter for params portal.contextPath :/oa
+2017-08-27 13:05:20,127 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/oa
+2017-08-27 13:05:20,625 INFO [org.jasig.cas.web.flow.InitialFlowSetupAction] - Setting path for cookies to: /cas/
+2017-08-27 13:05:20,625 INFO [org.jasig.cas.web.flow.InitialFlowSetupAction] - Setting path for cookies to: /cas/
+2017-08-27 13:05:23,353 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-08-27 13:05:23,355 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-08-27 13:05:23,356 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-08-27 13:05:23,358 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-08-27 13:05:23,358 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-08-27 13:05:23,386 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-08-27 13:05:23,386 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-08-27 13:05:23,467 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-08-27 13:05:24,101 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-08-27 13:05:29,087 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler failed to authenticate [username: admin]
+2017-08-27 13:05:29,093 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: supplied credentials: [username: admin]
+ACTION: AUTHENTICATION_FAILED
+APPLICATION: CAS
+WHEN: Sun Aug 27 13:05:29 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-08-27 13:05:29,098 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: error.authentication.credentials.bad
+ACTION: TICKET_GRANTING_TICKET_NOT_CREATED
+APPLICATION: CAS
+WHEN: Sun Aug 27 13:05:29 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-08-27 13:05:29,335 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-08-27 13:05:29,791 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Beginning ticket cleanup.
+2017-08-27 13:05:29,792 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - 0 tickets found to be removed.
+2017-08-27 13:05:29,792 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Finished ticket cleanup.
+2017-08-27 13:05:36,272 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler failed to authenticate [username: admin]
+2017-08-27 13:05:36,273 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: supplied credentials: [username: admin]
+ACTION: AUTHENTICATION_FAILED
+APPLICATION: CAS
+WHEN: Sun Aug 27 13:05:36 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-08-27 13:05:36,274 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: error.authentication.credentials.bad
+ACTION: TICKET_GRANTING_TICKET_NOT_CREATED
+APPLICATION: CAS
+WHEN: Sun Aug 27 13:05:36 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-08-27 13:05:36,376 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-08-27 13:07:02,001 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler failed to authenticate [username: admin]
+2017-08-27 13:07:02,004 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: supplied credentials: [username: admin]
+ACTION: AUTHENTICATION_FAILED
+APPLICATION: CAS
+WHEN: Sun Aug 27 13:07:02 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-08-27 13:07:02,004 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: error.authentication.credentials.bad
+ACTION: TICKET_GRANTING_TICKET_NOT_CREATED
+APPLICATION: CAS
+WHEN: Sun Aug 27 13:07:02 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-08-27 13:07:02,139 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-08-27 13:07:13,276 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-08-27 13:07:13,284 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-11-18 17:13:28,214 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-11-18 17:13:29,653 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Starting Quartz Scheduler now
+2017-11-18 17:13:29,668 INFO [org.platform.snail.web.filter.GzipFilter] - init GzipFilter
+2017-11-18 17:13:30,039 INFO [org.platform.snail.service.impl.SystemServiceImpl] - {sys_start_date=2016-08-28, sys_name=校园管理信息化系统V1.0, cyear=2016-2017, sys_login_bg_img=/portal/content/image/login-bg.png, sys_unit=坪山高级中学}
+2017-11-18 17:13:30,039 INFO [org.platform.snail.service.impl.SystemServiceImpl] - loadConfig cfg complete
+2017-11-18 17:13:30,043 INFO [org.platform.snail.web.filter.SystemUserFilter] - init systemUserFilter for params portal.contextPath :/oa
+2017-11-18 17:13:43,890 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Beginning ticket cleanup.
+2017-11-18 17:13:43,895 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - 0 tickets found to be removed.
+2017-11-18 17:13:43,895 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Finished ticket cleanup.
+2017-11-18 17:15:28,345 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-11-18 17:15:28,354 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-11-18 17:17:28,274 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-11-18 17:17:28,276 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-11-18 17:19:24,534 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-11-18 17:19:28,688 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Starting Quartz Scheduler now
+2017-11-18 17:19:28,711 INFO [org.platform.snail.web.filter.GzipFilter] - init GzipFilter
+2017-11-18 17:19:29,287 INFO [org.platform.snail.service.impl.SystemServiceImpl] - {sys_start_date=2016-08-28, sys_name=校园管理信息化系统V1.0, cyear=2016-2017, sys_login_bg_img=/portal/content/image/login-bg.png, sys_unit=坪山高级中学}
+2017-11-18 17:19:29,287 INFO [org.platform.snail.service.impl.SystemServiceImpl] - loadConfig cfg complete
+2017-11-18 17:19:29,309 INFO [org.platform.snail.web.filter.SystemUserFilter] - init systemUserFilter for params portal.contextPath :/oa
+2017-11-18 17:19:35,360 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Beginning ticket cleanup.
+2017-11-18 17:19:35,362 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - 0 tickets found to be removed.
+2017-11-18 17:19:35,363 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Finished ticket cleanup.
+2017-11-18 17:21:24,775 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-11-18 17:21:24,781 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-11-18 17:22:05,488 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-11-18 17:22:09,054 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Starting Quartz Scheduler now
+2017-11-18 17:22:09,073 INFO [org.platform.snail.web.filter.GzipFilter] - init GzipFilter
+2017-11-18 17:22:09,568 INFO [org.platform.snail.service.impl.SystemServiceImpl] - {sys_start_date=2016-08-28, sys_name=校园管理信息化系统V1.0, cyear=2016-2017, sys_login_bg_img=/portal/content/image/login-bg.png, sys_unit=坪山高级中学}
+2017-11-18 17:22:09,568 INFO [org.platform.snail.service.impl.SystemServiceImpl] - loadConfig cfg complete
+2017-11-18 17:22:09,575 INFO [org.platform.snail.web.filter.SystemUserFilter] - init systemUserFilter for params portal.contextPath :/oa
+2017-11-18 17:22:19,043 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Beginning ticket cleanup.
+2017-11-18 17:22:19,047 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - 0 tickets found to be removed.
+2017-11-18 17:22:19,048 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Finished ticket cleanup.
+2017-11-18 17:23:52,078 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/oa
+2017-11-18 17:23:52,971 INFO [org.jasig.cas.web.flow.InitialFlowSetupAction] - Setting path for cookies to: /cas/
+2017-11-18 17:23:52,971 INFO [org.jasig.cas.web.flow.InitialFlowSetupAction] - Setting path for cookies to: /cas/
+2017-11-18 17:23:59,498 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-11-18 17:23:59,503 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-11-18 17:23:59,503 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-11-18 17:23:59,511 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-11-18 17:23:59,511 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-11-18 17:23:59,512 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-11-18 17:23:59,540 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-11-18 17:23:59,887 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-11-18 17:24:02,715 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-11-18 17:24:05,683 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-11-18 17:24:05,685 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-11-18 17:24:13,607 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler failed to authenticate [username: admin]
+2017-11-18 17:24:13,620 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: supplied credentials: [username: admin]
+ACTION: AUTHENTICATION_FAILED
+APPLICATION: CAS
+WHEN: Sat Nov 18 17:24:13 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-11-18 17:24:13,624 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: error.authentication.credentials.bad
+ACTION: TICKET_GRANTING_TICKET_NOT_CREATED
+APPLICATION: CAS
+WHEN: Sat Nov 18 17:24:13 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-11-18 17:24:14,038 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-11-18 17:24:24,238 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler failed to authenticate [username: admin]
+2017-11-18 17:24:24,239 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: supplied credentials: [username: admin]
+ACTION: AUTHENTICATION_FAILED
+APPLICATION: CAS
+WHEN: Sat Nov 18 17:24:24 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-11-18 17:24:24,240 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: error.authentication.credentials.bad
+ACTION: TICKET_GRANTING_TICKET_NOT_CREATED
+APPLICATION: CAS
+WHEN: Sat Nov 18 17:24:24 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-11-18 17:24:24,419 INFO [org.platform.snail.web.filter.GzipFilter] - do GzipFilter
+2017-11-18 17:24:32,162 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler successfully authenticated [username: admin]
+2017-11-18 17:24:32,289 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - Resolved principal admin
+2017-11-18 17:24:32,291 INFO [org.jasig.cas.authentication.AuthenticationManagerImpl] - Principal found: admin
+2017-11-18 17:24:32,298 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: supplied credentials: [username: admin]
+ACTION: AUTHENTICATION_SUCCESS
+APPLICATION: CAS
+WHEN: Sat Nov 18 17:24:32 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-11-18 17:24:32,315 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: [username: admin]
+WHAT: TGT-1-nYW72BUoervi1RSS046OIdcA0eWO5Ubfx7kRVaMVRJhoUiCuic-cas01.example.org
+ACTION: TICKET_GRANTING_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Sat Nov 18 17:24:32 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-11-18 17:24:32,349 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - Granted service ticket [ST-1-W6ySUYpuaqL1TOCnYxKr-cas01.example.org] for service [https://127.0.0.1/oa/j_spring_cas_security_check] for user [admin]
+2017-11-18 17:24:32,350 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: admin
+WHAT: ST-1-W6ySUYpuaqL1TOCnYxKr-cas01.example.org for https://127.0.0.1/oa/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Sat Nov 18 17:24:32 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-11-18 17:24:41,171 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/oa
+2017-11-18 17:24:41,194 ERROR [org.jasig.cas.CentralAuthenticationServiceImpl] - ServiceTicket [ST-1-W6ySUYpuaqL1TOCnYxKr-cas01.example.org] with service [https://127.0.0.1/oa/j_spring_cas_security_check does not match supplied service [http://127.0.0.1/oa/j_spring_cas_security_check]
+2017-11-18 17:24:41,196 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: ST-1-W6ySUYpuaqL1TOCnYxKr-cas01.example.org
+ACTION: SERVICE_TICKET_VALIDATE_FAILED
+APPLICATION: CAS
+WHEN: Sat Nov 18 17:24:41 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-11-18 17:26:05,668 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-11-18 17:26:05,697 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-11-18 17:26:29,882 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/oa
+2017-11-18 17:26:29,928 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - Granted service ticket [ST-2-jIbauyCC9D4QT4kMZXjo-cas01.example.org] for service [http://127.0.0.1/oa/j_spring_cas_security_check] for user [admin]
+2017-11-18 17:26:29,930 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: admin
+WHAT: ST-2-jIbauyCC9D4QT4kMZXjo-cas01.example.org for http://127.0.0.1/oa/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Sat Nov 18 17:26:29 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-11-18 17:26:29,960 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/oa
+2017-11-18 17:26:30,048 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: ST-2-jIbauyCC9D4QT4kMZXjo-cas01.example.org
+ACTION: SERVICE_TICKET_VALIDATED
+APPLICATION: CAS
+WHEN: Sat Nov 18 17:26:30 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-11-18 17:26:35,805 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/oa
+2017-11-18 17:26:35,836 INFO [org.jasig.cas.CentralAuthenticationServiceImpl] - Granted service ticket [ST-3-vZLeWbloG7E6pAIqAbcu-cas01.example.org] for service [http://127.0.0.1/edu/j_spring_cas_security_check] for user [admin]
+2017-11-18 17:26:35,838 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: admin
+WHAT: ST-3-vZLeWbloG7E6pAIqAbcu-cas01.example.org for http://127.0.0.1/edu/j_spring_cas_security_check
+ACTION: SERVICE_TICKET_CREATED
+APPLICATION: CAS
+WHEN: Sat Nov 18 17:26:35 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-11-18 17:26:35,885 INFO [org.platform.snail.web.filter.SystemUserFilter] - load in session portal.contextPath :/oa
+2017-11-18 17:26:35,888 INFO [com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager] - Audit trail record BEGIN
+=============================================================
+WHO: audit:unknown
+WHAT: ST-3-vZLeWbloG7E6pAIqAbcu-cas01.example.org
+ACTION: SERVICE_TICKET_VALIDATED
+APPLICATION: CAS
+WHEN: Sat Nov 18 17:26:35 CST 2017
+CLIENT IP ADDRESS: 127.0.0.1
+SERVER IP ADDRESS: 127.0.0.1
+=============================================================
+
+
+2017-11-18 17:28:05,663 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-11-18 17:28:05,664 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-11-18 17:30:05,665 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-11-18 17:30:05,670 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-11-18 17:32:05,672 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-11-18 17:32:05,688 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-11-18 17:34:05,678 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-11-18 17:34:05,684 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.
+2017-11-18 17:36:05,675 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2017-11-18 17:36:05,678 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 0 services.

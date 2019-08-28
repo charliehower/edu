@@ -100,6 +100,6 @@ var edit=${edit};
 		src="${pageContext.request.contextPath}/content/js/console/notice/upload.js"></script>
 		<jsp:include page="../../common/footer-2.jsp" />
 
-<ckeditor:replaceAll basePath="/portal/ckeditor/" />
+<ckeditor:replaceAll basePath="/oa/ckeditor/" />
 </body>
 </html>

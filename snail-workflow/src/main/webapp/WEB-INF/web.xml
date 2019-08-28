@@ -55,7 +55,7 @@
 	
 	<context-param>
 		<param-name>portal.contextPath</param-name>
-		<param-value>/portal</param-value>
+		<param-value>/oa</param-value>
 	</context-param>
 	
 	<context-param>
